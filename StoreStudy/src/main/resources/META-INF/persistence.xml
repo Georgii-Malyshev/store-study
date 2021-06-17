@@ -18,7 +18,7 @@
 				value="org.postgresql.Driver" />
 
 			<property name="javax.persistence.jdbc.url"
-				value="jdbc:postgresql://127.0.0.1:5432/storedb_dev" />
+				value="jdbc:postgresql://127.0.0.1:5432/storedb_hibernate_dev" />
 
 			<property name="javax.persistence.jdbc.user"
 				value="postgres" />
@@ -31,7 +31,7 @@
 
 			<property name="hibernate.show_sql" value="true" />
 
-			<property name="hibernate.hbm2ddl.auto" value="validate" />
+			<property name="hibernate.hbm2ddl.auto" value="none" />
 		</properties>
 
 	</persistence-unit>
