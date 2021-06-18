@@ -1,6 +1,6 @@
 package domain.users;
 
-public interface User {
+public interface AppUser {
     public int getId();
 
     public void setId(int id);

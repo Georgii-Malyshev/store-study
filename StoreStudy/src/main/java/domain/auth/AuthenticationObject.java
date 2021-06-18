@@ -1,17 +1,17 @@
 package domain.auth;
 
 import dao.UserDao;
-import domain.users.User;
+import domain.users.AppUser;
 
 public class AuthenticationObject {
 
     public int getUserIdByCredentials(String email, String password) {
 	UserDao userDao = new UserDao();
-	User user = userDao.findByCredentials(email, password);
+	AppUser user = userDao.findByCredentials(email, password);
 	return user.getId();
     }
 
-    public User getUserByCredentials(String email, String password) {
+    public AppUser getUserByCredentials(String email, String password) {
 	UserDao userDao = new UserDao();
 	return userDao.findByCredentials(email, password);
     }

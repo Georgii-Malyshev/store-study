@@ -2,7 +2,11 @@ package domain.users;
 
 import java.util.Objects;
 
-public class Customer extends UserAbstract {
+import javax.persistence.Entity;
+
+@Entity
+public class Customer extends AppUserAbstract {
+	
 	
 	private String mobilePhoneNumber;
 	private String firstName;

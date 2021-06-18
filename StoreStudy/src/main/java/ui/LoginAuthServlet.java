@@ -1,7 +1,7 @@
 package ui;
 
 import domain.auth.AuthenticationObject;
-import domain.users.User;
+import domain.users.AppUser;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,7 +21,7 @@ public class LoginAuthServlet extends HttpServlet {
 	String password = request.getParameter("password");
 
 	AuthenticationObject authenticationObject = new AuthenticationObject();
-	User user = authenticationObject.getUserByCredentials(email, password);
+	AppUser user = authenticationObject.getUserByCredentials(email, password);
 	if (user.getId() != -1) {
 	    HttpSession session = request.getSession();
 	    session.setAttribute("user", user);
