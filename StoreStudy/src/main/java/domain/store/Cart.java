@@ -1,17 +1,35 @@
 package domain.store;
 
-import dao.ProductDao;
+import java.util.List;
 
-import java.util.ArrayList;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 
+import domain.users.Customer;
+
+@Entity
 public class Cart {
-    private ArrayList<Product> products;
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cart_generator")
+	@SequenceGenerator(name = "cart_generator", sequenceName = "cart_id_seq")
+	@Column(updatable = false, nullable = false)
+	private int id;
+	
+	private List<Product> products;
 
-    public ArrayList<Product> getProducts() {
+	@OneToOne(mappedBy="cart")
+	private Customer customer;
+	
+    public List<Product> getProducts() {
 	return products;
     }
-
-    public void setProducts(ArrayList<Product> products) {
+    
+    public void setProducts(List<Product> products) {
 	this.products = products;
     }
 

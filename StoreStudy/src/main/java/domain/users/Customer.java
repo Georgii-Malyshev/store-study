@@ -2,7 +2,12 @@ package domain.users;
 
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+
+import domain.store.Cart;
 
 @Entity
 public class Customer extends AppUserAbstract {
@@ -12,6 +17,10 @@ public class Customer extends AppUserAbstract {
 	private String firstName;
 	private String lastName;
 	private String shippingAddress;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "cart_id", referencedColumnName = "id")
+	private Cart cart;
 
 	public String getMobilePhoneNumber() {
 		return mobilePhoneNumber;
