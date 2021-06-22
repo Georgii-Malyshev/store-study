@@ -14,20 +14,22 @@ import java.io.IOException;
 @WebServlet("/loginAuthServlet")
 public class LoginAuthServlet extends HttpServlet {
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-	    throws ServletException, IOException {
-	String email = request.getParameter("email");
-	String password = request.getParameter("password");
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
 
-	AuthenticationObject authenticationObject = new AuthenticationObject();
-	AppUser user = authenticationObject.getUserByCredentials(email, password);
-	if (user.getId() != -1) {
-	    HttpSession session = request.getSession();
-	    session.setAttribute("user", user);
-	    response.sendRedirect(request.getContextPath() + "/jsp/home.jsp");
-	} else {
-	    response.sendError(401);
+		/*
+		AuthenticationObject authenticationObject = new AuthenticationObject();
+		AppUser user = authenticationObject.getUserByCredentials(email, password);
+		if (user.getId() != -1) {
+			HttpSession session = request.getSession();
+			session.setAttribute("user", user);
+			response.sendRedirect(request.getContextPath() + "/jsp/home.jsp");
+		} else {
+			response.sendError(401);
+		}
+		*/
 	}
-    }
 }

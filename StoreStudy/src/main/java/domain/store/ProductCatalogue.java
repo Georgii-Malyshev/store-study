@@ -1,14 +1,11 @@
 package domain.store;
 
-import dao.ProductCategoryDao;
-
 import java.util.ArrayList;
 
 public class ProductCatalogue {
     // no-arg constructor
     public ProductCatalogue() {
-	ProductCategoryDao productCategoryDao = new ProductCategoryDao();
-	productCategories = productCategoryDao.getAllProductCategories();
+	//constructor implementation
     }
 
     private ArrayList<ProductCategory> productCategories;

@@ -11,7 +11,9 @@
 
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
-		<class>entity class</class>
+		<class>AppUserAbstract</class>
+		<class>Customer</class>
+		<class>Cart</class>
 
 		<properties>
 			<property name="javax.persistence.jdbc.driver"
