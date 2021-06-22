@@ -23,6 +23,8 @@ public class Customer extends AppUserAbstract {
 	private String firstName;
 	private String lastName;
 	private String shippingAddress;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "cart_id", referencedColumnName = "id")
 	private Cart cart;
 
 	public String getMobilePhoneNumber() {
@@ -57,8 +59,6 @@ public class Customer extends AppUserAbstract {
 		this.shippingAddress = shippingAddress;
 	}
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "cart_id", referencedColumnName = "id")
 	public Cart getCart() {
 		return this.cart;
 	}
