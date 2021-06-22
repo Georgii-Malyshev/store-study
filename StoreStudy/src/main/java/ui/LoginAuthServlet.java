@@ -1,8 +1,10 @@
 package ui;
 
-import domain.auth.AuthenticationObject;
 import domain.users.AppUser;
 
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,16 +22,17 @@ public class LoginAuthServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 
-		/*
-		AuthenticationObject authenticationObject = new AuthenticationObject();
-		AppUser user = authenticationObject.getUserByCredentials(email, password);
-		if (user.getId() != -1) {
+		//should probably move this somewhere else later
+		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("HibernateJPA");
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		//try to find the appUser with provided credentials in the persistent storage
+		
+		if (appUser.getId() != -1) {
 			HttpSession session = request.getSession();
-			session.setAttribute("user", user);
+			session.setAttribute("appUserId", AppuserId);
 			response.sendRedirect(request.getContextPath() + "/jsp/home.jsp");
 		} else {
 			response.sendError(401);
 		}
-		*/
 	}
 }

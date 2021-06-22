@@ -11,19 +11,22 @@ import domain.store.Cart;
 
 @Entity
 public class Customer extends AppUserAbstract {
+	public Customer() {
+	}
 	
+	public Customer(String email, String password) {
+		this.email = email;
+		this.password = password;
+	}
 	
 	private String mobilePhoneNumber;
 	private String firstName;
 	private String lastName;
 	private String shippingAddress;
-	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "cart_id", referencedColumnName = "id")
 	private Cart cart;
 
 	public String getMobilePhoneNumber() {
-		return mobilePhoneNumber;
+		return this.mobilePhoneNumber;
 	}
 
 	public void setMobilePhoneNumber(String mobilePhoneNumber) {
@@ -31,7 +34,7 @@ public class Customer extends AppUserAbstract {
 	}
 
 	public String getFirstName() {
-		return firstName;
+		return this.firstName;
 	}
 
 	public void setFirstName(String firstName) {
@@ -39,7 +42,7 @@ public class Customer extends AppUserAbstract {
 	}
 
 	public String getLastName() {
-		return lastName;
+		return this.lastName;
 	}
 
 	public void setLastName(String lastName) {
@@ -47,11 +50,21 @@ public class Customer extends AppUserAbstract {
 	}
 
 	public String getShippingAddress() {
-		return shippingAddress;
+		return this.shippingAddress;
 	}
 
 	public void setShippingAddress(String shippingAddress) {
 		this.shippingAddress = shippingAddress;
+	}
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "cart_id", referencedColumnName = "id")
+	public Cart getCart() {
+		return this.cart;
+	}
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
 	}
 
 	@Override
@@ -75,4 +88,5 @@ public class Customer extends AppUserAbstract {
 		result = prime * result + Objects.hashCode(id);
 		return result;
 	}
+
 }
