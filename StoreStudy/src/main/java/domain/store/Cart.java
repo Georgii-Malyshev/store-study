@@ -1,5 +1,6 @@
 package domain.store;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -19,41 +20,39 @@ public class Cart {
 	@SequenceGenerator(name = "cart_generator", sequenceName = "cart_id_seq")
 	@Column(updatable = false, nullable = false)
 	private int id;
-	
-	private List<Product> products;
-
-	@OneToOne(mappedBy="cart")
+	private ArrayList<Product> products;
+	@OneToOne(mappedBy = "cart")
 	private Customer customer;
-	
-    public List<Product> getProducts() {
-	return products;
-    }
-    
-    public void setProducts(List<Product> products) {
-	this.products = products;
-    }
 
-    /*
-     * public void addProductById(int id) { ProductDao productDao = new
-     * ProductDao(); Product product = productDao.getById(id);
-     * products.add(product); }
-     */
-
-    /*
-     * public void removeProductById (int id) { ProductDao productDao = new
-     * ProductDao(); Product product = productDao.getById(id);
-     * products.remove(product); }
-     */
-
-    public void clear() {
-	products.clear();
-    }
-
-    public int calculateTotalPrice() {
-	int totalPrice = 0;
-	for (Product product : products) {
-	    totalPrice = totalPrice + product.getPrice();
+	public ArrayList<Product> getProducts() {
+		return products;
 	}
-	return totalPrice;
-    }
+
+	public void setProducts(ArrayList<Product> products) {
+		this.products = products;
+	}
+
+	/*
+	 * public void addProductById(int id) { ProductDao productDao = new
+	 * ProductDao(); Product product = productDao.getById(id);
+	 * products.add(product); }
+	 */
+
+	/*
+	 * public void removeProductById (int id) { ProductDao productDao = new
+	 * ProductDao(); Product product = productDao.getById(id);
+	 * products.remove(product); }
+	 */
+
+	public void clear() {
+		products.clear();
+	}
+
+	public int calculateTotalPrice() {
+		int totalPrice = 0;
+		for (Product product : products) {
+			totalPrice = totalPrice + product.getPrice();
+		}
+		return totalPrice;
+	}
 }

@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import dao.CustomerDao;
+
 import java.io.IOException;
 
 @WebServlet("/loginAuthServlet")
@@ -22,14 +25,19 @@ public class LoginAuthServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 
-		//should probably move this somewhere else later
+		// should probably move this somewhere else later
 		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("HibernateJPA");
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
-		//try to find the appUser with provided credentials in the persistent storage
-		
+		// try to find the appUser with provided credentials in the persistent storage
+		// must change this ASAP so UI layer communicates to Domain layer, not directly
+		// to DAO layer
+		// must change this so that abstract AppUser would be searched for, not Customer
+		CustomerDao customerDao = new CustomerDao(entityManager);
+		AppUser appUser = customerDao.findByCredentials(email, password);
+
 		if (appUser.getId() != -1) {
 			HttpSession session = request.getSession();
-			session.setAttribute("appUserId", AppuserId);
+			session.setAttribute("appUserId", appUser.getId());
 			response.sendRedirect(request.getContextPath() + "/jsp/home.jsp");
 		} else {
 			response.sendError(401);

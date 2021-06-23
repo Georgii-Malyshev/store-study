@@ -44,4 +44,22 @@ public class CustomerDao {
 		entityManager.persist(customer);
 		commitTransaction();
 	}
+
+	public Customer findById(int id) {
+		beginTransaction();
+		Customer customer = entityManager.find(Customer.class, id);
+		commitTransaction();
+		return customer;
+	}
+
+	public Customer findByCredentials(String email, String password) {
+		beginTransaction();
+		Customer customer = entityManager
+				.createQuery(
+						"SELECT c FROM Customer c WHERE c.email = :email AND c.password = :password",
+						Customer.class)
+				.setParameter("email", email).setParameter("password", password).getSingleResult();
+		commitTransaction();
+		return customer;
+	}
 }
