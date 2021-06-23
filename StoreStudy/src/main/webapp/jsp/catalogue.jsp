@@ -11,13 +11,13 @@
 
 <html>
 <head>
-<title>Product catalogue</title>
+<title>Product catalog</title>
 </head>
 <body>
 	<div>
 		<ul>
 			<c:forEach var="productCategory"
-				items="${applicationScope.productCatalogue.productCategories}">
+				items="${applicationScope.productCatalog.productCategories}">
 				<li>${productCategory.name}</li>
 			</c:forEach>
 		</ul>

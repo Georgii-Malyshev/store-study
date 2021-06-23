@@ -2,9 +2,9 @@ package domain.store;
 
 import java.util.ArrayList;
 
-public class ProductCatalogue {
+public class ProductCatalog {
     // no-arg constructor
-    public ProductCatalogue() {
+    public ProductCatalog() {
 	//constructor implementation
     }
 

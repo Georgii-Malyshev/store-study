@@ -25,11 +25,10 @@ public class LoginAuthServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 
-		// should probably move this somewhere else later
+		// should probably move entityManager creation somewhere else
 		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("HibernateJPA");
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
-		// try to find the appUser with provided credentials in the persistent storage
-		// must change this ASAP so UI layer communicates to Domain layer, not directly
+		// must change this so UI layer communicates to Domain layer, not directly
 		// to DAO layer
 		// must change this so that abstract AppUser would be searched for, not Customer
 		CustomerDao customerDao = new CustomerDao(entityManager);
