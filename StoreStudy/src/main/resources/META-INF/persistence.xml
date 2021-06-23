@@ -14,28 +14,28 @@
 		<class>AppUserAbstract</class>
 		<class>Customer</class>
 		<class>Cart</class>
-		<class>Order</class>
-		<class>Product</class>
+		<!--<class>Order</class>
+		<class>Product</class>-->
 
 		<properties>
 			<property name="javax.persistence.jdbc.driver"
 				value="org.postgresql.Driver" />
 
 			<property name="javax.persistence.jdbc.url"
-				value="jdbc:postgresql://127.0.0.1:5432/storedb_hibernate_dev" />
+				value="jdbc:postgresql://127.0.0.1:5432/storedb_dev" />
 
 			<property name="javax.persistence.jdbc.user"
-				value="postgres" />
+				value="storedev" />
 
 			<property name="javax.persistence.jdbc.password"
-				value="password" />
+				value="wPJc7XFf" />
 
 			<property name="hibernate.dialect"
 				value="org.hibernate.dialect.PostgreSQL10Dialect" />
 
 			<property name="hibernate.show_sql" value="true" />
 
-			<property name="hibernate.hbm2ddl.auto" value="none" />
+			<property name="hibernate.hbm2ddl.auto" value="create" />
 		</properties>
 
 	</persistence-unit>
