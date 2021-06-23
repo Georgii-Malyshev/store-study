@@ -5,6 +5,7 @@ import domain.users.AppUser;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,13 +25,12 @@ public class LoginAuthServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
-
-		// should probably move entityManager creation somewhere else
-		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("HibernateJPA");
-		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		
+		ServletContext servletContext = getServletContext(); 
 		// must change this so UI layer communicates to Domain layer, not directly
 		// to DAO layer
 		// must change this so that abstract AppUser would be searched for, not Customer
+		EntityManager entityManager = (EntityManager) servletContext.getAttribute("entityManager");
 		CustomerDao customerDao = new CustomerDao(entityManager);
 		AppUser appUser = customerDao.findByCredentials(email, password);
 
