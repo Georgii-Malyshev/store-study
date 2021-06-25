@@ -13,8 +13,8 @@
 </head>
 <body>
 	<div>
-		Hello, ${sessionScope.user.firstName}! Your user ID is
-		${sessionScope.user.id}. <br>
+		Hello, ${sessionScope.appUser.firstName}! Your user ID is
+		${sessionScope.appUser.id}. <br>
 	</div>
 </body>
 </html>

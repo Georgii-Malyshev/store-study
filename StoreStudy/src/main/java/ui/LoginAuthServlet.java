@@ -36,7 +36,8 @@ public class LoginAuthServlet extends HttpServlet {
 
 		if (appUser.getId() != -1) {
 			HttpSession session = request.getSession();
-			session.setAttribute("appUserId", appUser.getId());
+			// session.setAttribute("appUserId", appUser.getId());
+			session.setAttribute("appUser", appUser);
 			response.sendRedirect(request.getContextPath() + "/jsp/home.jsp");
 		} else {
 			response.sendError(401);
