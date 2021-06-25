@@ -23,11 +23,10 @@ public class AppListener implements ServletContextListener {
 		servletContext.setAttribute("productCatalog", productCatalog);
 		// create EntityManagerFactory instance to be used application-wide
 		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("HibernateJPA");
-		EntityManager entityManager = entityManagerFactory.createEntityManager();
-		servletContext.setAttribute("entityManager", entityManager);
+		servletContext.setAttribute("entityManagerFactory", entityManagerFactory);
 	}
 
-	public void contextDestroyed(ServletContextEvent evt) {
+	public void contextDestroyed(ServletContextEvent event) {
 
 		// must close entityManagerFactory when application stops
 	}

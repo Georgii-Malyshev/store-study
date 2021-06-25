@@ -25,12 +25,14 @@ public class LoginAuthServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
-		
-		ServletContext servletContext = getServletContext(); 
+
+		ServletContext servletContext = getServletContext();
+		EntityManagerFactory entityManagerFactory = (EntityManagerFactory) servletContext
+				.getAttribute("entityManagerFactory");
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		// must change this so UI layer communicates to Domain layer, not directly
 		// to DAO layer
 		// must change this so that abstract AppUser would be searched for, not Customer
-		EntityManager entityManager = (EntityManager) servletContext.getAttribute("entityManager");
 		CustomerDao customerDao = new CustomerDao(entityManager);
 		AppUser appUser = customerDao.findByCredentials(email, password);
 
