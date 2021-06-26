@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.GeneratedValue;
@@ -22,6 +23,7 @@ public class ProductCategory {
 	@Column(updatable = false, nullable = false)
 	private int id;
 	@ManyToOne
+	@JoinColumn(name = "product_catalog_id")
 	private ProductCatalog productCatalog;
 	private String name;
 	@OneToMany(mappedBy = "productCategory", cascade = CascadeType.ALL, orphanRemoval = true)

@@ -19,11 +19,11 @@ public class Cart {
 	@SequenceGenerator(name = "cart_generator", sequenceName = "cart_id_seq")
 	@Column(updatable = false, nullable = false)
 	private int id;
-	private Set<Product> products;
+	//private Set<Product> products;
 	@OneToOne(mappedBy = "cart")
 	private Customer customer;
 
-	public Set<Product> getProducts() {
+	/*public Set<Product> getProducts() {
 		return products;
 	}
 
@@ -41,5 +41,5 @@ public class Cart {
 			totalPrice = totalPrice + product.getPrice();
 		}
 		return totalPrice;
-	}
+	}*/
 }
