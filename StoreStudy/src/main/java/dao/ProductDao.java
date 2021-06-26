@@ -5,11 +5,11 @@ import javax.persistence.EntityTransaction;
 
 import domain.store.Product;
 
-public class ProductCategoryDao {
+public class ProductDao {
 	private EntityManager entityManager;
 	private EntityTransaction entityTransaction;
 
-	public ProductCategoryDao(EntityManager entityManager) {
+	public ProductDao(EntityManager entityManager) {
 		this.entityManager = entityManager;
 		this.entityTransaction = this.entityManager.getTransaction();
 	}
@@ -37,17 +37,24 @@ public class ProductCategoryDao {
 			exception.printStackTrace();
 		}
 	}
-	
-	/**
-	* Takes ProductCategory's ID as a parameter id
-	*/ 
-	/*public ArrayList<Product> populateFromStorage(int id) {
+	public void persist(String name, int price) {
 		beginTransaction();
-		ArrayList<Product> products;
-		
-		//query?
-		
+		Product product = new Product(name, price);
+		entityManager.persist(product);
 		commitTransaction();
-		return products;
-	}*/
+	}
+
+	public Product findById(int id) {
+		beginTransaction();
+		Product product = entityManager.find(Product.class, id);
+		commitTransaction();
+		return product;
+	}
+	
+	public Product findByName(String name) {
+		beginTransaction();
+		// Product product = 
+		commitTransaction();
+		return product;
+	}
 }

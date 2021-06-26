@@ -1,5 +1,6 @@
 package domain.store;
 
+import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -55,5 +56,26 @@ public class ProductCategory {
 
 	public void addProduct(Product product) {
 		products.add(product);
+	}
+
+	// TODO must double-check equals() and hashCode() later!
+	@Override
+	public boolean equals(Object object) {
+		if (this == object)
+			return true;
+		if ((object == null) || (getClass() != object.getClass()))
+			return false;
+		ProductCategory objectAsProductCategory = (ProductCategory) object;
+		// TODO must use something to check if products collections really are equal!
+		return (this.id == objectAsProductCategory.getId() && this.name == objectAsProductCategory.getName()
+				&& this.products == objectAsProductCategory.getProducts());
+	}
+
+	@Override
+	public int hashCode() {
+		int prime = 31;
+		int result = 1;
+		result = prime * result + Objects.hashCode(id);
+		return result;
 	}
 }

@@ -1,7 +1,5 @@
 package dao;
 
-import java.util.ArrayList;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 

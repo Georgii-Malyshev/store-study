@@ -11,14 +11,11 @@ import domain.store.Cart;
 
 @Entity
 public class Customer extends AppUserAbstract {
-	public Customer() {
-	}
-	
 	public Customer(String email, String password) {
 		this.email = email;
 		this.password = password;
 	}
-	
+
 	private String mobilePhoneNumber;
 	private String firstName;
 	private String lastName;
@@ -67,6 +64,7 @@ public class Customer extends AppUserAbstract {
 		this.cart = cart;
 	}
 
+	// TODO must double-check equals() and hashCode() later!
 	@Override
 	public boolean equals(Object object) {
 		if (this == object)
@@ -74,11 +72,11 @@ public class Customer extends AppUserAbstract {
 		if ((object == null) || (getClass() != object.getClass()))
 			return false;
 		Customer objectAsCustomer = (Customer) object;
-		return (id == objectAsCustomer.getId() && email.equals(objectAsCustomer.getEmail())
-				&& password.equals(objectAsCustomer.getPassword())
-				&& mobilePhoneNumber.equals(objectAsCustomer.getMobilePhoneNumber())
-				&& firstName.equals(objectAsCustomer.getFirstName()) && lastName.equals(objectAsCustomer.getLastName())
-				&& shippingAddress.equals(objectAsCustomer.getShippingAddress()));
+		return (this.id == objectAsCustomer.getId() && this.email.equals(objectAsCustomer.getEmail())
+				&& this.password.equals(objectAsCustomer.getPassword())
+				&& this.mobilePhoneNumber.equals(objectAsCustomer.getMobilePhoneNumber())
+				&& this.firstName.equals(objectAsCustomer.getFirstName()) && this.lastName.equals(objectAsCustomer.getLastName())
+				&& this.shippingAddress.equals(objectAsCustomer.getShippingAddress()));
 	}
 
 	@Override
