@@ -12,7 +12,7 @@ import javax.servlet.annotation.WebListener;
 
 @WebListener
 public class AppListener implements ServletContextListener {
-	
+
 	EntityManagerFactory entityManagerFactory;
 	ProductCatalog productCatalog;
 
@@ -23,11 +23,13 @@ public class AppListener implements ServletContextListener {
 		entityManagerFactory = Persistence.createEntityManagerFactory("HibernateJPA");
 		servletContext.setAttribute("entityManagerFactory", entityManagerFactory);
 		// create ProductCatalog instance to be used application-wide
-		// must modify this code so that it populates productCatalog with data from
-		// persistent storage
 		productCatalog = new ProductCatalog();
+		// populate productCatalog with data from persistent storage
+
+		// set productCatalog as ServletContext's attribute
 		servletContext.setAttribute("productCatalog", productCatalog);
 	}
+
 	@Override
 	public void contextDestroyed(ServletContextEvent event) {
 		entityManagerFactory.close();

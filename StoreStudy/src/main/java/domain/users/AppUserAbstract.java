@@ -19,18 +19,16 @@ public abstract class AppUserAbstract implements AppUser {
 	@SequenceGenerator(name = "appuser_generator", sequenceName = "appuser_id_seq")
 	@Column(updatable = false, nullable = false)
 	protected int id;
-	
 	@Column(nullable = false)
 	protected String email;
 	@Column(nullable = false)
 	protected String password;
-	
-	
+
 	@Override
 	public int getId() {
 		return this.id;
 	}
-	
+
 	@Override
 	public void setId(int id) {
 		this.id = id;

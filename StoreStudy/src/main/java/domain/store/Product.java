@@ -1,10 +1,25 @@
 package domain.store;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+
+@Entity
 public class Product {
-    private int id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_generator")
+	@SequenceGenerator(name = "product_generator", sequenceName = "product_id_seq")
+	@Column(updatable = false, nullable = false)
+	private int id;
     private String name;
     private int price;
-
+    @ManyToOne
+    private ProductCategory productCategory; 
+    
     public int getId() {
 	return id;
     }

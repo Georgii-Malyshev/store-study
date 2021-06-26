@@ -1,7 +1,6 @@
 package domain.store;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,29 +19,17 @@ public class Cart {
 	@SequenceGenerator(name = "cart_generator", sequenceName = "cart_id_seq")
 	@Column(updatable = false, nullable = false)
 	private int id;
-	private ArrayList<Product> products;
+	private Set<Product> products;
 	@OneToOne(mappedBy = "cart")
 	private Customer customer;
 
-	public ArrayList<Product> getProducts() {
+	public Set<Product> getProducts() {
 		return products;
 	}
 
-	public void setProducts(ArrayList<Product> products) {
+	public void setProducts(Set<Product> products) {
 		this.products = products;
 	}
-
-	/*
-	 * public void addProductById(int id) { ProductDao productDao = new
-	 * ProductDao(); Product product = productDao.getById(id);
-	 * products.add(product); }
-	 */
-
-	/*
-	 * public void removeProductById (int id) { ProductDao productDao = new
-	 * ProductDao(); Product product = productDao.getById(id);
-	 * products.remove(product); }
-	 */
 
 	public void clear() {
 		products.clear();
