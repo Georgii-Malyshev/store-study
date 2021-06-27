@@ -6,7 +6,12 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
 import javax.persistence.Table;
+
+import appmanagement.EntityManagerFactoryManager;
+import dao.ProductCategoryDao;
+
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -54,10 +59,6 @@ public class ProductCategory {
 		this.products = products;
 	}
 
-	public void addProduct(Product product) {
-		products.add(product);
-	}
-
 	// TODO must double-check equals() and hashCode() later!
 	@Override
 	public boolean equals(Object object) {
@@ -66,7 +67,7 @@ public class ProductCategory {
 		if ((object == null) || (getClass() != object.getClass()))
 			return false;
 		ProductCategory objectAsProductCategory = (ProductCategory) object;
-		// TODO must use something to check if products collections really are equal!
+		// TODO must check if products collections really are equal!
 		return (this.id == objectAsProductCategory.getId() && this.name == objectAsProductCategory.getName()
 				&& this.products == objectAsProductCategory.getProducts());
 	}
@@ -77,5 +78,11 @@ public class ProductCategory {
 		int result = 1;
 		result = prime * result + Objects.hashCode(id);
 		return result;
+	}
+
+	public void populateFromStorage() {
+		EntityManager entityManager = EntityManagerFactoryManager.createEntityManager();
+		ProductCategoryDao productCategoryDao = new ProductCategoryDao(entityManager);
+		this.setProducts(productCategoryDao.getAllProducts(this));
 	}
 }

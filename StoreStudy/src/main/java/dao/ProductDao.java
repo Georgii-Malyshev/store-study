@@ -50,11 +50,4 @@ public class ProductDao {
 		commitTransaction();
 		return product;
 	}
-	
-	public Product findByName(String name) {
-		beginTransaction();
-		// Product product = 
-		commitTransaction();
-		return product;
-	}
 }
