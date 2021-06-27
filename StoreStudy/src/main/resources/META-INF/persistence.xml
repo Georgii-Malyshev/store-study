@@ -11,10 +11,9 @@
 
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
-		<class>AppUserAbstract</class>
-		<class>Customer</class>
-		<class>Cart</class>
-		<!--<class>Order</class> <class>Product</class> -->
+		<class>domain.users.AppUserAbstract</class>
+		<class>domain.users.Customer</class>
+		<class>domain.store.Cart</class>
 
 		<properties>
 			<property name="javax.persistence.jdbc.driver"
