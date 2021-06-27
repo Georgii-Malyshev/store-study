@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import appmanagement.EntityManagerFactoryManager;
 import dao.CustomerDao;
 
 import java.io.IOException;
@@ -29,19 +30,16 @@ public class LoginAuthServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 
-		ServletContext servletContext = getServletContext();
-		EntityManagerFactory entityManagerFactory = (EntityManagerFactory) servletContext
-				.getAttribute("entityManagerFactory");
-		EntityManager entityManager = entityManagerFactory.createEntityManager();
-		// must change this so UI layer communicates to Domain layer, not directly
-		// to DAO layer
-		// must change this so that abstract AppUser would be searched for, not Customer
+		// TODO must change this code so that UI layer doesn't handle
+		// persistence-related stuff such as EntityManager and dosens't communicate to
+		// DAO layer directly
+		EntityManager entityManager = EntityManagerFactoryManager.createEntityManager();
 		CustomerDao customerDao = new CustomerDao(entityManager);
+		// TODO change this so that abstract AppUser would be searched for, not Customer
 		AppUser appUser = customerDao.findByCredentials(email, password);
 
 		if (appUser.getId() != -1) {
 			HttpSession session = request.getSession();
-			// session.setAttribute("appUserId", appUser.getId());
 			session.setAttribute("appUser", appUser);
 			response.sendRedirect(request.getContextPath() + "/jsp/home.jsp");
 		} else {

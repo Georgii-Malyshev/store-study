@@ -11,6 +11,9 @@ import domain.store.Cart;
 
 @Entity
 public class Customer extends AppUserAbstract {
+	public Customer() {
+	}
+	
 	public Customer(String email, String password) {
 		this.email = email;
 		this.password = password;
