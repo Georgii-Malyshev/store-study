@@ -32,6 +32,8 @@ public class AppListener implements ServletContextListener {
 
 	@Override
 	public void contextDestroyed(ServletContextEvent event) {
-		entityManagerFactory.close();
+		if (entityManagerFactory != null) {
+			entityManagerFactory.close();
+		}
 	}
 }
