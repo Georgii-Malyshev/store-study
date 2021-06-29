@@ -18,6 +18,7 @@ public class ProductCatalogManager implements ServletContextListener, EntityMana
 	@Override
 	public void entityManagerFactoryCreated() {
 		productCatalog = new ProductCatalog();
+		productCatalog.populateFromStorage();
 		servletContext.setAttribute("product_catalog", productCatalog);
 	}
 }

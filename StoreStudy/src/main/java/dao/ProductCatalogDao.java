@@ -1,8 +1,13 @@
 package dao;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
+import domain.store.ProductCatalog;
 import domain.store.ProductCategory;
 
 public class ProductCatalogDao {
@@ -37,12 +42,16 @@ public class ProductCatalogDao {
 			exception.printStackTrace();
 		}
 	}
-	
-	/*public ArrayList<ProductCategory> populateFromStorage() {
+
+	public Set<ProductCategory> getAllCategories(ProductCatalog productCatalog) {
 		beginTransaction();
-		ArrayList<ProductCategory> productCategories;
-		
+		List<ProductCategory> resultList = entityManager
+				.createQuery("SELECT pc FROM ProductCategory pc WHERE pc.productCatalog LIKE :productCatalog",
+						ProductCategory.class)
+				.setParameter("productCatalog", productCatalog)
+				.getResultList();
+		Set<ProductCategory> productCategories = new HashSet<ProductCategory>(resultList);
 		commitTransaction();
 		return productCategories;
-	}*/
+	}
 }

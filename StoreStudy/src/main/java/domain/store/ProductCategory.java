@@ -23,6 +23,10 @@ import javax.persistence.SequenceGenerator;
 @Entity
 @Table(name = "product_category")
 public class ProductCategory {
+	public ProductCategory() {
+		// constructor implementation
+	}
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_category_generator")
 	@SequenceGenerator(name = "product_category_generator", sequenceName = "product_category_id_seq")

@@ -3,7 +3,13 @@ package domain.store;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
 import javax.persistence.Table;
+
+import appmanagement.EntityManagerFactoryManager;
+import dao.ProductCatalogDao;
+import dao.ProductCategoryDao;
+
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -32,13 +38,14 @@ public class ProductCatalog {
 	public Set<ProductCategory> getProductCategories() {
 		return productCategories;
 	}
-
+	
 	public void setProductCategories(Set<ProductCategory> productCategories) {
 		this.productCategories = productCategories;
 	}
 
-	public void addProductCategory(ProductCategory productCategory) {
-		productCategories.add(productCategory);
+	public void populateFromStorage() {
+		EntityManager entityManager = EntityManagerFactoryManager.createEntityManager();
+		ProductCatalogDao productCatalogDao = new ProductCatalogDao(entityManager);
+		this.setProductCategories(productCatalogDao.getAllCategories(this));
 	}
-
 }

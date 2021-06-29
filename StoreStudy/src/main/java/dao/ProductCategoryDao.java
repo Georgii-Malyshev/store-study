@@ -46,7 +46,7 @@ public class ProductCategoryDao {
 	public Set<Product> getAllProducts(ProductCategory productCategory) {
 		beginTransaction();
 		List<Product> resultList = entityManager
-				.createQuery("SELECT p FROM product p WHERE p.productCategory LIKE :productCategory", Product.class)
+				.createQuery("SELECT p FROM Product p WHERE p.productCategory LIKE :productCategory", Product.class)
 				.setParameter("productCategory", productCategory)
 				.getResultList();
 		Set<Product> products = new HashSet<Product>(resultList);

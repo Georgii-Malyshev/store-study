@@ -9,7 +9,7 @@
 	<div>
 		<ul>
 			<c:forEach var="productCategory"
-				items="${applicationScope.productCatalog.productCategories}">
+				items="${applicationScope.product_catalog.productCategories}">
 				<li>${productCategory.name}</li>
 			</c:forEach>
 		</ul>
