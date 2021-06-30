@@ -7,9 +7,10 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.Table;
 
-import appmanagement.EntityManagerFactoryManager;
+import appmanagement.AppContextManager;
 import dao.ProductCategoryDao;
 
 import javax.persistence.Id;
@@ -85,7 +86,8 @@ public class ProductCategory {
 	}
 
 	public void populateFromStorage() {
-		EntityManager entityManager = EntityManagerFactoryManager.createEntityManager();
+		EntityManagerFactory entityManagerFactory = AppContextManager.getEntityManagerFactory();
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		ProductCategoryDao productCategoryDao = new ProductCategoryDao(entityManager);
 		this.setProducts(productCategoryDao.getAllProducts(this));
 	}

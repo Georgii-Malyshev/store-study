@@ -4,11 +4,11 @@ import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.Table;
 
-import appmanagement.EntityManagerFactoryManager;
+import appmanagement.AppContextManager;
 import dao.ProductCatalogDao;
-import dao.ProductCategoryDao;
 
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
@@ -23,7 +23,7 @@ import javax.persistence.OneToMany;
 public class ProductCatalog {
 	// no-arg constructor
 	public ProductCatalog() {
-		// constructor implementation
+		// TODO constructor implementation
 	}
 
 	@Id
@@ -38,13 +38,15 @@ public class ProductCatalog {
 	public Set<ProductCategory> getProductCategories() {
 		return productCategories;
 	}
-	
+
 	public void setProductCategories(Set<ProductCategory> productCategories) {
 		this.productCategories = productCategories;
 	}
 
 	public void populateFromStorage() {
-		EntityManager entityManager = EntityManagerFactoryManager.createEntityManager();
+		EntityManagerFactory entityManagerFactory = AppContextManager.getEntityManagerFactory();
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+
 		ProductCatalogDao productCatalogDao = new ProductCatalogDao(entityManager);
 		this.setProductCategories(productCatalogDao.getAllCategories(this));
 	}
