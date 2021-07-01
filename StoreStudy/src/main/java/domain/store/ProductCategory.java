@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.FetchType;
 import javax.persistence.Table;
 
 import appmanagement.AppContextManager;
@@ -37,7 +38,7 @@ public class ProductCategory {
 	@JoinColumn(name = "product_catalog_id")
 	private ProductCatalog productCatalog;
 	private String name;
-	@OneToMany(mappedBy = "productCategory", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "productCategory", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
 	private Set<Product> products;
 
 	public int getId() {

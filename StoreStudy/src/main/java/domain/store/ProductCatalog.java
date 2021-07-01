@@ -5,6 +5,7 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.FetchType;
 import javax.persistence.Table;
 
 import appmanagement.AppContextManager;
@@ -32,7 +33,7 @@ public class ProductCatalog {
 	@Column(updatable = false, nullable = false)
 	private int id;
 
-	@OneToMany(mappedBy = "productCatalog", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "productCatalog", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
 	private Set<ProductCategory> productCategories;
 
 	public Set<ProductCategory> getProductCategories() {
@@ -41,13 +42,5 @@ public class ProductCatalog {
 
 	public void setProductCategories(Set<ProductCategory> productCategories) {
 		this.productCategories = productCategories;
-	}
-
-	public void populateFromStorage() {
-		EntityManagerFactory entityManagerFactory = AppContextManager.getEntityManagerFactory();
-		EntityManager entityManager = entityManagerFactory.createEntityManager();
-
-		ProductCatalogDao productCatalogDao = new ProductCatalogDao(entityManager);
-		this.setProductCategories(productCatalogDao.getAllCategories(this));
 	}
 }

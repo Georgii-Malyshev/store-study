@@ -8,8 +8,8 @@
 <body>
 	<div>
 		<ul>
-			<c:forEach var="productId" items="${requestScope.productCategoryId}">
-				<li>${productId}</li>
+			<c:forEach var="product" items="${requestScope.category_id}">
+				<li>${product.name}</li>
 			</c:forEach>
 		</ul>
 	</div>

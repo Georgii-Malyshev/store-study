@@ -29,7 +29,7 @@ public class AppContextManager implements ServletContextListener {
 		logger.info("EntityManagerFactory instance created");
 		
 		EntityManager entityManager = entityManagerFactory.createEntityManager();		
-		ProductCatalog productCatalog =  entityManager.find(ProductCatalog.class, 1); // TODO get rid of hardcoded ID?
+		ProductCatalog productCatalog = entityManager.find(ProductCatalog.class, 1); // TODO get rid of hardcoded ID?
 		logger.info("ProductCatalog loaded from persistent storage");
 		
 		servletContext.setAttribute("productCatalog", productCatalog);

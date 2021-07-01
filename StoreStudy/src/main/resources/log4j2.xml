@@ -2,7 +2,14 @@
 <Configuration status="WARN">
 	<Appenders>
 		<File name="fout"
-			fileName="${sys:catalina.home}/logs/StoreStudy.log" append="true">
+			fileName="${sys:catalina.home}/logs/StoreStudy.log" append="false">
+			<PatternLayout>
+				<Pattern>"%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n">
+				</Pattern>
+			</PatternLayout>
+		</File>
+		<File name="fout-sql"
+			fileName="${sys:catalina.home}/logs/StoreStudy-sql.log" append="false" additivity="false">
 			<PatternLayout>
 				<Pattern>"%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n">
 				</Pattern>
@@ -14,5 +21,9 @@
 		<Root level="info">
 			<AppenderRef ref="fout" />
 		</Root>
+		<Logger name="org.hibernate.SQL" level="debug"
+			additivity="false">
+			<AppenderRef ref="fout-sql" />
+		</Logger>
 	</Loggers>
 </Configuration>

@@ -56,7 +56,7 @@ public class CustomerDao {
 		beginTransaction();
 		Customer customer = entityManager
 				.createQuery(
-						"SELECT c FROM Customer c WHERE c.email = :email AND c.password = :password",
+						"select c from Customer c where c.email = :email and c.password = :password",
 						Customer.class)
 				.setParameter("email", email).setParameter("password", password).getSingleResult();
 		commitTransaction();
