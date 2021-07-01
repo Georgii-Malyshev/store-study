@@ -32,8 +32,9 @@ public class AppContextManager implements ServletContextListener {
 		ProductCatalog productCatalog =  entityManager.find(ProductCatalog.class, 1); // TODO get rid of hardcoded ID?
 		logger.info("ProductCatalog loaded from persistent storage");
 		
-		servletContext.setAttribute("productcatalog", productCatalog);
+		servletContext.setAttribute("productCatalog", productCatalog);
 		logger.info("productCatalog is available as servlet context attributes");
+		entityManager.close();
 	}
 	
 	@Override
