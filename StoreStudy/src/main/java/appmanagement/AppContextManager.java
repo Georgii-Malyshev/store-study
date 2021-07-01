@@ -29,7 +29,9 @@ public class AppContextManager implements ServletContextListener {
 		logger.info("EntityManagerFactory instance created");
 		
 		EntityManager entityManager = entityManagerFactory.createEntityManager();		
-		ProductCatalog productCatalog = entityManager.find(ProductCatalog.class, 1); // TODO get rid of hardcoded ID?
+		// TODO fetch only categories' names and/or IDs, not the whole catalog
+		// TODO get rid of hardcoded catalog ID
+		ProductCatalog productCatalog = entityManager.find(ProductCatalog.class, 1);
 		logger.info("ProductCatalog loaded from persistent storage");
 		
 		servletContext.setAttribute("productCatalog", productCatalog);

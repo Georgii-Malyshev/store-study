@@ -9,6 +9,7 @@ import javax.persistence.EntityTransaction;
 
 import domain.store.Product;
 import domain.store.ProductCategory;
+import domain.users.Customer;
 
 public class ProductCategoryDao {
 	private EntityManager entityManager;
@@ -52,5 +53,12 @@ public class ProductCategoryDao {
 		Set<Product> products = new HashSet<Product>(resultList);
 		commitTransaction();
 		return products;
+	}
+	
+	public ProductCategory findById(int id) {
+		beginTransaction();
+		ProductCategory productCategory = entityManager.find(ProductCategory.class, id);
+		commitTransaction();
+		return productCategory;
 	}
 }
