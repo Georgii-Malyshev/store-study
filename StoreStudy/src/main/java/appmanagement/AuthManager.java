@@ -3,7 +3,7 @@ package appmanagement;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
-import dao.CustomerDao;
+import dao.AppUserDao;
 import domain.users.AppUser;
 
 public final class AuthManager {
@@ -17,9 +17,8 @@ public final class AuthManager {
 	public AppUser getAppUserByCredentials(String email, String password) {
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-		// TODO change this to AppUserDao
-		CustomerDao customerDao = new CustomerDao(entityManager);
-		AppUser appUser = customerDao.findByCredentials(email, password);
+		AppUserDao appUserDao = new AppUserDao(entityManager);
+		AppUser appUser = appUserDao.findByCredentials(email, password);
 
 		entityManager.close();
 		
