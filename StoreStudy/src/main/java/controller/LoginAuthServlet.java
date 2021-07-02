@@ -1,4 +1,4 @@
-package ui;
+package controller;
 
 import domain.users.AppUser;
 

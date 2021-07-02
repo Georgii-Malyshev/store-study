@@ -9,7 +9,8 @@
 			</PatternLayout>
 		</File>
 		<File name="fout-sql"
-			fileName="${sys:catalina.home}/logs/StoreStudy-sql.log" append="false" additivity="false">
+			fileName="${sys:catalina.home}/logs/StoreStudy-sql.log"
+			append="false" additivity="false">
 			<PatternLayout>
 				<Pattern>"%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n">
 				</Pattern>

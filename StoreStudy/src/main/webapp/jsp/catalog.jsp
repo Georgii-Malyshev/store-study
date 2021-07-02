@@ -9,9 +9,9 @@
 	<div>
 		<ul>
 			<c:forEach var="productCategory"
-				items="${applicationScope.productCatalog.productCategories}" >
-				<li><a href="category?category_id=${productCategory.id}">${productCategory.name} </a>
-				</li>
+				items="${applicationScope.productCatalog.productCategories}">
+				<li><a href="category?category_id=${productCategory.id}">${productCategory.name}
+				</a></li>
 			</c:forEach>
 		</ul>
 	</div>

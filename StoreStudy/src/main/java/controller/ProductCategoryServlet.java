@@ -1,4 +1,4 @@
-package ui;
+package controller;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
