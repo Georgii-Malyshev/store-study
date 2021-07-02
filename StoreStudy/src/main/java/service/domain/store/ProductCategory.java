@@ -11,8 +11,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.FetchType;
 import javax.persistence.Table;
 
-import appmanagement.AppContextManager;
 import dao.ProductCategoryDao;
+import service.appmanagement.AppContextManager;
 
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;

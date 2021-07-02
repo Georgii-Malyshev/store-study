@@ -1,7 +1,5 @@
 package controller;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,9 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import appmanagement.AppContextManager;
-import appmanagement.AuthManager;
-import dao.CustomerDao;
+import service.appmanagement.AppContextManager;
+import service.appmanagement.AuthManager;
 import service.domain.users.AppUser;
 
 import java.io.IOException;

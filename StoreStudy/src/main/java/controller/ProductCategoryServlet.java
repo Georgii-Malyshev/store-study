@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import appmanagement.AppContextManager;
 import dao.ProductCategoryDao;
+import service.appmanagement.AppContextManager;
 import service.domain.store.ProductCategory;
 
 import java.io.IOException;

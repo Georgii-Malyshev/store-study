@@ -1,4 +1,4 @@
-package appmanagement;
+package service.appmanagement;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

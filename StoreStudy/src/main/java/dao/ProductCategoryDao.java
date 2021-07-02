@@ -9,7 +9,6 @@ import javax.persistence.EntityTransaction;
 
 import service.domain.store.Product;
 import service.domain.store.ProductCategory;
-import service.domain.users.Customer;
 
 public class ProductCategoryDao {
 	private EntityManager entityManager;
