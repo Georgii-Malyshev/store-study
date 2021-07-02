@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import appmanagement.AppContextManager;
 import dao.ProductCategoryDao;
-import domain.store.ProductCategory;
+import service.domain.store.ProductCategory;
 
 import java.io.IOException;
 

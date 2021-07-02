@@ -1,4 +1,4 @@
-package domain.store;
+package service.domain.store;
 
 import java.util.Set;
 
@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
-import domain.users.Customer;
+import service.domain.users.Customer;
 
 @Entity
 public class Cart {

@@ -1,6 +1,6 @@
-package domain.store;
+package service.domain.store;
 
-import domain.users.AppUser;
+import service.domain.users.AppUser;
 
 public class Order {
     private int id;

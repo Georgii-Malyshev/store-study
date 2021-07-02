@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import domain.store.ProductCatalog;
-import domain.store.ProductCategory;
+import service.domain.store.ProductCatalog;
+import service.domain.store.ProductCategory;
 
 import java.io.IOException;
 import java.util.HashSet;

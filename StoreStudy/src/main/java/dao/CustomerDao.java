@@ -2,7 +2,7 @@ package dao;
 
 import javax.persistence.EntityManager;
 
-import domain.users.Customer;
+import service.domain.users.Customer;
 
 public class CustomerDao extends AppUserDao {
 	public CustomerDao(EntityManager entityManager) {

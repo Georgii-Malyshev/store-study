@@ -7,8 +7,8 @@ import java.util.Set;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
-import domain.store.ProductCatalog;
-import domain.store.ProductCategory;
+import service.domain.store.ProductCatalog;
+import service.domain.store.ProductCategory;
 
 public class ProductCatalogDao {
 	private EntityManager entityManager;

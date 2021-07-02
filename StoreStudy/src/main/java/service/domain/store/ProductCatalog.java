@@ -1,4 +1,4 @@
-package domain.store;
+package service.domain.store;
 
 import java.util.Set;
 

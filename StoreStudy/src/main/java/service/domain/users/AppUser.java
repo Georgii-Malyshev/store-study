@@ -1,4 +1,4 @@
-package domain.users;
+package service.domain.users;
 
 public interface AppUser {
     public int getId();

@@ -11,7 +11,7 @@ import javax.servlet.annotation.WebListener;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import domain.store.ProductCatalog;
+import service.domain.store.ProductCatalog;
 
 @WebListener
 public final class AppContextManager implements ServletContextListener {

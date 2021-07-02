@@ -1,4 +1,4 @@
-package domain.users;
+package service.domain.users;
 
 import java.util.Objects;
 
@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
-import domain.store.Cart;
+import service.domain.store.Cart;
 
 @Entity
 public class Customer extends AppUserAbstract {

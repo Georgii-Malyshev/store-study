@@ -1,4 +1,4 @@
-package domain.users;
+package service.domain.users;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

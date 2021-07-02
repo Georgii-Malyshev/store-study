@@ -4,7 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
 import dao.AppUserDao;
-import domain.users.AppUser;
+import service.domain.users.AppUser;
 
 public final class AuthManager {
 	

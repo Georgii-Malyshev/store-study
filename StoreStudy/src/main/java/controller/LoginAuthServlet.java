@@ -1,7 +1,5 @@
 package controller;
 
-import domain.users.AppUser;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.servlet.ServletException;
@@ -14,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import appmanagement.AppContextManager;
 import appmanagement.AuthManager;
 import dao.CustomerDao;
+import service.domain.users.AppUser;
 
 import java.io.IOException;
 

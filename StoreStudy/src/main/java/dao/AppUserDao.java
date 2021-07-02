@@ -3,8 +3,8 @@ package dao;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
-import domain.users.AppUser;
-import domain.users.AppUserAbstract;
+import service.domain.users.AppUser;
+import service.domain.users.AppUserAbstract;
 
 public class AppUserDao {
 	protected EntityManager entityManager;
