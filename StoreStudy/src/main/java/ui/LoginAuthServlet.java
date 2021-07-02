@@ -17,7 +17,7 @@ import dao.CustomerDao;
 
 import java.io.IOException;
 
-@WebServlet("/loginAuthServlet")
+@WebServlet("/login-auth-servlet")
 public class LoginAuthServlet extends HttpServlet {
 
 	@Override
