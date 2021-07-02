@@ -7,15 +7,15 @@ import domain.users.AppUser;
 import domain.users.AppUserAbstract;
 
 public class AppUserDao {
-	private EntityManager entityManager;
-	private EntityTransaction entityTransaction;
+	protected EntityManager entityManager;
+	protected EntityTransaction entityTransaction;
 
 	public AppUserDao(EntityManager entityManager) {
 		this.entityManager = entityManager;
 		this.entityTransaction = this.entityManager.getTransaction();
 	}
 
-	private void beginTransaction() {
+	protected void beginTransaction() {
 		try {
 			entityTransaction.begin();
 		} catch (IllegalStateException exception) {
@@ -23,7 +23,7 @@ public class AppUserDao {
 		}
 	}
 
-	private void commitTransaction() {
+	protected void commitTransaction() {
 		try {
 			entityTransaction.begin();
 		} catch (IllegalStateException exception) {
@@ -31,7 +31,7 @@ public class AppUserDao {
 		}
 	}
 
-	private void rollbackTransaction() {
+	protected void rollbackTransaction() {
 		try {
 			entityTransaction.rollback();
 		} catch (IllegalStateException exception) {

@@ -1,41 +1,12 @@
 package dao;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 
 import domain.users.Customer;
 
-public class CustomerDao {
-	private EntityManager entityManager;
-	private EntityTransaction entityTransaction;
-
+public class CustomerDao extends AppUserDao {
 	public CustomerDao(EntityManager entityManager) {
-		this.entityManager = entityManager;
-		this.entityTransaction = this.entityManager.getTransaction();
-	}
-
-	private void beginTransaction() {
-		try {
-			entityTransaction.begin();
-		} catch (IllegalStateException exception) {
-			rollbackTransaction();
-		}
-	}
-
-	private void commitTransaction() {
-		try {
-			entityTransaction.begin();
-		} catch (IllegalStateException exception) {
-			rollbackTransaction();
-		}
-	}
-
-	private void rollbackTransaction() {
-		try {
-			entityTransaction.rollback();
-		} catch (IllegalStateException exception) {
-			exception.printStackTrace();
-		}
+		super(entityManager);
 	}
 
 	public void persist(String email, String password) {
@@ -43,23 +14,5 @@ public class CustomerDao {
 		Customer customer = new Customer(email, password);
 		entityManager.persist(customer);
 		commitTransaction();
-	}
-
-	public Customer findById(int id) {
-		beginTransaction();
-		Customer customer = entityManager.find(Customer.class, id);
-		commitTransaction();
-		return customer;
-	}
-
-	public Customer findByCredentials(String email, String password) {
-		beginTransaction();
-		Customer customer = entityManager
-				.createQuery(
-						"select c from Customer c where c.email = :email and c.password = :password",
-						Customer.class)
-				.setParameter("email", email).setParameter("password", password).getSingleResult();
-		commitTransaction();
-		return customer;
 	}
 }
