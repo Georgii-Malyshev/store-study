@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import appmanagement.AppContextManager;
+import appmanagement.AuthManager;
 import dao.CustomerDao;
 
 import java.io.IOException;
@@ -25,15 +26,8 @@ public class LoginAuthServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 
-		// TODO must change this code so that UI layer doesn't handle
-		// persistence-related stuff such as EntityManager and dosen't communicate to
-		// DAO layer directly
-		EntityManagerFactory entityManagerFactory = AppContextManager.getEntityManagerFactory();
-		EntityManager entityManager = entityManagerFactory.createEntityManager();
-		CustomerDao customerDao = new CustomerDao(entityManager);
-		// TODO change this so that abstract AppUser would be searched for, not Customer
-		AppUser appUser = customerDao.findByCredentials(email, password);
-		entityManager.close();
+		AuthManager authManager = AppContextManager.getAuthManager();
+		AppUser appUser = authManager.getAppUserByCredentials(email, password);
 		
 		if (appUser.getId() != -1) {
 			HttpSession session = request.getSession();

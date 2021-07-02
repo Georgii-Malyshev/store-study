@@ -14,43 +14,43 @@ import org.apache.logging.log4j.Logger;
 import domain.store.ProductCatalog;
 
 @WebListener
-public class AppContextManager implements ServletContextListener {
-	
+public final class AppContextManager implements ServletContextListener {
+
 	private static Logger logger = LogManager.getLogger(AppContextManager.class);
 	private static ServletContext servletContext;
 	private static EntityManagerFactory entityManagerFactory;
-	private static ProductCatalog productCatalog;	
-	
+	private static AuthManager authManager;
+
 	@Override
 	public void contextInitialized(ServletContextEvent event) {
 		servletContext = event.getServletContext();
-		
+		// create entityManagerFactory
 		entityManagerFactory = Persistence.createEntityManagerFactory("HibernateJPA");
 		logger.info("EntityManagerFactory instance created");
-		
-		EntityManager entityManager = entityManagerFactory.createEntityManager();		
+		// create productCatalog
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		// TODO fetch only categories' names and/or IDs, not the whole catalog
 		// TODO get rid of hardcoded catalog ID
 		ProductCatalog productCatalog = entityManager.find(ProductCatalog.class, 1);
-		logger.info("ProductCatalog loaded from persistent storage");
-		
 		servletContext.setAttribute("productCatalog", productCatalog);
-		logger.info("productCatalog is available as servlet context attributes");
+		logger.info("productCatalog is available as servlet context attribute");
 		entityManager.close();
+		// create authManager
+		authManager = new AuthManager(entityManagerFactory);
 	}
-	
+
 	@Override
 	public void contextDestroyed(ServletContextEvent event) {
 		if (entityManagerFactory != null) {
 			entityManagerFactory.close();
 		}
 	}
-	
+
 	public static EntityManagerFactory getEntityManagerFactory() {
 		return entityManagerFactory;
 	}
-	
-	public static ProductCatalog getProductCatalog() {
-		return productCatalog;
+
+	public static AuthManager getAuthManager() {
+		return authManager;
 	}
 }
