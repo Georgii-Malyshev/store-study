@@ -8,8 +8,7 @@
 <body>
 	<div>
 		<ul>
-			<c:forEach var="product"
-				items="${requestScope.productCategory.products}">
+			<c:forEach var="product" items="${requestScope.productCategory.products}">
 				<li>${product.name}</li>
 			</c:forEach>
 		</ul>
