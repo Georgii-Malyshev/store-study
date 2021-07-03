@@ -15,7 +15,7 @@ import javax.persistence.SequenceGenerator;
 public class Product {
 	public Product() {
 	}
-	
+
 	public Product(String name, int price) {
 		this.name = name;
 		this.price = price;
@@ -61,18 +61,21 @@ public class Product {
 	public boolean equals(Object object) {
 		if (this == object)
 			return true;
-		if ((object == null) || (getClass() != object.getClass()))
+		if (object == null)
 			return false;
-		Product objectAsProduct = (Product) object;
-		return (this.id == objectAsProduct.getId() && this.name == objectAsProduct.getName()
-				&& this.price == objectAsProduct.getPrice());
+		if (getClass() != object.getClass())
+			return false;
+		Product other = (Product) object;
+		return (this.id == other.getId());
 	}
 
-	@Override
+	@Override 
+	// can NOT use generated ID here because that ID doesn't exist before the entity is
+	// persisted and the hash code isn't allowed to change after the object is added
+	// to a Set
+	// TODO try to think of some better implementation, current one is THE WORST possible in terms of performance
 	public int hashCode() {
-		int prime = 31;
-		int result = 1;
-		result = prime * result + Objects.hashCode(id);
-		return result;
+		int prime = 13;
+		return prime;
 	}
 }
