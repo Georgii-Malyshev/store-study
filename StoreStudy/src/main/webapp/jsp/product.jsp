@@ -10,8 +10,8 @@
 <body>
 	<div>
 		<ul>
-			<li>name: ${requestScope.product.name} </li>
-			<li>price: ${requestScope.product.price} </li>
+			<li>name: ${requestScope.product.name}</li>
+			<li>price: ${requestScope.product.price}</li>
 		</ul>
 	</div>
 </body>
