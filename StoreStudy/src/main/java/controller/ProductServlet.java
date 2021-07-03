@@ -1,7 +1,5 @@
 package controller;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,11 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.ProductCategoryDao;
-import dao.ProductDao;
 import service.appmanagement.AppContextManager;
+import service.appmanagement.ProductCatalogManager;
 import service.domain.store.Product;
-import service.domain.store.ProductCategory;
 
 import java.io.IOException;
 
@@ -26,11 +22,15 @@ public class ProductServlet extends HttpServlet {
 		// TODO must change this code so that UI layer doesn't handle
 		// persistence-related stuff such as EntityManager and dosen't communicate to
 		// DAO layer directly
+		/*
 		EntityManagerFactory entityManagerFactory = AppContextManager.getEntityManagerFactory();
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		ProductDao productDao = new ProductDao(entityManager);
 		Product product = productDao.findById(productId);
 		entityManager.close();
+		*/
+		ProductCatalogManager productCatalogManager = AppContextManager.getProductCatalogManager();
+		Product product = productCatalogManager.getProductById(productId);
 
 		request.setAttribute("product", product);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/jsp/product.jsp");

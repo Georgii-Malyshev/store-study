@@ -20,6 +20,7 @@ public final class AppContextManager implements ServletContextListener {
 	private static ServletContext servletContext;
 	private static EntityManagerFactory entityManagerFactory;
 	private static AuthManager authManager;
+	private static ProductCatalogManager productCatalogManager;
 
 	@Override
 	public void contextInitialized(ServletContextEvent event) {
@@ -35,8 +36,9 @@ public final class AppContextManager implements ServletContextListener {
 		servletContext.setAttribute("productCatalog", productCatalog);
 		logger.info("productCatalog is available as servlet context attribute");
 		entityManager.close();
-		// create authManager
+		// create managers
 		authManager = new AuthManager(entityManagerFactory);
+		productCatalogManager = new ProductCatalogManager(entityManagerFactory);
 	}
 
 	@Override
@@ -52,5 +54,9 @@ public final class AppContextManager implements ServletContextListener {
 
 	public static AuthManager getAuthManager() {
 		return authManager;
+	}
+	
+	public static ProductCatalogManager getProductCatalogManager() {
+		return productCatalogManager;
 	}
 }
