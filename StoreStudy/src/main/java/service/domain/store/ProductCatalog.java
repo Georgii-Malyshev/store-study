@@ -3,13 +3,8 @@ package service.domain.store;
 import java.util.Set;
 
 import javax.persistence.Entity;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.FetchType;
 import javax.persistence.Table;
-
-import dao.ProductCatalogDao;
-import service.appmanagement.AppContextManager;
 
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
