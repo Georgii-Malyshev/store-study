@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import service.appmanagement.AppContextManager;
-import service.appmanagement.AuthManager;
+import service.appmanagement.AuthService;
 import service.domain.users.AppUser;
 
 import java.io.IOException;
@@ -22,8 +22,8 @@ public class LoginAuthServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 
-		AuthManager authManager = AppContextManager.getAuthManager();
-		AppUser appUser = authManager.getAppUserByCredentials(email, password);
+		AuthService authService = AppContextManager.getAuthManager();
+		AppUser appUser = authService.getAppUserByCredentials(email, password);
 		
 		if (appUser.getId() != -1) {
 			HttpSession session = request.getSession();

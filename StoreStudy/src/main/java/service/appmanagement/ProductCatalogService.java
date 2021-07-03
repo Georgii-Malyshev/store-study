@@ -8,10 +8,10 @@ import dao.ProductDao;
 import service.domain.store.Product;
 import service.domain.store.ProductCategory;
 // TODO consider making this class a singleton
-public final class ProductCatalogManager {
+public final class ProductCatalogService {
 	private EntityManagerFactory entityManagerFactory;
 	
-	public ProductCatalogManager(EntityManagerFactory entityManagerFactory) {
+	public ProductCatalogService(EntityManagerFactory entityManagerFactory) {
 		this.entityManagerFactory = entityManagerFactory;
 	}
 	

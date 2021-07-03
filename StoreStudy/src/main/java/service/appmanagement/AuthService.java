@@ -6,11 +6,11 @@ import javax.persistence.EntityManagerFactory;
 import dao.AppUserDao;
 import service.domain.users.AppUser;
 //TODO consider making this class a singleton
-public final class AuthManager {
+public final class AuthService {
 	
 	private EntityManagerFactory entityManagerFactory;
 	
-	public AuthManager(EntityManagerFactory entityManagerFactory) {
+	public AuthService(EntityManagerFactory entityManagerFactory) {
 		this.entityManagerFactory = entityManagerFactory;
 	}
 

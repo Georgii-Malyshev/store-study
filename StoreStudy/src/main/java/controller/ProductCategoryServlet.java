@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import service.appmanagement.AppContextManager;
-import service.appmanagement.ProductCatalogManager;
+import service.appmanagement.ProductCatalogService;
 import service.domain.store.ProductCategory;
 
 import java.io.IOException;
@@ -19,8 +19,8 @@ public class ProductCategoryServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int categoryId = Integer.parseInt(request.getParameter("category_id"));
 
-		ProductCatalogManager productCatalogManager = AppContextManager.getProductCatalogManager();
-		ProductCategory productCategory = productCatalogManager.getProductCategoryById(categoryId);
+		ProductCatalogService productCatalogService = AppContextManager.getProductCatalogManager();
+		ProductCategory productCategory = productCatalogService.getProductCategoryById(categoryId);
 		
 		request.setAttribute("productCategory", productCategory);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/jsp/category.jsp");
