@@ -19,16 +19,6 @@ public class ProductServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int productId = Integer.parseInt(request.getParameter("product_id"));
 
-		// TODO must change this code so that UI layer doesn't handle
-		// persistence-related stuff such as EntityManager and dosen't communicate to
-		// DAO layer directly
-		/*
-		EntityManagerFactory entityManagerFactory = AppContextManager.getEntityManagerFactory();
-		EntityManager entityManager = entityManagerFactory.createEntityManager();
-		ProductDao productDao = new ProductDao(entityManager);
-		Product product = productDao.findById(productId);
-		entityManager.close();
-		*/
 		ProductCatalogManager productCatalogManager = AppContextManager.getProductCatalogManager();
 		Product product = productCatalogManager.getProductById(productId);
 
