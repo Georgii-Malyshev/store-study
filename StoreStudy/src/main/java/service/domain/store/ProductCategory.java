@@ -85,11 +85,4 @@ public class ProductCategory {
 		result = prime * result + Objects.hashCode(id);
 		return result;
 	}
-
-	public void populateFromStorage() {
-		EntityManagerFactory entityManagerFactory = AppContextManager.getEntityManagerFactory();
-		EntityManager entityManager = entityManagerFactory.createEntityManager();
-		ProductCategoryDao productCategoryDao = new ProductCategoryDao(entityManager);
-		this.setProducts(productCategoryDao.getAllProducts(this));
-	}
 }
