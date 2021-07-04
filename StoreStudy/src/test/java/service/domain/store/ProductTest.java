@@ -27,4 +27,19 @@ public class ProductTest {
 	public void whenEqualsEqualObjectsThenReturnTrue () {
 		assertThat((product1.equals(product2)), is(true));
 	}
+	
+	@Test
+	public void whenEqualsNonEqualNamesEqualPricesThenReturnFalse () {
+		assertThat((product1.equals(product3)), is(false));
+	}
+	
+	@Test
+	public void whenEqualsEqualNamesNonEqualPricesThenReturnFalse () {
+		assertThat((product1.equals(product4)), is(false));
+	}
+	
+	@Test
+	public void whenEqualsNonEqualNamesAndPricesThenReturnFalse () {
+		assertThat((product1.equals(product5)), is(false));
+	}
 }

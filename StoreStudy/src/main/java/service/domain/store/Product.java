@@ -1,7 +1,5 @@
 package service.domain.store;
 
-import java.util.Objects;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,7 +13,7 @@ import javax.persistence.SequenceGenerator;
 public class Product {
 	public Product() {
 	}
-
+	// TODO should probably use BigDecimal for prices
 	public Product(String name, int price) {
 		this.name = name;
 		this.price = price;
@@ -56,7 +54,7 @@ public class Product {
 		this.price = price;
 	}
 
-	// TODO must double-check equals() and hashCode() later!
+	// TODO must double-check equals() and hashCode() and their contract later on!
 	@Override
 	public boolean equals(Object object) {
 		if (this == object)
@@ -66,7 +64,7 @@ public class Product {
 		if (getClass() != object.getClass())
 			return false;
 		Product other = (Product) object;
-		return (this.id == other.getId());
+		return (this.id == other.getId() && this.name.equals(other.getName()) && this.price == other.getPrice());
 	}
 
 	@Override 
