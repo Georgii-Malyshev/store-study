@@ -12,9 +12,9 @@
 
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
-		<class>service.domain.users.AppUserAbstract</class>
-		<class>service.domain.users.Customer</class>
-		<class>service.domain.store.Cart</class>
+		<class>com.georgiimalyshev.storestudy.service.domain.users.AppUserAbstract</class>
+		<class>com.georgiimalyshev.storestudy.service.domain.users.Customer</class>
+		<class>com.georgiimalyshev.storestudy.service.domain.store.Cart</class>
 
 		<properties>
 			<property name="javax.persistence.jdbc.driver"
