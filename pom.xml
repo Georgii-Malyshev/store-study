@@ -5,14 +5,14 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.malyshev-study.eclipse</groupId>
-	<artifactId>StoreStudy</artifactId>
+	<groupId>com.georgiimalyshev.storestudy</groupId>
+	<artifactId>storestudy</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
 	<name>StoreStudy Maven Webapp</name>
 	<!-- FIXME change it to the project's website -->
-	<url>http://localhost:8080/StoreStudy/login</url>
+	<url>http://localhost:8080/storestudy/login</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -107,7 +107,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>StoreStudy</finalName>
+		<finalName>storestudy</finalName>
 		<pluginManagement><!-- lock down plugins versions to avoid using Maven 
 				defaults (may be moved to parent pom) -->
 			<plugins>
