@@ -17,10 +17,6 @@ import javax.persistence.OneToMany;
 @Entity
 @Table(name = "product_catalog")
 public class ProductCatalog {
-	// no-arg constructor
-	public ProductCatalog() {
-		// TODO constructor implementation
-	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_catalog_generator")

@@ -29,24 +29,13 @@ public final class AppContextManager implements ServletContextListener {
 		servletContext = event.getServletContext();
 		servletContext.setAttribute("applicationContext", applicationContext);
 		
-		// create productCatalog
-		/*EntityManager entityManager = entityManagerFactory.createEntityManager();
+		EntityManagerFactory entityManagerFactory = applicationContext.getBean(EntityManagerFactory.class);
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		// TODO fetch only categories' names and/or IDs, not the whole catalog
 		// TODO get rid of hardcoded catalog ID
 		ProductCatalog productCatalog = entityManager.find(ProductCatalog.class, 1);
 		servletContext.setAttribute("productCatalog", productCatalog);
 		logger.info("productCatalog is available as servlet context attribute");
 		entityManager.close();
-		// create managers
-		authService = new AuthService(entityManagerFactory);
-		productCatalogService = new ProductCatalogService(entityManagerFactory);*/
 	}
-
-	/*public static EntityManagerFactory getEntityManagerFactory() {
-		return entityManagerFactory;
-	}
-	
-	public static ProductCatalogService getProductCatalogManager() {
-		return productCatalogService;
-	}*/
 }
