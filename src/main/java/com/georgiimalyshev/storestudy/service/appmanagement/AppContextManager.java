@@ -22,7 +22,6 @@ public final class AppContextManager implements ServletContextListener {
 	private static Logger logger = LogManager.getLogger(AppContextManager.class);
 	private static ServletContext servletContext;
 	private static EntityManagerFactory entityManagerFactory;
-	private static AuthService authService;
 	private static ProductCatalogService productCatalogService;
 
 	@Override
@@ -57,10 +56,6 @@ public final class AppContextManager implements ServletContextListener {
 
 	/*public static EntityManagerFactory getEntityManagerFactory() {
 		return entityManagerFactory;
-	}
-
-	public static AuthService getAuthManager() {
-		return authService;
 	}
 	
 	public static ProductCatalogService getProductCatalogManager() {

@@ -1,6 +1,5 @@
 package com.georgiimalyshev.storestudy.controller;
 
-import javax.persistence.EntityManagerFactory;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,7 +10,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.context.ApplicationContext;
 
-import com.georgiimalyshev.storestudy.service.appmanagement.AppContextManager;
 import com.georgiimalyshev.storestudy.service.appmanagement.AuthService;
 import com.georgiimalyshev.storestudy.service.domain.users.AppUser;
 
@@ -28,10 +26,8 @@ public class LoginAuthServlet extends HttpServlet {
 		
 		ServletContext servletContext = request.getServletContext();
 		ApplicationContext applicationContext = (ApplicationContext) servletContext.getAttribute("applicationContext");
+		AuthService authService = applicationContext.getBean(AuthService.class);
 		
-		EntityManagerFactory entityManagerFactory = applicationContext.getBean(EntityManagerFactory.class);
-		
-		AuthService authService = new AuthService(entityManagerFactory);
 		AppUser appUser = authService.getAppUserByCredentials(email, password);
 
 		if (appUser.getId() != -1) {
