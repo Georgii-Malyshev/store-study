@@ -10,7 +10,10 @@ import javax.servlet.annotation.WebListener;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import com.georgiimalyshev.storestudy.SpringApplicationContextConfig;
 import com.georgiimalyshev.storestudy.service.domain.store.ProductCatalog;
 
 @WebListener
@@ -24,12 +27,13 @@ public final class AppContextManager implements ServletContextListener {
 
 	@Override
 	public void contextInitialized(ServletContextEvent event) {
+		// spring-context
+		ApplicationContext applicationContext = new AnnotationConfigApplicationContext(SpringApplicationContextConfig.class);
+		logger.info("Spring's applicationContext initialized");
+		
 		servletContext = event.getServletContext();
-		// create entityManagerFactory
-		entityManagerFactory = Persistence.createEntityManagerFactory("HibernateJPA");
-		logger.info("EntityManagerFactory instance created");
 		// create productCatalog
-		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		/*EntityManager entityManager = entityManagerFactory.createEntityManager();
 		// TODO fetch only categories' names and/or IDs, not the whole catalog
 		// TODO get rid of hardcoded catalog ID
 		ProductCatalog productCatalog = entityManager.find(ProductCatalog.class, 1);
@@ -38,7 +42,7 @@ public final class AppContextManager implements ServletContextListener {
 		entityManager.close();
 		// create managers
 		authService = new AuthService(entityManagerFactory);
-		productCatalogService = new ProductCatalogService(entityManagerFactory);
+		productCatalogService = new ProductCatalogService(entityManagerFactory);*/
 	}
 
 	@Override
@@ -48,7 +52,7 @@ public final class AppContextManager implements ServletContextListener {
 		}
 	}
 
-	public static EntityManagerFactory getEntityManagerFactory() {
+	/*public static EntityManagerFactory getEntityManagerFactory() {
 		return entityManagerFactory;
 	}
 
@@ -58,5 +62,5 @@ public final class AppContextManager implements ServletContextListener {
 	
 	public static ProductCatalogService getProductCatalogManager() {
 		return productCatalogService;
-	}
+	}*/
 }

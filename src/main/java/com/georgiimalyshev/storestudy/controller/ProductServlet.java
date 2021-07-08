@@ -17,13 +17,13 @@ import java.io.IOException;
 public class ProductServlet extends HttpServlet {
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int productId = Integer.parseInt(request.getParameter("product_id"));
+		/*int productId = Integer.parseInt(request.getParameter("product_id"));
 
 		ProductCatalogService productCatalogService = AppContextManager.getProductCatalogManager();
 		Product product = productCatalogService.getProductById(productId);
 
 		request.setAttribute("product", product);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/jsp/product.jsp");
-		requestDispatcher.forward(request, response);
+		requestDispatcher.forward(request, response);*/
 	}
 }

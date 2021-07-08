@@ -21,16 +21,16 @@ public class LoginAuthServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
-
+		/*
 		AuthService authService = AppContextManager.getAuthManager();
 		AppUser appUser = authService.getAppUserByCredentials(email, password);
-		
+
 		if (appUser.getId() != -1) {
 			HttpSession session = request.getSession();
 			session.setAttribute("appUser", appUser);
 			response.sendRedirect(request.getContextPath() + "/jsp/home.jsp");
 		} else {
 			response.sendError(401);
-		}
+		}*/
 	}
 }
