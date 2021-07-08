@@ -5,7 +5,7 @@ import javax.persistence.EntityManagerFactory;
 
 import com.georgiimalyshev.storestudy.dao.AppUserDao;
 import com.georgiimalyshev.storestudy.service.domain.users.AppUser;
-//TODO consider making this class a singleton
+
 public final class AuthService {
 	
 	private EntityManagerFactory entityManagerFactory;

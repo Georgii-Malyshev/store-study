@@ -32,6 +32,9 @@ public final class AppContextManager implements ServletContextListener {
 		logger.info("Spring's applicationContext initialized");
 		
 		servletContext = event.getServletContext();
+		servletContext.setAttribute("applicationContext", applicationContext);
+		logger.info("Spring's applicationContext set as attribute to servlet context");
+		
 		// create productCatalog
 		/*EntityManager entityManager = entityManagerFactory.createEntityManager();
 		// TODO fetch only categories' names and/or IDs, not the whole catalog

@@ -1,11 +1,15 @@
 package com.georgiimalyshev.storestudy.controller;
 
+import javax.persistence.EntityManagerFactory;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.springframework.context.ApplicationContext;
 
 import com.georgiimalyshev.storestudy.service.appmanagement.AppContextManager;
 import com.georgiimalyshev.storestudy.service.appmanagement.AuthService;
@@ -21,8 +25,13 @@ public class LoginAuthServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
-		/*
-		AuthService authService = AppContextManager.getAuthManager();
+		
+		ServletContext servletContext = request.getServletContext();
+		ApplicationContext applicationContext = (ApplicationContext) servletContext.getAttribute("applicationContext");
+		
+		EntityManagerFactory entityManagerFactory = applicationContext.getBean(EntityManagerFactory.class);
+		
+		AuthService authService = new AuthService(entityManagerFactory);
 		AppUser appUser = authService.getAppUserByCredentials(email, password);
 
 		if (appUser.getId() != -1) {
@@ -31,6 +40,6 @@ public class LoginAuthServlet extends HttpServlet {
 			response.sendRedirect(request.getContextPath() + "/jsp/home.jsp");
 		} else {
 			response.sendError(401);
-		}*/
+		}
 	}
 }
