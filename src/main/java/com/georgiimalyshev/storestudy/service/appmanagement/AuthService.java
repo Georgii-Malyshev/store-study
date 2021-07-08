@@ -10,7 +10,7 @@ import com.georgiimalyshev.storestudy.dao.AppUserDao;
 import com.georgiimalyshev.storestudy.service.domain.users.AppUser;
 
 @Service
-public class AuthService {
+public final class AuthService {
 	
 	private EntityManagerFactory entityManagerFactory;
 	
@@ -20,10 +20,8 @@ public class AuthService {
 
 	public AppUser getAppUserByCredentials(String email, String password) {
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
-
 		AppUserDao appUserDao = new AppUserDao(entityManager);
 		AppUser appUser = appUserDao.findByCredentials(email, password);
-
 		entityManager.close();
 		return appUser;
 	}

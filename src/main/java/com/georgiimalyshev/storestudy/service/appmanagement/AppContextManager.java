@@ -22,17 +22,12 @@ public final class AppContextManager implements ServletContextListener {
 	private static Logger logger = LogManager.getLogger(AppContextManager.class);
 	private static ServletContext servletContext;
 	private static EntityManagerFactory entityManagerFactory;
-	private static ProductCatalogService productCatalogService;
 
 	@Override
 	public void contextInitialized(ServletContextEvent event) {
-		// spring-context
 		ApplicationContext applicationContext = new AnnotationConfigApplicationContext(SpringApplicationContextConfig.class);
-		logger.info("Spring's applicationContext initialized");
-		
 		servletContext = event.getServletContext();
 		servletContext.setAttribute("applicationContext", applicationContext);
-		logger.info("Spring's applicationContext set as attribute to servlet context");
 		
 		// create productCatalog
 		/*EntityManager entityManager = entityManagerFactory.createEntityManager();
@@ -45,13 +40,6 @@ public final class AppContextManager implements ServletContextListener {
 		// create managers
 		authService = new AuthService(entityManagerFactory);
 		productCatalogService = new ProductCatalogService(entityManagerFactory);*/
-	}
-
-	@Override
-	public void contextDestroyed(ServletContextEvent event) {
-		if (entityManagerFactory != null) {
-			entityManagerFactory.close();
-		}
 	}
 
 	/*public static EntityManagerFactory getEntityManagerFactory() {
