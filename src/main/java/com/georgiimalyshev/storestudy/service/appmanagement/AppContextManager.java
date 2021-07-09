@@ -29,8 +29,8 @@ public final class AppContextManager implements ServletContextListener {
 		
 		EntityManagerFactory entityManagerFactory = applicationContext.getBean(EntityManagerFactory.class);
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
-		// TODO fetch only categories' names and/or IDs, not the whole catalog
-		// TODO get rid of hardcoded catalog ID
+		// TODO use lazy fetching
+		// TODO get rid of hardcoded catalog ID?
 		ProductCatalog productCatalog = entityManager.find(ProductCatalog.class, 1);
 		servletContext.setAttribute("productCatalog", productCatalog);
 		logger.info("productCatalog is available as servlet context attribute");

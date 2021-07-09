@@ -30,8 +30,4 @@ public class ProductCatalog {
 	public Set<ProductCategory> getProductCategories() {
 		return productCategories;
 	}
-
-	public void setProductCategories(Set<ProductCategory> productCategories) {
-		this.productCategories = productCategories;
-	}
 }
