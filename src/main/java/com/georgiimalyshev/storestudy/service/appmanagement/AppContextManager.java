@@ -2,7 +2,6 @@ package com.georgiimalyshev.storestudy.service.appmanagement;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -21,7 +20,6 @@ public final class AppContextManager implements ServletContextListener {
 
 	private static Logger logger = LogManager.getLogger(AppContextManager.class);
 	private static ServletContext servletContext;
-	private static EntityManagerFactory entityManagerFactory;
 
 	@Override
 	public void contextInitialized(ServletContextEvent event) {
