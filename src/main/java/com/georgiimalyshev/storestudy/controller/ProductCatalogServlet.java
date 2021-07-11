@@ -20,8 +20,6 @@ import java.util.HashSet;
 @WebServlet("/catalog")
 public class ProductCatalogServlet extends HttpServlet {
 	
-	private Logger logger = LogManager.getLogger(ProductCatalogServlet.class);
-	
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/jsp/catalog.jsp");

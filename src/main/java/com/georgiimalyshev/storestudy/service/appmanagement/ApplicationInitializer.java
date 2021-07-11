@@ -18,7 +18,6 @@ import com.georgiimalyshev.storestudy.service.domain.store.ProductCatalog;
 @WebListener
 public final class ApplicationInitializer implements ServletContextListener {
 
-	private static Logger logger = LogManager.getLogger(ApplicationInitializer.class);
 	private static ServletContext servletContext;
 
 	@Override
@@ -27,13 +26,11 @@ public final class ApplicationInitializer implements ServletContextListener {
 		servletContext = event.getServletContext();
 		servletContext.setAttribute("applicationContext", applicationContext);
 		
-		EntityManagerFactory entityManagerFactory = applicationContext.getBean(EntityManagerFactory.class);
-		EntityManager entityManager = entityManagerFactory.createEntityManager();
-		// TODO use lazy fetching
 		// TODO get rid of hardcoded catalog ID?
-		ProductCatalog productCatalog = entityManager.find(ProductCatalog.class, 1);
+		// TODO move productCatalog-related code to ProductCatalogServlet
+		int id = 1;
+		ProductCatalogService productCatalogService = applicationContext.getBean(ProductCatalogService.class);
+		ProductCatalog productCatalog = productCatalogService.getProductCatalogByIdAndFetchCategories(id);
 		servletContext.setAttribute("productCatalog", productCatalog);
-		logger.info("productCatalog is available as servlet context attribute");
-		entityManager.close();
 	}
 }

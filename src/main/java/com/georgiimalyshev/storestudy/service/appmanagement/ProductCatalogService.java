@@ -6,9 +6,11 @@ import javax.persistence.EntityManagerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.georgiimalyshev.storestudy.dao.ProductCatalogDao;
 import com.georgiimalyshev.storestudy.dao.ProductCategoryDao;
 import com.georgiimalyshev.storestudy.dao.ProductDao;
 import com.georgiimalyshev.storestudy.service.domain.store.Product;
+import com.georgiimalyshev.storestudy.service.domain.store.ProductCatalog;
 import com.georgiimalyshev.storestudy.service.domain.store.ProductCategory;
 // TODO should probably rename methods like "getById" to have same names but different signatures
 @Service
@@ -41,5 +43,13 @@ public final class ProductCatalogService {
 		ProductCategory productCategory = productCategoryDao.findByIdAndFetchProducts(id);
 		entityManager.close();
 		return productCategory;
+	}
+	
+	public ProductCatalog getProductCatalogByIdAndFetchCategories(int id) {
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		ProductCatalogDao productCatalogDao = new ProductCatalogDao(entityManager);
+		ProductCatalog productCatalog = productCatalogDao.findByIdAndFetchProductCategories(id);
+		entityManager.close();
+		return productCatalog;
 	}
 }
