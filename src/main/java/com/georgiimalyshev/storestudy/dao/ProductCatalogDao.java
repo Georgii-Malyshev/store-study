@@ -43,15 +43,13 @@ public class ProductCatalogDao {
 		}
 	}
 
-	public Set<ProductCategory> getAllCategories(ProductCatalog productCatalog) {
+	public ProductCatalog findByIdAndFetchProductCategories(int id) {
 		beginTransaction();
-		List<ProductCategory> resultList = entityManager
-				.createQuery("SELECT pc FROM ProductCategory pc WHERE pc.productCatalog LIKE :productCatalog",
-						ProductCategory.class)
-				.setParameter("productCatalog", productCatalog)
-				.getResultList();
-		Set<ProductCategory> productCategories = new HashSet<ProductCategory>(resultList);
+		ProductCatalog productCatalog = (ProductCatalog) entityManager
+				.createQuery("SELECT c FROM ProductCatalog c JOIN FETCH c.productCategories pc WHERE c.id = :id",
+						ProductCatalog.class)
+				.setParameter("id", id).getSingleResult();
 		commitTransaction();
-		return productCategories;
+		return productCatalog;
 	}
 }

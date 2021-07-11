@@ -24,7 +24,7 @@ public class ProductCatalog {
 	@Column(updatable = false, nullable = false)
 	private int id;
 
-	@OneToMany(mappedBy = "productCatalog", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "productCatalog", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
 	private Set<ProductCategory> productCategories;
 
 	public Set<ProductCategory> getProductCategories() {

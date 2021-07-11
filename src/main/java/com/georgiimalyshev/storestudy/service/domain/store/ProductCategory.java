@@ -33,7 +33,7 @@ public class ProductCategory {
 	@JoinColumn(name = "product_catalog_id")
 	private ProductCatalog productCatalog;
 	private String name;
-	@OneToMany(mappedBy = "productCategory", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "productCategory", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
 	private Set<Product> products;
 
 	public int getId() {

@@ -24,7 +24,7 @@ public class ProductCategoryServlet extends HttpServlet {
 		ServletContext servletContext = request.getServletContext();
 		ApplicationContext applicationContext = (ApplicationContext) servletContext.getAttribute("applicationContext");
 		ProductCatalogService productCatalogService = applicationContext.getBean(ProductCatalogService.class);
-		ProductCategory productCategory = productCatalogService.getProductCategoryById(categoryId);
+		ProductCategory productCategory = productCatalogService.getProductCategoryByIdAndFetchProducts(categoryId);
 		
 		request.setAttribute("productCategory", productCategory);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/jsp/category.jsp");
