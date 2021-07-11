@@ -10,7 +10,7 @@ import com.georgiimalyshev.storestudy.dao.ProductCategoryDao;
 import com.georgiimalyshev.storestudy.dao.ProductDao;
 import com.georgiimalyshev.storestudy.service.domain.store.Product;
 import com.georgiimalyshev.storestudy.service.domain.store.ProductCategory;
-
+// TODO should probably rename methods like "getById" to have same names but different signatures
 @Service
 public final class ProductCatalogService {
 	private EntityManagerFactory entityManagerFactory;
@@ -29,10 +29,16 @@ public final class ProductCatalogService {
 	
 	public ProductCategory getProductCategoryById(int id) {
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
-		
 		ProductCategoryDao productCategoryDao = new ProductCategoryDao(entityManager);
 		ProductCategory productCategory = productCategoryDao.findById(id);
-		
+		entityManager.close();
+		return productCategory;
+	}
+
+	public ProductCategory getProductCategoryByIdAndFetchProducts(int id) {
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		ProductCategoryDao productCategoryDao = new ProductCategoryDao(entityManager);
+		ProductCategory productCategory = productCategoryDao.findByIdAndFetchProducts(id);
 		entityManager.close();
 		return productCategory;
 	}
