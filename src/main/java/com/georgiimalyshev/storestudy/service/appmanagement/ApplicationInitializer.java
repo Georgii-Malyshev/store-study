@@ -16,9 +16,9 @@ import com.georgiimalyshev.storestudy.SpringApplicationContextConfig;
 import com.georgiimalyshev.storestudy.service.domain.store.ProductCatalog;
 
 @WebListener
-public final class AppContextManager implements ServletContextListener {
+public final class ApplicationInitializer implements ServletContextListener {
 
-	private static Logger logger = LogManager.getLogger(AppContextManager.class);
+	private static Logger logger = LogManager.getLogger(ApplicationInitializer.class);
 	private static ServletContext servletContext;
 
 	@Override
