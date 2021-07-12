@@ -6,10 +6,12 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
 import com.georgiimalyshev.storestudy.service.domain.store.Cart;
 
 @Entity
+@Table(name = "customer")
 public class Customer extends AppUserAbstract {
 	public Customer() {
 	}

@@ -9,10 +9,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import com.georgiimalyshev.storestudy.service.domain.users.Customer;
 
 @Entity
+@Table(name = "cart")
 public class Cart {
 	@Id
 	private int id;
@@ -20,7 +22,7 @@ public class Cart {
 	private Set<CartItem> cartItems = new HashSet<CartItem>();
 	@OneToOne
 	@MapsId
-	@JoinColumn(name = "id")
+	@JoinColumn(name = "customer_id")
 	private Customer customer;
 	
 	public Set<CartItem> getCartItems() {
