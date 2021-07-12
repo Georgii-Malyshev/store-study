@@ -13,14 +13,15 @@ import com.georgiimalyshev.storestudy.service.domain.store.Product;
 import com.georgiimalyshev.storestudy.service.domain.store.ProductCatalog;
 import com.georgiimalyshev.storestudy.service.domain.store.ProductCategory;
 
+// TODO use Spring's transaction manager or something instead of manually creating and closing EntityManager instances  
 @Service
 public final class ProductCatalogService {
 	private EntityManagerFactory entityManagerFactory;
-	
+
 	public ProductCatalogService(@Autowired EntityManagerFactory entityManagerFactory) {
 		this.entityManagerFactory = entityManagerFactory;
 	}
-	
+
 	public Product getProductById(int id) {
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		ProductDao productDao = new ProductDao(entityManager);
@@ -28,7 +29,7 @@ public final class ProductCatalogService {
 		entityManager.close();
 		return product;
 	}
-	
+
 	public ProductCategory getProductCategoryById(int id) {
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		ProductCategoryDao productCategoryDao = new ProductCategoryDao(entityManager);
@@ -44,7 +45,7 @@ public final class ProductCatalogService {
 		entityManager.close();
 		return productCategory;
 	}
-	
+
 	public ProductCatalog getProductCatalogByIdAndFetchCategories(int id) {
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		ProductCatalogDao productCatalogDao = new ProductCatalogDao(entityManager);
