@@ -12,7 +12,7 @@ import com.georgiimalyshev.storestudy.dao.ProductDao;
 import com.georgiimalyshev.storestudy.service.domain.store.Product;
 import com.georgiimalyshev.storestudy.service.domain.store.ProductCatalog;
 import com.georgiimalyshev.storestudy.service.domain.store.ProductCategory;
-// TODO should probably rename methods like "getById" to have same names but different signatures
+
 @Service
 public final class ProductCatalogService {
 	private EntityManagerFactory entityManagerFactory;
