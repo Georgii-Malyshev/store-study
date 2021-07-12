@@ -32,7 +32,7 @@ public class LoginAuthServlet extends HttpServlet {
 
 		if (appUser.getId() != -1) {
 			HttpSession session = request.getSession();
-			session.setAttribute("appUser", appUser);
+			session.setAttribute("appUser", appUser); // TODO maybe try something less insecure later
 			response.sendRedirect(request.getContextPath() + "/jsp/home.jsp");
 		} else {
 			response.sendError(401);
