@@ -21,6 +21,6 @@ public final class ApplicationInitializer implements ServletContextListener {
 		servletContext.setAttribute("applicationContext", applicationContext);
 		// TODO get rid of hardcoded catalog ID?
 		int catalogId = 1;
-		servletContext.setAttribute("catalog_id", catalogId);
+		servletContext.setAttribute("catalogId", catalogId);
 	}
 }
