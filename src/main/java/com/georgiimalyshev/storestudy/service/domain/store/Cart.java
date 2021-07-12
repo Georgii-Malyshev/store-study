@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.georgiimalyshev.storestudy.service.domain.users.Customer;
@@ -15,29 +16,24 @@ import com.georgiimalyshev.storestudy.service.domain.users.Customer;
 public class Cart {
 	@Id
 	private int id;
-	private HashSet<Product> products;
+	@OneToMany
+	private Set<CartItem> cartItems = new HashSet<CartItem>();
 	@OneToOne
 	@MapsId
 	@JoinColumn(name = "id")
 	private Customer customer;
 	
-	public Set<Product> getProducts() {
-		return products;
-	}
-
-	public void setProducts(Set<Product> products) {
-		this.products = (HashSet<Product>) products;
+	public Set<CartItem> getCartItems() {
+		return cartItems;
 	}
 
 	public void clear() {
-		products.clear();
+		// TODO implement method to clear all items from the cart
 	}
 
 	public int calculateTotalPrice() {
 		int totalPrice = 0;
-		for (Product product : products) {
-			totalPrice = totalPrice + product.getPrice();
-		}
+		// TODO implement method to calculate total price
 		return totalPrice;
 	}
 }
