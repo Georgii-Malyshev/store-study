@@ -4,8 +4,8 @@ import java.util.Objects;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 import com.georgiimalyshev.storestudy.service.domain.store.Cart;
 
@@ -23,8 +23,8 @@ public class Customer extends AppUserAbstract {
 	private String firstName;
 	private String lastName;
 	private String shippingAddress;
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "cart_id", referencedColumnName = "id")
+	@OneToOne(mappedBy = "customer", cascade = CascadeType.ALL)
+	@PrimaryKeyJoinColumn
 	private Cart cart;
 
 	public String getMobilePhoneNumber() {
