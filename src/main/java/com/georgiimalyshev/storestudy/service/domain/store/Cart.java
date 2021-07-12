@@ -16,7 +16,7 @@ import com.georgiimalyshev.storestudy.service.domain.users.Customer;
 public class Cart {
 	@Id
 	private int id;
-	@OneToMany
+	@OneToMany(mappedBy = "cart")
 	private Set<CartItem> cartItems = new HashSet<CartItem>();
 	@OneToOne
 	@MapsId

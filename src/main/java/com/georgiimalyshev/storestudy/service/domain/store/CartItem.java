@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -18,6 +19,10 @@ class CartItem {
 	@Column(updatable = false, nullable = false)
 	private int id;
 	@ManyToOne
+	@JoinColumn(name = "cart_id")
+	private Cart cart;
+	@ManyToOne
+	@JoinColumn(name = "product_id")
 	private Product product;
 	private int quantity;
 }
