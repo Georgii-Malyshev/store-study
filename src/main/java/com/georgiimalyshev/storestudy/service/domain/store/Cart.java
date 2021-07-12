@@ -1,5 +1,6 @@
 package com.georgiimalyshev.storestudy.service.domain.store;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -14,7 +15,7 @@ import com.georgiimalyshev.storestudy.service.domain.users.Customer;
 public class Cart {
 	@Id
 	private int id;
-	private Set<Product> products;
+	private HashSet<Product> products;
 	@OneToOne
 	@MapsId
 	@JoinColumn(name = "id")
@@ -25,7 +26,7 @@ public class Cart {
 	}
 
 	public void setProducts(Set<Product> products) {
-		this.products = products;
+		this.products = (HashSet<Product>) products;
 	}
 
 	public void clear() {
