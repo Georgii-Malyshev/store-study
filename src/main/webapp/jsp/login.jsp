@@ -8,10 +8,10 @@
 <title>Login page</title>
 </head>
 <body>
-	<form name="loginForm" method="post" action="login-auth">
+	<form name="loginForm" method="post" action="login">
 		Email: <input type="text" name="email" /><br> Password: <input
 			type="password" name="password" /><br> <input type="submit"
-			value="login" />
+			value="Log in" />
 	</form>
 </body>
 </html>
