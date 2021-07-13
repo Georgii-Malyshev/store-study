@@ -65,10 +65,6 @@ public class Customer extends AppUserAbstract {
 		return this.cart;
 	}
 
-	public void setCart(Cart cart) {
-		this.cart = cart;
-	}
-
 	// TODO must double-check equals() and hashCode() later!
 	@Override
 	public boolean equals(Object object) {
