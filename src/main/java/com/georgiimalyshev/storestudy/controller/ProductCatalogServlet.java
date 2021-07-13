@@ -27,7 +27,7 @@ public class ProductCatalogServlet extends HttpServlet {
 		ApplicationContext applicationContext = (ApplicationContext) servletContext.getAttribute("applicationContext");
 		ProductCatalogService productCatalogService = applicationContext.getBean(ProductCatalogService.class);
 		ProductCatalog productCatalog = productCatalogService.getProductCatalogByIdAndFetchCategories(catalogId);
-		
+		// TODO decouple View (JSPs) from entities so that View doesn't need to care how entities' fields are called and just asks Controller for data?
 		request.setAttribute("productCatalog", productCatalog);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/jsp/catalog.jsp");
 		requestDispatcher.forward(request, response);
