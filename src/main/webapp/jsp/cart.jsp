@@ -6,9 +6,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Shopping cart page</title>
 </head>
 <body>
-
+	<div>
+		Products in your shopping cart: <br> 
+		<ul>
+			<c:forEach var="cartItem"
+				items="${requestScope.cart.cartItems}">
+				<li>${cartItem.product.name}, ${cartItem.product.price}$, quantity: ${cartItem.quantity}</li>
+			</c:forEach>
+		</ul>
+	</div>
 </body>
 </html>
