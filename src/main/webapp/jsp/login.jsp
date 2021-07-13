@@ -8,7 +8,7 @@
 <title>Login page</title>
 </head>
 <body>
-	<form name="loginForm" method="post" action="login-auth-servlet">
+	<form name="loginForm" method="post" action="login-auth">
 		Email: <input type="text" name="email" /><br> Password: <input
 			type="password" name="password" /><br> <input type="submit"
 			value="login" />

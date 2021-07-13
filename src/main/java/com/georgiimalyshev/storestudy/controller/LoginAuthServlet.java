@@ -15,7 +15,7 @@ import com.georgiimalyshev.storestudy.service.domain.users.AppUser;
 
 import java.io.IOException;
 
-@WebServlet("/login-auth-servlet")
+@WebServlet("/login-auth")
 public class LoginAuthServlet extends HttpServlet {
 
 	@Override
