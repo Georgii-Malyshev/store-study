@@ -37,12 +37,13 @@ public class LoginServlet extends HttpServlet {
 
 		AppUser appUser = authService.getAppUserByCredentials(email, password);
 
-		if (appUser.getId() != -1) {
-			HttpSession session = request.getSession();
-			session.setAttribute("appUser", appUser); // TODO maybe try something less insecure later
-			response.sendRedirect(request.getContextPath() + "/jsp/home.jsp");
-		} else {
-			response.sendError(401);
-		}
+		// TODO use null object pattern or implement some credential validation logic
+		// in AuthService to handle wrong credentials;
+		// right now if user can't be found by received credentials
+		// application simply throws an exception "No entity found for query"
+		HttpSession session = request.getSession();
+		session.setAttribute("appUser", appUser); // TODO maybe try something less insecure later
+		response.sendRedirect(request.getContextPath() + "/jsp/home.jsp");
+
 	}
 }
