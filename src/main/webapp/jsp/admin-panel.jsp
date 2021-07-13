@@ -8,6 +8,18 @@
 <title>Admin panel page</title>
 </head>
 <body>
-
+	<div>
+		<h1>admin panel</h1><br>
+		<table>
+			<tr>
+				<th>Users</th>
+			</tr>
+			<tr>
+				<th>ID</th>
+				<th>E-mail</th>
+				<th>Role</th>
+			</tr>				
+		</table>
+	</div>
 </body>
 </html>
