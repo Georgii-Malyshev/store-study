@@ -5,12 +5,12 @@ import java.util.Objects;
 public class Admin extends AppUserAbstract {
 	public Admin() {
 	}
-	
+
 	public Admin(String email, String password) {
 		this.email = email;
 		this.password = password;
 	}
-	
+
 	// TODO must double-check equals() and hashCode() later!
 	@Override
 	public boolean equals(Object object) {
