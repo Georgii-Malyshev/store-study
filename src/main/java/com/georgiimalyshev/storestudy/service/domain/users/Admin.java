@@ -2,6 +2,11 @@ package com.georgiimalyshev.storestudy.service.domain.users;
 
 import java.util.Objects;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "admin")
 public class Admin extends AppUserAbstract {
 	public Admin() {
 	}
