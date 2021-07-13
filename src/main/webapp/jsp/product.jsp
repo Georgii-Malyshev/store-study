@@ -14,6 +14,9 @@
 			<li>name: ${requestScope.product.name}</li>
 			<li>price: ${requestScope.product.price}</li>
 		</ul>
+		<form name="addToCart" method="post" action="cart-operations">
+			<button name="add-to-cart" value="add">Add to cart</button>
+		</form>
 	</div>
 </body>
 </html>
