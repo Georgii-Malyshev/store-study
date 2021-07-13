@@ -3,6 +3,7 @@ package com.georgiimalyshev.storestudy.service.domain.store;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -17,6 +18,7 @@ import com.georgiimalyshev.storestudy.service.domain.users.Customer;
 @Table(name = "cart")
 public class Cart {
 	@Id
+	@Column(name = "customer_id")
 	private int id;
 	@OneToMany(mappedBy = "cart")
 	private Set<CartItem> cartItems = new HashSet<CartItem>();
