@@ -23,12 +23,18 @@ public class CartServlet extends HttpServlet {
 		try {
 			Cart cart = ((Customer) appUser).getCart();
 			request.setAttribute("cart", cart);
-			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/jsp/product.jsp");
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/jsp/cart.jsp");
 			requestDispatcher.forward(request, response);
-		} catch (ClassCastException ex) {
-			// handle an exception
-		} catch (NullPointerException ex) {
-			// handle an exception
+		} catch (ClassCastException e) {
+			// TODO implement some better exception handling logic
+			e.printStackTrace();
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/jsp/not-a-customer-error.jsp");
+			requestDispatcher.forward(request, response);
+		} catch (NullPointerException e) {
+			// TODO implement some better exception handling logic
+			e.printStackTrace();
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/jsp/error.jsp");
+			requestDispatcher.forward(request, response);
 		}
 	}
 }
