@@ -11,7 +11,6 @@ import com.georgiimalyshev.storestudy.service.domain.users.AppUser;
 
 @Service
 public final class AuthService {
-	
 	private EntityManagerFactory entityManagerFactory;
 	
 	public AuthService(@Autowired EntityManagerFactory entityManagerFactory) {
