@@ -2,6 +2,7 @@ package com.georgiimalyshev.storestudy.dao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
 
 import com.georgiimalyshev.storestudy.service.domain.users.AppUser;
 import com.georgiimalyshev.storestudy.service.domain.users.AppUserAbstract;
@@ -48,11 +49,12 @@ public class AppUserDao {
 
 	public AppUser findByCredentials(String email, String password) {
 		beginTransaction();
-		AppUser appUser = entityManager
-				.createQuery(
-						"select u from AppUserAbstract u where u.email = :email and u.password = :password",
-						AppUserAbstract.class)
-				.setParameter("email", email).setParameter("password", password).getSingleResult();
+		TypedQuery<AppUserAbstract> typedQuery = entityManager.createQuery(
+				"SELECT u FROM AppUserAbstract u WHERE u.email = :email AND u.password = :password",
+				AppUserAbstract.class);
+		typedQuery.setParameter("email", email);
+		typedQuery.setParameter("password", password);
+		AppUser appUser = typedQuery.getSingleResult(); 
 		commitTransaction();
 		return appUser;
 	}
