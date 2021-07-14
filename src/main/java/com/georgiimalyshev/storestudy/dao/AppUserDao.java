@@ -71,9 +71,9 @@ public class AppUserDao {
 		typedQuery.setParameter("email", email);
 		typedQuery.setMaxResults(1);
 		Stream<AppUserAbstract> resultStream = typedQuery.getResultStream();
-		Optional<AppUserAbstract> optionalAppUserAbstract = resultStream.findFirst();
-		AppUser appUser = optionalAppUserAbstract.orElse(null);
+		Optional<AppUserAbstract> optionalOfAppUserAbstract = resultStream.findFirst();
+		AppUser appUser = optionalOfAppUserAbstract.orElse(null);
 		commitTransaction();
-		return Optional.of(appUser);
+		return Optional.ofNullable(appUser);
 	}
 }
