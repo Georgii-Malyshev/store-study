@@ -1,15 +1,10 @@
 package com.georgiimalyshev.storestudy.dao;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 
 import com.georgiimalyshev.storestudy.service.domain.store.ProductCatalog;
-import com.georgiimalyshev.storestudy.service.domain.store.ProductCategory;
 
 public class ProductCatalogDao {
 	private EntityManager entityManager;
