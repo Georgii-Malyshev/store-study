@@ -72,8 +72,9 @@ public class AppUserDao {
 		typedQuery.setMaxResults(1);
 		Stream<AppUserAbstract> resultStream = typedQuery.getResultStream();
 		Optional<AppUserAbstract> optionalOfAppUserAbstract = resultStream.findFirst();
-		AppUser appUser = optionalOfAppUserAbstract.orElse(null);
 		commitTransaction();
+		// TODO consider using Optional.map
+		AppUser appUser = optionalOfAppUserAbstract.orElse(null);
 		return Optional.ofNullable(appUser);
 	}
 }
