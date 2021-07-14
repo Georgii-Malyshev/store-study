@@ -1,6 +1,5 @@
 package com.georgiimalyshev.storestudy.dao;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -19,7 +18,7 @@ public class AppUserDao {
 		this.entityManager = entityManager;
 		this.entityTransaction = this.entityManager.getTransaction();
 	}
-
+	// TODO in every method that begins a transaction, use rollbackTransaction on catching IllegalStateException
 	protected void beginTransaction() {
 		try {
 			entityTransaction.begin();
@@ -76,5 +75,11 @@ public class AppUserDao {
 		// TODO consider using Optional.map
 		AppUser appUser = optionalOfAppUserAbstract.orElse(null);
 		return Optional.ofNullable(appUser);
+	}
+	
+	public void persist(AppUser appUser) {
+		beginTransaction();
+		entityManager.persist(appUser);
+		commitTransaction();
 	}
 }

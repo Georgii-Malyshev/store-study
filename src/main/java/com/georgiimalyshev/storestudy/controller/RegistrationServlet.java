@@ -31,8 +31,8 @@ public class RegistrationServlet extends HttpServlet {
 		ApplicationContext applicationContext = (ApplicationContext) servletContext.getAttribute("applicationContext");
 		RegistrationService registrationService = applicationContext.getBean(RegistrationService.class);
 		registrationService.registerNewCustomer(email, password);
-		
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/jsp/registration.jsp"); // TODO change page
+		// TODO redirect to new page instead
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/jsp/registration.jsp");
 		requestDispatcher.forward(request, response);
 	}
 
