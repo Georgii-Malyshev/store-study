@@ -21,10 +21,9 @@ public class RegistrationService {
 	public AppUser registerNewCustomer(String email, String password) throws NoResultException {
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		AppUserDao appUserDao = new AppUserDao(entityManager);
-		// TODO use null object pattern or something
 		// check if a user with such an email already exists in persistent storage
-		AppUser appUser = appUserDao.findByEmail(email); // throws an exception if entity can't be found!
-		
+		AppUser appUser = appUserDao.findByEmail(email);
+		// TODO
 		return appUser;
 	}
 }
