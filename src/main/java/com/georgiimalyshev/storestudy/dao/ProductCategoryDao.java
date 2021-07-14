@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
 
 import com.georgiimalyshev.storestudy.service.domain.store.Product;
 import com.georgiimalyshev.storestudy.service.domain.store.ProductCategory;
@@ -45,9 +46,10 @@ public class ProductCategoryDao {
 
 	public Set<Product> getAllProducts(ProductCategory productCategory) {
 		beginTransaction();
-		List<Product> resultList = entityManager
-				.createQuery("SELECT p FROM Product p WHERE p.productCategory LIKE :productCategory", Product.class)
-				.setParameter("productCategory", productCategory).getResultList();
+		TypedQuery<Product> typedQuery = entityManager
+				.createQuery("SELECT p FROM Product p WHERE p.productCategory LIKE :productCategory", Product.class);
+		typedQuery.setParameter("productCategory", productCategory);
+		List<Product> resultList = typedQuery.getResultList();
 		Set<Product> products = new HashSet<Product>(resultList);
 		commitTransaction();
 		return products;
@@ -62,9 +64,10 @@ public class ProductCategoryDao {
 
 	public ProductCategory findByIdAndFetchProducts(int id) {
 		beginTransaction();
-		ProductCategory productCategory = (ProductCategory) entityManager
-				.createQuery("SELECT pc FROM ProductCategory pc JOIN FETCH pc.products p WHERE pc.id = :id", ProductCategory.class)
-				.setParameter("id", id).getSingleResult();
+		TypedQuery<ProductCategory> typedQuery = entityManager.createQuery(
+				"SELECT pc FROM ProductCategory pc JOIN FETCH pc.products p WHERE pc.id = :id", ProductCategory.class);
+		typedQuery.setParameter("id", id);
+		ProductCategory productCategory = typedQuery.getSingleResult();
 		commitTransaction();
 		return productCategory;
 	}

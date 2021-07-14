@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
 
 import com.georgiimalyshev.storestudy.service.domain.store.ProductCatalog;
 import com.georgiimalyshev.storestudy.service.domain.store.ProductCategory;
@@ -45,10 +46,11 @@ public class ProductCatalogDao {
 
 	public ProductCatalog findByIdAndFetchProductCategories(int id) {
 		beginTransaction();
-		ProductCatalog productCatalog = (ProductCatalog) entityManager
-				.createQuery("SELECT c FROM ProductCatalog c JOIN FETCH c.productCategories pc WHERE c.id = :id",
-						ProductCatalog.class)
-				.setParameter("id", id).getSingleResult();
+		TypedQuery<ProductCatalog> typedQuery = entityManager.createQuery(
+				"SELECT c FROM ProductCatalog c JOIN FETCH c.productCategories pc WHERE c.id = :id",
+				ProductCatalog.class);
+		typedQuery.setParameter("id", id);
+		ProductCatalog productCatalog = typedQuery.getSingleResult();
 		commitTransaction();
 		return productCatalog;
 	}
