@@ -50,7 +50,7 @@ public class AppUserDao {
 	public AppUser findByCredentials(String email, String password) {
 		beginTransaction();
 		TypedQuery<AppUserAbstract> typedQuery = entityManager.createQuery(
-				"select u from AppUserAbstract u where u.email = :email and u.password = :password",
+				"SELECT u FROM AppUserAbstract u WHERE u.email = :email AND u.password = :password",
 				AppUserAbstract.class);
 		typedQuery.setParameter("email", email);
 		typedQuery.setParameter("password", password);
