@@ -70,11 +70,10 @@ public class AppUserDao {
 				.createQuery("SELECT u FROM AppUserAbstract u WHERE u.email = :email", AppUserAbstract.class);
 		typedQuery.setParameter("email", email);
 		typedQuery.setMaxResults(1);
-		List<AppUserAbstract> resultList = typedQuery.getResultList(); // TODO consider .getResultStream (since 2.2)
-		Stream<AppUserAbstract> stream = resultList.stream();
-		Optional<AppUserAbstract> appUser = stream.findFirst();
+		Stream<AppUserAbstract> resultStream = typedQuery.getResultStream();
+		Optional<AppUserAbstract> optionalAppUserAbstract = resultStream.findFirst();
+		AppUser appUser = optionalAppUserAbstract.orElse(null);
 		commitTransaction();
-		// TODO finish implementing the method
-		return appUser;
+		return Optional.of(appUser);
 	}
 }
