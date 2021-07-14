@@ -1,5 +1,9 @@
 package com.georgiimalyshev.storestudy.dao;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Stream;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
@@ -40,6 +44,7 @@ public class AppUserDao {
 		}
 	}
 
+	// TODO consider returning optional in all "find" methods
 	public AppUser findById(int id) {
 		beginTransaction();
 		AppUser appUser = entityManager.find(AppUserAbstract.class, id);
@@ -54,8 +59,22 @@ public class AppUserDao {
 				AppUserAbstract.class);
 		typedQuery.setParameter("email", email);
 		typedQuery.setParameter("password", password);
-		AppUser appUser = typedQuery.getSingleResult(); 
+		AppUser appUser = typedQuery.getSingleResult();
 		commitTransaction();
+		return appUser;
+	}
+
+	public Optional<AppUser> findByEmail(String email) {
+		beginTransaction();
+		TypedQuery<AppUserAbstract> typedQuery = entityManager
+				.createQuery("SELECT u FROM AppUserAbstract u WHERE u.email = :email", AppUserAbstract.class);
+		typedQuery.setParameter("email", email);
+		typedQuery.setMaxResults(1);
+		List<AppUserAbstract> resultList = typedQuery.getResultList(); // TODO consider .getResultStream (since 2.2)
+		Stream<AppUserAbstract> stream = resultList.stream();
+		Optional<AppUserAbstract> appUser = stream.findFirst();
+		commitTransaction();
+		// TODO finish implementing the method
 		return appUser;
 	}
 }
