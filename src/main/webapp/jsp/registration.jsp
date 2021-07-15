@@ -5,13 +5,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Login page</title>
+<title>Registration page</title>
 </head>
 <body>
-	<form name="loginForm" method="post" action="login">
+	<form name="registrationForm" method="post" action="register">
 		Email: <input type="text" name="email" /><br> Password: <input
 			type="password" name="password" /><br> <input type="submit"
-			value="Log in" />
+			value="register" />
 	</form>
 </body>
 </html>

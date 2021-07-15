@@ -1,6 +1,5 @@
 package com.georgiimalyshev.storestudy.service.domain.users;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,11 +16,8 @@ public abstract class AppUserAbstract implements AppUser {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "appuser_generator")
 	@SequenceGenerator(name = "appuser_generator", sequenceName = "appuser_id_seq")
-	@Column(updatable = false, nullable = false)
 	protected int id;
-	@Column(nullable = false)
 	protected String email;
-	@Column(nullable = false)
 	protected String password;
 
 	@Override

@@ -1,7 +1,11 @@
 package com.georgiimalyshev.storestudy.dao;
 
+import java.util.Optional;
+import java.util.stream.Stream;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
 
 import com.georgiimalyshev.storestudy.service.domain.users.AppUser;
 import com.georgiimalyshev.storestudy.service.domain.users.AppUserAbstract;
@@ -14,7 +18,7 @@ public class AppUserDao {
 		this.entityManager = entityManager;
 		this.entityTransaction = this.entityManager.getTransaction();
 	}
-
+	// TODO in every method that begins a transaction, use rollbackTransaction on catching IllegalStateException
 	protected void beginTransaction() {
 		try {
 			entityTransaction.begin();
@@ -25,7 +29,7 @@ public class AppUserDao {
 
 	protected void commitTransaction() {
 		try {
-			entityTransaction.begin();
+			entityTransaction.commit();
 		} catch (IllegalStateException exception) {
 			rollbackTransaction();
 		}
@@ -39,6 +43,7 @@ public class AppUserDao {
 		}
 	}
 
+	// TODO consider returning optional in all "find" methods
 	public AppUser findById(int id) {
 		beginTransaction();
 		AppUser appUser = entityManager.find(AppUserAbstract.class, id);
@@ -48,12 +53,33 @@ public class AppUserDao {
 
 	public AppUser findByCredentials(String email, String password) {
 		beginTransaction();
-		AppUser appUser = entityManager
-				.createQuery(
-						"select u from AppUserAbstract u where u.email = :email and u.password = :password",
-						AppUserAbstract.class)
-				.setParameter("email", email).setParameter("password", password).getSingleResult();
+		TypedQuery<AppUserAbstract> typedQuery = entityManager.createQuery(
+				"SELECT u FROM AppUserAbstract u WHERE u.email = :email AND u.password = :password",
+				AppUserAbstract.class);
+		typedQuery.setParameter("email", email);
+		typedQuery.setParameter("password", password);
+		AppUser appUser = typedQuery.getSingleResult();
 		commitTransaction();
 		return appUser;
+	}
+
+	public Optional<AppUser> findByEmail(String email) {
+		beginTransaction();
+		TypedQuery<AppUserAbstract> typedQuery = entityManager
+				.createQuery("SELECT u FROM AppUserAbstract u WHERE u.email = :email", AppUserAbstract.class);
+		typedQuery.setParameter("email", email);
+		typedQuery.setMaxResults(1);
+		Stream<AppUserAbstract> resultStream = typedQuery.getResultStream();
+		Optional<AppUserAbstract> optionalOfAppUserAbstract = resultStream.findFirst();
+		commitTransaction();
+		// TODO consider using Optional.map
+		AppUser appUser = optionalOfAppUserAbstract.orElse(null);
+		return Optional.ofNullable(appUser);
+	}
+	
+	public void persist(AppUser appUser) {
+		beginTransaction();
+		entityManager.persist(appUser);
+		commitTransaction();
 	}
 }

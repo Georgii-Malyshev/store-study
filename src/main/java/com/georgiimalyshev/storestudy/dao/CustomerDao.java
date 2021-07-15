@@ -9,9 +9,8 @@ public class CustomerDao extends AppUserDao {
 		super(entityManager);
 	}
 
-	public void persist(String email, String password) {
+	public void persist(Customer customer) {
 		beginTransaction();
-		Customer customer = new Customer(email, password);
 		entityManager.persist(customer);
 		commitTransaction();
 	}
