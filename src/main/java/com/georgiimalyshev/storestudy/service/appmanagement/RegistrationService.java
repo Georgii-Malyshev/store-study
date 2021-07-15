@@ -30,7 +30,6 @@ public class RegistrationService {
 		// check if a user with such an email already exists in persistent storage
 		Optional<AppUser> optionalOfAppUser = appUserDao.findByEmail(email);
 		if (optionalOfAppUser.isEmpty()) {
-			entityManager.close();
 			Customer customer = new Customer(email, password);
 			EntityManager entityManagerForCustomer = entityManagerFactory.createEntityManager();
 			CustomerDao customerDao = new CustomerDao(entityManagerForCustomer);
@@ -38,6 +37,7 @@ public class RegistrationService {
 			registrationSuccess = true;
 			entityManagerForCustomer.close();
 		}
+		entityManager.close();
 		return registrationSuccess;
 	}
 }
