@@ -27,7 +27,8 @@ public class ProductCategory {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_category_generator")
 	@SequenceGenerator(name = "product_category_generator", sequenceName = "product_category_id_seq")
-	@Column(updatable = false, nullable = false)
+	// nullable=false in these is needed only for schema generation
+	// @Column(updatable = false, nullable = false)
 	private int id;
 	@ManyToOne
 	@JoinColumn(name = "product_catalog_id")

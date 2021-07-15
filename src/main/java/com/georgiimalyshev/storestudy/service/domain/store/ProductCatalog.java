@@ -21,7 +21,8 @@ public class ProductCatalog {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_catalog_generator")
 	@SequenceGenerator(name = "product_catalog_generator", sequenceName = "product_catalog_id_seq")
-	@Column(updatable = false, nullable = false)
+	// nullable=false in these is needed only for schema generation
+	// @Column(updatable = false, nullable = false)
 	private int id;
 
 	@OneToMany(mappedBy = "productCatalog", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)

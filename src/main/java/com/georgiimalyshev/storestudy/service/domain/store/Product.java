@@ -24,7 +24,8 @@ public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_generator")
 	@SequenceGenerator(name = "product_generator", sequenceName = "product_id_seq")
-	@Column(updatable = false, nullable = false)
+	// nullable=false in these is needed only for schema generation
+	// @Column(updatable = false, nullable = false)
 	private int id;
 	private String name;
 	private int price;
