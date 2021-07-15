@@ -31,12 +31,13 @@ public class RegistrationServlet extends HttpServlet {
 		ApplicationContext applicationContext = (ApplicationContext) servletContext.getAttribute("applicationContext");
 		RegistrationService registrationService = applicationContext.getBean(RegistrationService.class);
 		boolean registrationSuccess = false;
+		// TODO validate entered data before passing it to the service layer
 		registrationSuccess = registrationService.registerNewCustomer(email, password);
-
+		// TODO send to a servlet instead
 		if (registrationSuccess) {
-			response.sendRedirect("jsp/registration-successful.jsp"); // TODO send to a servlet instead
+			response.sendRedirect("jsp/registration-successful.jsp"); 
 		} else {
-			response.sendRedirect("jsp/error.jsp"); // TODO send to a servlet instead
+			response.sendRedirect("jsp/error.jsp");
 		}
 	}
 }
