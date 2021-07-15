@@ -16,7 +16,8 @@ class CartItem {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cart_item_generator")
 	@SequenceGenerator(name = "cart_item_generator", sequenceName = "cart_item_id_seq")
-	@Column(updatable = false, nullable = false)
+	// nullable=false in these is needed only for schema generation
+	// @Column(updatable = false, nullable = false)
 	private int id;
 	@ManyToOne
 	@JoinColumn(name = "cart_id")

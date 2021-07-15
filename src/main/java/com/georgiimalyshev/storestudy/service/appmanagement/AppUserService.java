@@ -1,6 +1,6 @@
 package com.georgiimalyshev.storestudy.service.appmanagement;
 
-import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -20,13 +20,11 @@ public final class AppUserService {
 	}
 	
 	// TODO rename method to something more obvious
-	public getAllUsersAndFetchMainInfo() {
+	public Set<AppUser> getAllUsers() {
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		AppUserDao appUserDao = new AppUserDao(entityManager);
-		HashSet<AppUser> appUsers = appUserDao.getAllUsersAndFetchMainInfo();
+		Set<AppUser> appUsers = appUserDao.getAllUsers();
 		entityManager.close();
 		return appUsers;
 	}
-	
-	
 }

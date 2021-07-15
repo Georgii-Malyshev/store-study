@@ -1,6 +1,9 @@
 package com.georgiimalyshev.storestudy.dao;
 
+import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Stream;
 
 import javax.persistence.EntityManager;
@@ -81,5 +84,15 @@ public class AppUserDao {
 		beginTransaction();
 		entityManager.persist(appUser);
 		commitTransaction();
+	}
+	
+	public Set<AppUser> getAllUsers() {
+		beginTransaction();
+		TypedQuery<AppUserAbstract> typedQuery = entityManager.
+				createQuery("SELECT u FROM AppUserAbstract u", AppUserAbstract.class);
+		List<AppUserAbstract> resultList = typedQuery.getResultList();
+		Set<AppUser> appUsers = new HashSet<AppUser>(resultList);
+		commitTransaction();
+		return appUsers;
 	}
 }

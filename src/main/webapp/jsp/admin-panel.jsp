@@ -17,7 +17,12 @@
 			<tr>
 				<th>ID</th>
 				<th>E-mail</th>
-				<th>Role</th>
+				<th>toString</th>
+				<c:forEach var="appUser" items="${requestScope.appUsers}">
+					<td>${appUser.id}</td>
+					<td>${appUser.email}</td>
+					<td>${appUser}</td>
+				</c:forEach>
 			</tr>				
 		</table>
 	</div>
