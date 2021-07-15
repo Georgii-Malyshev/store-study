@@ -21,7 +21,6 @@ import javax.persistence.SequenceGenerator;
 @Table(name = "product_category")
 public class ProductCategory {
 	public ProductCategory() {
-		// TODO constructor implementation?
 	}
 	
 	@Id
