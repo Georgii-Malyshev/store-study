@@ -14,8 +14,12 @@
 
 		<class>com.georgiimalyshev.storestudy.service.domain.users.AppUserAbstract</class>
 		<class>com.georgiimalyshev.storestudy.service.domain.users.Customer</class>
+		<class>com.georgiimalyshev.storestudy.service.domain.users.Admin</class>
 		<class>com.georgiimalyshev.storestudy.service.domain.store.Cart</class>
 		<class>com.georgiimalyshev.storestudy.service.domain.store.CartItem</class>
+		<class>com.georgiimalyshev.storestudy.service.domain.store.ProductCatalog</class>
+		<class>com.georgiimalyshev.storestudy.service.domain.store.ProductCategory</class>
+		<class>com.georgiimalyshev.storestudy.service.domain.store.Product</class>
 
 		<properties>
 			<property name="javax.persistence.jdbc.driver"
