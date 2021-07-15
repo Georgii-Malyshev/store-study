@@ -29,7 +29,7 @@ public class AppUserDao {
 
 	protected void commitTransaction() {
 		try {
-			entityTransaction.begin();
+			entityTransaction.commit();
 		} catch (IllegalStateException exception) {
 			rollbackTransaction();
 		}
