@@ -21,7 +21,23 @@ public class RegistrationService {
 		this.entityManagerFactory = entityManagerFactory;
 	}
 
-	public Optional<AppUser> registerNewCustomer(String email, String password) throws NoResultException {
+	public boolean registerNewCustomer(String email, String password) {
+		boolean registrationSuccess = false;
+		
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		AppUserDao appUserDao = new AppUserDao(entityManager);
+		// check if a user with such an email already exists in persistent storage
+		Optional<AppUser> optionalOfAppUser = appUserDao.findByEmail(email);
+		if (optionalOfAppUser.isEmpty()) {
+			Customer customer = new Customer();
+			appUserDao.persist(customer);
+			registrationSuccess = true;
+		}
+		return registrationSuccess;
+	}
+	
+	/* TODO delete commented-out code
+	public Optional<AppUser> registerNewCustomer(String email, String password) {
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		AppUserDao appUserDao = new AppUserDao(entityManager);
 		// check if a user with such an email already exists in persistent storage
@@ -35,5 +51,5 @@ public class RegistrationService {
 			optionalOfAppUser = Optional.empty();
 		}
 		return optionalOfAppUser;
-	}
+	}*/
 }

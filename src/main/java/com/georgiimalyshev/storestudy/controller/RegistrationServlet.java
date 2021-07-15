@@ -30,10 +30,13 @@ public class RegistrationServlet extends HttpServlet {
 		ServletContext servletContext = request.getServletContext();
 		ApplicationContext applicationContext = (ApplicationContext) servletContext.getAttribute("applicationContext");
 		RegistrationService registrationService = applicationContext.getBean(RegistrationService.class);
-		registrationService.registerNewCustomer(email, password);
-		// TODO redirect to new page instead
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/jsp/registration.jsp");
-		requestDispatcher.forward(request, response);
-	}
+		boolean registrationSuccess = false;
+		registrationSuccess = registrationService.registerNewCustomer(email, password);
 
+		if (registrationSuccess) {
+			response.sendRedirect("jsp/registration-successful.jsp"); // TODO send to a servlet instead
+		} else {
+			response.sendRedirect("jsp/error.jsp"); // TODO send to a servlet instead
+		}
+	}
 }
