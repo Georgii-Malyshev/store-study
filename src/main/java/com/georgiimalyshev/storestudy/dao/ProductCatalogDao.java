@@ -25,7 +25,7 @@ public class ProductCatalogDao {
 
 	private void commitTransaction() {
 		try {
-			entityTransaction.begin();
+			entityTransaction.commit();
 		} catch (IllegalStateException exception) {
 			rollbackTransaction();
 		}

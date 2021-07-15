@@ -30,7 +30,7 @@ public class ProductCategoryDao {
 
 	private void commitTransaction() {
 		try {
-			entityTransaction.begin();
+			entityTransaction.commit();
 		} catch (IllegalStateException exception) {
 			rollbackTransaction();
 		}
