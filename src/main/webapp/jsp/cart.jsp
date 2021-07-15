@@ -10,11 +10,11 @@
 </head>
 <body>
 	<div>
-		Products in your shopping cart: <br> 
+		Products in your shopping cart: <br>
 		<ul>
-			<c:forEach var="cartItem"
-				items="${requestScope.cart.cartItems}">
-				<li>${cartItem.product.name}, ${cartItem.product.price}$, quantity: ${cartItem.quantity}</li>
+			<c:forEach var="cartItem" items="${requestScope.cart.cartItems}">
+				<li>${cartItem.product.name},${cartItem.product.price}$,
+					quantity: ${cartItem.quantity}</li>
 			</c:forEach>
 		</ul>
 	</div>
