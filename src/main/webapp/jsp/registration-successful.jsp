@@ -8,7 +8,7 @@
 </head>
 <body>
 	<div>
-		Registration successful! Now you can <a href="login">login</a>
+		Registration successful! Now you can <a href="/login">login</a>
 	</div>
 </body>
 </html>
