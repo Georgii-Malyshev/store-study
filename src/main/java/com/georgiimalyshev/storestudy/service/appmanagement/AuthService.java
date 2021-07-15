@@ -1,5 +1,7 @@
 package com.georgiimalyshev.storestudy.service.appmanagement;
 
+import java.util.Optional;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
@@ -17,11 +19,11 @@ public final class AuthService {
 		this.entityManagerFactory = entityManagerFactory;
 	}
 
-	public AppUser getAppUserByCredentials(String email, String password) {
+	public Optional<AppUser> findAppUserByCredentials(String email, String password) {
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		AppUserDao appUserDao = new AppUserDao(entityManager);
-		AppUser appUser = appUserDao.findByCredentials(email, password);
+		Optional<AppUser> optionalOfAppUser = appUserDao.findByCredentials(email, password);
 		entityManager.close();
-		return appUser;
+		return optionalOfAppUser;
 	}
 }
