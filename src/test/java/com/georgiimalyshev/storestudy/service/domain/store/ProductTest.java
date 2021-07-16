@@ -3,8 +3,6 @@ package com.georgiimalyshev.storestudy.service.domain.store;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.georgiimalyshev.storestudy.service.domain.store.Product;
-
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 

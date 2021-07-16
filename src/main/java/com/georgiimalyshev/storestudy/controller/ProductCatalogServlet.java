@@ -1,5 +1,7 @@
 package com.georgiimalyshev.storestudy.controller;
 
+import java.io.IOException;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -12,8 +14,6 @@ import org.springframework.context.ApplicationContext;
 
 import com.georgiimalyshev.storestudy.service.appmanagement.ProductCatalogService;
 import com.georgiimalyshev.storestudy.service.domain.store.ProductCatalog;
-
-import java.io.IOException;
 
 @WebServlet("/catalog")
 public class ProductCatalogServlet extends HttpServlet {

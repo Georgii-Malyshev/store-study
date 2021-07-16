@@ -1,5 +1,7 @@
 package com.georgiimalyshev.storestudy.controller;
 
+import java.io.IOException;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,8 +13,6 @@ import javax.servlet.http.HttpSession;
 import com.georgiimalyshev.storestudy.service.domain.store.Cart;
 import com.georgiimalyshev.storestudy.service.domain.users.AppUser;
 import com.georgiimalyshev.storestudy.service.domain.users.Customer;
-
-import java.io.IOException;
 
 @WebServlet("/cart")
 public class CartServlet extends HttpServlet {

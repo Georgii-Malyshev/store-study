@@ -1,5 +1,8 @@
 package com.georgiimalyshev.storestudy.controller;
 
+import java.io.IOException;
+import java.util.Optional;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -13,9 +16,6 @@ import org.springframework.context.ApplicationContext;
 
 import com.georgiimalyshev.storestudy.service.appmanagement.AuthService;
 import com.georgiimalyshev.storestudy.service.domain.users.AppUser;
-
-import java.io.IOException;
-import java.util.Optional;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
