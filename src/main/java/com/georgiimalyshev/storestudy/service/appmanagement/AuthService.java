@@ -24,6 +24,7 @@ public final class AuthService {
 		AppUserDao appUserDao = new AppUserDao(entityManager);
 		Optional<AppUser> optionalOfAppUser = appUserDao.findByCredentials(email, password);
 		entityManager.close();
+		// TODO move login logic here from controller layer
 		return optionalOfAppUser;
 	}
 }

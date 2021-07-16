@@ -15,6 +15,7 @@ import com.georgiimalyshev.storestudy.service.appmanagement.AuthService;
 import com.georgiimalyshev.storestudy.service.domain.users.AppUser;
 
 import java.io.IOException;
+import java.util.Optional;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
@@ -34,16 +35,15 @@ public class LoginServlet extends HttpServlet {
 		ServletContext servletContext = request.getServletContext();
 		ApplicationContext applicationContext = (ApplicationContext) servletContext.getAttribute("applicationContext");
 		AuthService authService = applicationContext.getBean(AuthService.class);
-
-		AppUser appUser = authService.getAppUserByCredentials(email, password);
-
-		// TODO use null object pattern or implement some credential validation logic
-		// in AuthService to handle wrong credentials;
-		// right now if user can't be found by received credentials
-		// application simply throws an exception "No entity found for query"
-		HttpSession session = request.getSession();
-		session.setAttribute("appUser", appUser); // TODO maybe try something less insecure later
-		response.sendRedirect(request.getContextPath() + "/jsp/home.jsp");
-
+		// TODO validate entered data before passing it to the service layer
+		Optional<AppUser> optionalOfAppUser = authService.findAppUserByCredentials(email, password);
+		if (optionalOfAppUser.isPresent()) {
+			AppUser appUser = optionalOfAppUser.get();
+			HttpSession session = request.getSession();
+			session.setAttribute("appUser", appUser); // TODO maybe try something less insecure later
+			response.sendRedirect(request.getContextPath() + "/jsp/home.jsp");
+		} else {
+			response.sendRedirect(request.getContextPath() + "/jsp/error.jsp"); // TODO show specific error
+		}
 	}
 }

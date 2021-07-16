@@ -54,18 +54,21 @@ public class AppUserDao {
 		return appUser;
 	}
 
-	public AppUser findByCredentials(String email, String password) {
+	public Optional<AppUser> findByCredentials(String email, String password) {
 		beginTransaction();
-		TypedQuery<AppUserAbstract> typedQuery = entityManager.createQuery(
-				"SELECT u FROM AppUserAbstract u WHERE u.email = :email AND u.password = :password",
-				AppUserAbstract.class);
+		TypedQuery<AppUserAbstract> typedQuery = entityManager
+				.createQuery("SELECT u FROM AppUserAbstract u WHERE u.email = :email AND u.password = :password", AppUserAbstract.class);
 		typedQuery.setParameter("email", email);
 		typedQuery.setParameter("password", password);
-		AppUser appUser = typedQuery.getSingleResult();
+		typedQuery.setMaxResults(1);
+		Stream<AppUserAbstract> resultStream = typedQuery.getResultStream();
+		Optional<AppUserAbstract> optionalOfAppUserAbstract = resultStream.findFirst();
 		commitTransaction();
-		return appUser;
+		// TODO consider using Optional.map
+		AppUser appUser = optionalOfAppUserAbstract.orElse(null);
+		return Optional.ofNullable(appUser);
 	}
-
+	// TODO get rid of duplicate code
 	public Optional<AppUser> findByEmail(String email) {
 		beginTransaction();
 		TypedQuery<AppUserAbstract> typedQuery = entityManager
