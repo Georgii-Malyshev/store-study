@@ -14,7 +14,7 @@ public final class ApplicationInitializer implements ServletContextListener {
 
 	@Override
 	public void contextInitialized(ServletContextEvent event) {
-		ApplicationContext applicationContext = new AnnotationConfigApplicationContext(SpringApplicationContextConfig.class);
+		ApplicationContext applicationContext = new AnnotationConfigApplicationContext(SpringConfig.class);
 		servletContext = event.getServletContext();
 		servletContext.setAttribute("applicationContext", applicationContext);
 		// TODO get rid of hardcoded catalog ID?

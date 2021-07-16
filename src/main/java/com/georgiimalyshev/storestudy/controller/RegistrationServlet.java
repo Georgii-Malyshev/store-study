@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.context.ApplicationContext;
 
-import com.georgiimalyshev.storestudy.service.RegistrationService;
+import com.georgiimalyshev.storestudy.service.CustomerRegistrationService;
 
 @WebServlet("/register")
 public class RegistrationServlet extends HttpServlet {
@@ -29,10 +29,10 @@ public class RegistrationServlet extends HttpServlet {
 		
 		ServletContext servletContext = request.getServletContext();
 		ApplicationContext applicationContext = (ApplicationContext) servletContext.getAttribute("applicationContext");
-		RegistrationService registrationService = applicationContext.getBean(RegistrationService.class);
+		CustomerRegistrationService customerRegistrationService = applicationContext.getBean(CustomerRegistrationService.class);
 		boolean registrationSuccess = false;
 		// TODO validate entered data before passing it to the service layer
-		registrationSuccess = registrationService.registerNewCustomer(email, password);
+		registrationSuccess = customerRegistrationService.registerNewCustomer(email, password);
 		// TODO send to a servlet instead
 		if (registrationSuccess) {
 			response.sendRedirect("jsp/registration-successful.jsp"); 

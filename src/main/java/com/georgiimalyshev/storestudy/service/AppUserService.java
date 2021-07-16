@@ -1,9 +1,7 @@
 package com.georgiimalyshev.storestudy.service;
 
+import java.util.Optional;
 import java.util.Set;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,18 +10,21 @@ import com.georgiimalyshev.storestudy.dao.AppUserDao;
 import com.georgiimalyshev.storestudy.service.domain.users.AppUser;
 
 @Service
-public final class AppUserService {
-	private EntityManagerFactory entityManagerFactory;
-
-	public AppUserService(@Autowired EntityManagerFactory entityManagerFactory) {
-		this.entityManagerFactory = entityManagerFactory;
+public class AppUserService {
+	private AppUserDao appUserDao;
+	
+	public AppUserService(@Autowired AppUserDao appUserDao) {
+		this.appUserDao = appUserDao;
 	}
 	
+	public Optional<AppUser> findAppUserByCredentials(String email, String password) {
+		Optional<AppUser> optionalOfAppUser = appUserDao.findByCredentials(email, password);
+		// TODO move login logic here from controller layer?
+		return optionalOfAppUser;
+	}
+
 	public Set<AppUser> getAllUsers() {
-		EntityManager entityManager = entityManagerFactory.createEntityManager();
-		AppUserDao appUserDao = new AppUserDao(entityManager);
 		Set<AppUser> appUsers = appUserDao.getAllUsers();
-		entityManager.close();
 		return appUsers;
 	}
 }

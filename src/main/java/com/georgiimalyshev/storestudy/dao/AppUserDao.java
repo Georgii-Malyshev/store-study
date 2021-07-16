@@ -7,55 +7,30 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.georgiimalyshev.storestudy.service.domain.users.AppUser;
 import com.georgiimalyshev.storestudy.service.domain.users.AppUserAbstract;
 
+@Repository
+@Transactional
 public class AppUserDao {
-	protected EntityManager entityManager;
-	protected EntityTransaction entityTransaction;
+	@PersistenceContext protected EntityManager entityManager;
 
-	public AppUserDao(EntityManager entityManager) {
-		this.entityManager = entityManager;
-		this.entityTransaction = this.entityManager.getTransaction();
+	public void persist(AppUser appUser) {
+		entityManager.persist(appUser);
 	}
-	// TODO in every method that begins a transaction, use rollbackTransaction on catching IllegalStateException
-	protected void beginTransaction() {
-		try {
-			entityTransaction.begin();
-		} catch (IllegalStateException exception) {
-			rollbackTransaction();
-		}
-	}
-
-	protected void commitTransaction() {
-		try {
-			entityTransaction.commit();
-		} catch (IllegalStateException exception) {
-			rollbackTransaction();
-		}
-	}
-
-	protected void rollbackTransaction() {
-		try {
-			entityTransaction.rollback();
-		} catch (IllegalStateException exception) {
-			exception.printStackTrace();
-		}
-	}
-
-	// TODO consider returning optional in all "find" methods
-	public AppUser findById(int id) {
-		beginTransaction();
+	
+	public Optional<AppUser> findById(int id) {
 		AppUser appUser = entityManager.find(AppUserAbstract.class, id);
-		commitTransaction();
-		return appUser;
+		return Optional.ofNullable(appUser);
 	}
 
 	public Optional<AppUser> findByCredentials(String email, String password) {
-		beginTransaction();
 		TypedQuery<AppUserAbstract> typedQuery = entityManager
 				.createQuery("SELECT u FROM AppUserAbstract u WHERE u.email = :email AND u.password = :password", AppUserAbstract.class);
 		typedQuery.setParameter("email", email);
@@ -63,39 +38,28 @@ public class AppUserDao {
 		typedQuery.setMaxResults(1);
 		Stream<AppUserAbstract> resultStream = typedQuery.getResultStream();
 		Optional<AppUserAbstract> optionalOfAppUserAbstract = resultStream.findFirst();
-		commitTransaction();
 		// TODO consider using Optional.map
 		AppUser appUser = optionalOfAppUserAbstract.orElse(null);
 		return Optional.ofNullable(appUser);
 	}
-	// TODO get rid of duplicate code
+	
 	public Optional<AppUser> findByEmail(String email) {
-		beginTransaction();
 		TypedQuery<AppUserAbstract> typedQuery = entityManager
 				.createQuery("SELECT u FROM AppUserAbstract u WHERE u.email = :email", AppUserAbstract.class);
 		typedQuery.setParameter("email", email);
 		typedQuery.setMaxResults(1);
 		Stream<AppUserAbstract> resultStream = typedQuery.getResultStream();
 		Optional<AppUserAbstract> optionalOfAppUserAbstract = resultStream.findFirst();
-		commitTransaction();
 		// TODO consider using Optional.map
 		AppUser appUser = optionalOfAppUserAbstract.orElse(null);
 		return Optional.ofNullable(appUser);
 	}
 	
-	public void persist(AppUser appUser) {
-		beginTransaction();
-		entityManager.persist(appUser);
-		commitTransaction();
-	}
-	
 	public Set<AppUser> getAllUsers() {
-		beginTransaction();
 		TypedQuery<AppUserAbstract> typedQuery = entityManager.
 				createQuery("SELECT u FROM AppUserAbstract u", AppUserAbstract.class);
 		List<AppUserAbstract> resultList = typedQuery.getResultList();
 		Set<AppUser> appUsers = new HashSet<AppUser>(resultList);
-		commitTransaction();
 		return appUsers;
 	}
 }

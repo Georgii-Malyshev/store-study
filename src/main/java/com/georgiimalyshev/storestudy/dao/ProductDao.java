@@ -1,53 +1,24 @@
 package com.georgiimalyshev.storestudy.dao;
 
+import java.util.Optional;
+
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 
 import com.georgiimalyshev.storestudy.service.domain.store.Product;
 
 public class ProductDao {
 	private EntityManager entityManager;
-	private EntityTransaction entityTransaction;
 
 	public ProductDao(EntityManager entityManager) {
 		this.entityManager = entityManager;
-		this.entityTransaction = this.entityManager.getTransaction();
 	}
 
-	private void beginTransaction() {
-		try {
-			entityTransaction.begin();
-		} catch (IllegalStateException exception) {
-			rollbackTransaction();
-		}
-	}
-
-	private void commitTransaction() {
-		try {
-			entityTransaction.commit();
-		} catch (IllegalStateException exception) {
-			rollbackTransaction();
-		}
-	}
-
-	private void rollbackTransaction() {
-		try {
-			entityTransaction.rollback();
-		} catch (IllegalStateException exception) {
-			exception.printStackTrace();
-		}
-	}
-	public void persist(String name, int price) {
-		beginTransaction();
-		Product product = new Product(name, price);
+	public void persist(Product product) {
 		entityManager.persist(product);
-		commitTransaction();
 	}
 
-	public Product findById(int id) {
-		beginTransaction();
+	public Optional<Product> findById(int id) {
 		Product product = entityManager.find(Product.class, id);
-		commitTransaction();
-		return product;
+		return Optional.ofNullable(product);
 	}
 }

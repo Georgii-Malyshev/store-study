@@ -1,5 +1,7 @@
 package com.georgiimalyshev.storestudy.service;
 
+import java.util.Optional;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
@@ -12,8 +14,7 @@ import com.georgiimalyshev.storestudy.dao.ProductDao;
 import com.georgiimalyshev.storestudy.service.domain.store.Product;
 import com.georgiimalyshev.storestudy.service.domain.store.ProductCatalog;
 import com.georgiimalyshev.storestudy.service.domain.store.ProductCategory;
-
-// TODO use Spring's transaction manager or something instead of manually creating and closing EntityManager instances  
+  
 @Service
 public final class ProductCatalogService {
 	private EntityManagerFactory entityManagerFactory;
@@ -21,36 +22,40 @@ public final class ProductCatalogService {
 	public ProductCatalogService(@Autowired EntityManagerFactory entityManagerFactory) {
 		this.entityManagerFactory = entityManagerFactory;
 	}
-
-	public Product getProductById(int id) {
+	
+	public Product getProductById (int id) {
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		ProductDao productDao = new ProductDao(entityManager);
-		Product product = productDao.findById(id);
+		Optional<Product> optionalOfProduct = productDao.findById(id);
 		entityManager.close();
+		Product product = optionalOfProduct.orElseThrow();
 		return product;
 	}
 
 	public ProductCategory getProductCategoryById(int id) {
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		ProductCategoryDao productCategoryDao = new ProductCategoryDao(entityManager);
-		ProductCategory productCategory = productCategoryDao.findById(id);
+		Optional<ProductCategory> optionalOfProductCategory = productCategoryDao.findById(id);
 		entityManager.close();
+		ProductCategory productCategory = optionalOfProductCategory.orElseThrow();
 		return productCategory;
 	}
 
 	public ProductCategory getProductCategoryByIdAndFetchProducts(int id) {
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		ProductCategoryDao productCategoryDao = new ProductCategoryDao(entityManager);
-		ProductCategory productCategory = productCategoryDao.findByIdAndFetchProducts(id);
+		Optional<ProductCategory> optionalOfProductCategory = productCategoryDao.findByIdAndFetchProducts(id);
 		entityManager.close();
+		ProductCategory productCategory = optionalOfProductCategory.orElseThrow();
 		return productCategory;
 	}
 
 	public ProductCatalog getProductCatalogByIdAndFetchCategories(int id) {
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		ProductCatalogDao productCatalogDao = new ProductCatalogDao(entityManager);
-		ProductCatalog productCatalog = productCatalogDao.findByIdAndFetchProductCategories(id);
+		Optional<ProductCatalog> optionalOfProductCatalog = productCatalogDao.findByIdAndFetchProductCategories(id);
 		entityManager.close();
+		ProductCatalog productCatalog = optionalOfProductCatalog.orElseThrow();
 		return productCatalog;
 	}
 }

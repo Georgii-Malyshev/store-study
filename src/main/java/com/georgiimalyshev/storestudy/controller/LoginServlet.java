@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.context.ApplicationContext;
 
-import com.georgiimalyshev.storestudy.service.AuthService;
+import com.georgiimalyshev.storestudy.service.AppUserService;
 import com.georgiimalyshev.storestudy.service.domain.users.AppUser;
 
 @WebServlet("/login")
@@ -34,9 +34,9 @@ public class LoginServlet extends HttpServlet {
 
 		ServletContext servletContext = request.getServletContext();
 		ApplicationContext applicationContext = (ApplicationContext) servletContext.getAttribute("applicationContext");
-		AuthService authService = applicationContext.getBean(AuthService.class);
+		AppUserService appUserService = applicationContext.getBean(AppUserService.class);
 		// TODO validate entered data before passing it to the service layer
-		Optional<AppUser> optionalOfAppUser = authService.findAppUserByCredentials(email, password);
+		Optional<AppUser> optionalOfAppUser = appUserService.findAppUserByCredentials(email, password);
 		if (optionalOfAppUser.isPresent()) {
 			AppUser appUser = optionalOfAppUser.get();
 			HttpSession session = request.getSession();
