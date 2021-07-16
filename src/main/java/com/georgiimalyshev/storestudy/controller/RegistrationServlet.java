@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.context.ApplicationContext;
 
-import com.georgiimalyshev.storestudy.service.appmanagement.RegistrationService;
+import com.georgiimalyshev.storestudy.service.RegistrationService;
 
 @WebServlet("/register")
 public class RegistrationServlet extends HttpServlet {

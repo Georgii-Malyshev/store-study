@@ -1,4 +1,4 @@
-package com.georgiimalyshev.storestudy.service.appmanagement;
+package com.georgiimalyshev.storestudy.service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

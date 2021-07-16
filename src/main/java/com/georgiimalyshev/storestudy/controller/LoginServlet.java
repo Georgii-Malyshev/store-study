@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.context.ApplicationContext;
 
-import com.georgiimalyshev.storestudy.service.appmanagement.AuthService;
+import com.georgiimalyshev.storestudy.service.AuthService;
 import com.georgiimalyshev.storestudy.service.domain.users.AppUser;
 
 @WebServlet("/login")

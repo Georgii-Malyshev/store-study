@@ -1,4 +1,4 @@
-package com.georgiimalyshev.storestudy.service.appmanagement;
+package com.georgiimalyshev.storestudy.service;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;

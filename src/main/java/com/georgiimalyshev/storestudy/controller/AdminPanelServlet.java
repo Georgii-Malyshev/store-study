@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.context.ApplicationContext;
 
-import com.georgiimalyshev.storestudy.service.appmanagement.AppUserService;
+import com.georgiimalyshev.storestudy.service.AppUserService;
 import com.georgiimalyshev.storestudy.service.domain.users.AppUser;
 
 @WebServlet("/admin-panel")

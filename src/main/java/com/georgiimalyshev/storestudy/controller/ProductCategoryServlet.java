@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.context.ApplicationContext;
 
-import com.georgiimalyshev.storestudy.service.appmanagement.ProductCatalogService;
+import com.georgiimalyshev.storestudy.service.ProductCatalogService;
 import com.georgiimalyshev.storestudy.service.domain.store.ProductCategory;
 
 @WebServlet("/category")
