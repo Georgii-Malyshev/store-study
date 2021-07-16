@@ -19,7 +19,6 @@ public final class AppUserService {
 		this.entityManagerFactory = entityManagerFactory;
 	}
 	
-	// TODO rename method to something more obvious
 	public Set<AppUser> getAllUsers() {
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		AppUserDao appUserDao = new AppUserDao(entityManager);
