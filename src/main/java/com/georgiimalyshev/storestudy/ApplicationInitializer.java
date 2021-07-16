@@ -1,4 +1,4 @@
-package com.georgiimalyshev.storestudy.service;
+package com.georgiimalyshev.storestudy;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
@@ -7,8 +7,6 @@ import javax.servlet.annotation.WebListener;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
-import com.georgiimalyshev.storestudy.SpringApplicationContextConfig;
 
 @WebListener
 public final class ApplicationInitializer implements ServletContextListener {
