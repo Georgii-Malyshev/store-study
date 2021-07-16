@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.context.ApplicationContext;
 
-import com.georgiimalyshev.storestudy.service.ProductCatalogService;
+import com.georgiimalyshev.storestudy.service.ProductManagementService;
 import com.georgiimalyshev.storestudy.service.domain.store.ProductCategory;
 
 @WebServlet("/category")
@@ -23,8 +23,8 @@ public class ProductCategoryServlet extends HttpServlet {
 
 		ServletContext servletContext = request.getServletContext();
 		ApplicationContext applicationContext = (ApplicationContext) servletContext.getAttribute("applicationContext");
-		ProductCatalogService productCatalogService = applicationContext.getBean(ProductCatalogService.class);
-		ProductCategory productCategory = productCatalogService.getProductCategoryByIdAndFetchProducts(categoryId);
+		ProductManagementService productManagementService = applicationContext.getBean(ProductManagementService.class);
+		ProductCategory productCategory = productManagementService.getProductCategoryByIdAndFetchProducts(categoryId);
 		
 		request.setAttribute("productCategory", productCategory);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/jsp/category.jsp");

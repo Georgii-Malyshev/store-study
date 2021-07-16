@@ -30,12 +30,14 @@ public class AppUserDao {
 		return Optional.ofNullable(appUser);
 	}
 
+	// TODO get rid of duplicate code in methods that use JPQL queries
+	
 	public Optional<AppUser> findByCredentials(String email, String password) {
+		// TODO implement some checks to make sure that this code ALWAYS returns a single and correct result
 		TypedQuery<AppUserAbstract> typedQuery = entityManager
 				.createQuery("SELECT u FROM AppUserAbstract u WHERE u.email = :email AND u.password = :password", AppUserAbstract.class);
 		typedQuery.setParameter("email", email);
 		typedQuery.setParameter("password", password);
-		typedQuery.setMaxResults(1);
 		Stream<AppUserAbstract> resultStream = typedQuery.getResultStream();
 		Optional<AppUserAbstract> optionalOfAppUserAbstract = resultStream.findFirst();
 		// TODO consider using Optional.map
@@ -44,10 +46,10 @@ public class AppUserDao {
 	}
 	
 	public Optional<AppUser> findByEmail(String email) {
+		// TODO implement some checks to make sure that this code ALWAYS returns a single and correct result
 		TypedQuery<AppUserAbstract> typedQuery = entityManager
 				.createQuery("SELECT u FROM AppUserAbstract u WHERE u.email = :email", AppUserAbstract.class);
 		typedQuery.setParameter("email", email);
-		typedQuery.setMaxResults(1);
 		Stream<AppUserAbstract> resultStream = typedQuery.getResultStream();
 		Optional<AppUserAbstract> optionalOfAppUserAbstract = resultStream.findFirst();
 		// TODO consider using Optional.map

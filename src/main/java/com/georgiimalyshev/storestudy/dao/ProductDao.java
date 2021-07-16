@@ -3,15 +3,17 @@ package com.georgiimalyshev.storestudy.dao;
 import java.util.Optional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.georgiimalyshev.storestudy.service.domain.store.Product;
 
+@Repository
+@Transactional
 public class ProductDao {
-	private EntityManager entityManager;
-
-	public ProductDao(EntityManager entityManager) {
-		this.entityManager = entityManager;
-	}
+	@PersistenceContext private EntityManager entityManager;
 
 	public void persist(Product product) {
 		entityManager.persist(product);
