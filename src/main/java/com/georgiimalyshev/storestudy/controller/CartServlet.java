@@ -20,6 +20,7 @@ public class CartServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		AppUser appUser = (AppUser) session.getAttribute("appUser");
+		// TODO try to think of a more elegant method of accessing the cart of current customer
 		try {
 			Cart cart = ((Customer) appUser).getCart();
 			request.setAttribute("cart", cart);
