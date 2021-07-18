@@ -40,10 +40,10 @@ public class LoginServlet extends HttpServlet {
 		if (optionalOfAppUser.isPresent()) {
 			AppUser appUser = optionalOfAppUser.get();
 			HttpSession session = request.getSession();
-			session.setAttribute("appUser", appUser); // TODO maybe try something less insecure later
+			session.setAttribute("appUser", appUser); // TODO consider the security of this approach
 			response.sendRedirect(request.getContextPath() + "/jsp/home.jsp");
 		} else {
-			response.sendRedirect(request.getContextPath() + "/jsp/error.jsp"); // TODO show specific error
+			response.sendRedirect(request.getContextPath() + "/jsp/error.jsp");
 		}
 	}
 }

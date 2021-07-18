@@ -20,19 +20,18 @@ public class CartServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		AppUser appUser = (AppUser) session.getAttribute("appUser");
-		// TODO try to think of a more elegant method of accessing the cart of current customer
+
+		// TODO implement some better exception handling logic
 		try {
 			Cart cart = ((Customer) appUser).getCart();
 			request.setAttribute("cart", cart);
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/jsp/cart.jsp");
 			requestDispatcher.forward(request, response);
 		} catch (ClassCastException e) {
-			// TODO implement some better exception handling logic
 			e.printStackTrace();
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/jsp/not-a-customer-error.jsp");
 			requestDispatcher.forward(request, response);
 		} catch (NullPointerException e) {
-			// TODO implement some better exception handling logic
 			e.printStackTrace();
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/jsp/error.jsp");
 			requestDispatcher.forward(request, response);

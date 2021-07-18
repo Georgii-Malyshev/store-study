@@ -19,7 +19,6 @@ public class AppUserService {
 	
 	public Optional<AppUser> findAppUserByCredentials(String email, String password) {
 		Optional<AppUser> optionalOfAppUser = appUserDao.findByCredentials(email, password);
-		// TODO move login logic here from controller layer?
 		return optionalOfAppUser;
 	}
 

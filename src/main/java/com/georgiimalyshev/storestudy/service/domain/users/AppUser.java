@@ -1,5 +1,5 @@
 package com.georgiimalyshev.storestudy.service.domain.users;
-// TODO consider making specific interfaces for Customer, Admin etc. and coding to them (SRP principle)
+
 public interface AppUser {
     public int getId();
 
