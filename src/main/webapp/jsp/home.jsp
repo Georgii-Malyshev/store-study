@@ -5,11 +5,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Home JSP</title>
+<title>Home page</title>
 </head>
 <body>
 	<div>
-		Hello, ${sessionScope.appUser.firstName}! Your user ID is
+		Hello, ${sessionScope.appUser.email}! Your user ID is
 		${sessionScope.appUser.id}. <br>
 	</div>
 </body>

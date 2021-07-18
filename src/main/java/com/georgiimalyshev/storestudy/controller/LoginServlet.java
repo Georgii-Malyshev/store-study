@@ -41,9 +41,9 @@ public class LoginServlet extends HttpServlet {
 			AppUser appUser = optionalOfAppUser.get();
 			HttpSession session = request.getSession();
 			session.setAttribute("appUser", appUser); // TODO consider the security of this approach
-			response.sendRedirect(request.getContextPath() + "/jsp/home.jsp");
+			response.sendRedirect(request.getContextPath() + "/home");
 		} else {
-			response.sendRedirect(request.getContextPath() + "/jsp/error.jsp");
+			response.sendRedirect(request.getContextPath() + "/login-error");
 		}
 	}
 }
