@@ -33,11 +33,10 @@ public class RegistrationServlet extends HttpServlet {
 		boolean registrationSuccess = false;
 		// TODO validate entered data before passing it to the service layer
 		registrationSuccess = customerRegistrationService.registerNewCustomer(email, password);
-		// TODO send to a servlet instead
 		if (registrationSuccess) {
-			response.sendRedirect("jsp/registration-successful.jsp"); 
+			response.sendRedirect("registration-success");
 		} else {
-			response.sendRedirect("jsp/error.jsp");
+			response.sendRedirect("registration-error");
 		}
 	}
 }

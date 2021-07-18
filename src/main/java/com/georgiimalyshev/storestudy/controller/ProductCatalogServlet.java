@@ -23,11 +23,9 @@ public class ProductCatalogServlet extends HttpServlet {
 		ServletContext servletContext = request.getServletContext();
 		// catalog ID used here is hardcoded in the app's initializer
 		int catalogId = (int) servletContext.getAttribute("catalogId"); 
-		
 		ApplicationContext applicationContext = (ApplicationContext) servletContext.getAttribute("applicationContext");
 		ProductManagementService productManagementService = applicationContext.getBean(ProductManagementService.class);
 		ProductCatalog productCatalog = productManagementService.getProductCatalogByIdAndFetchCategories(catalogId);
-		// TODO decouple View (JSPs) from entities so that View doesn't need to care how entities' fields are called and just asks Controller for data?
 		request.setAttribute("productCatalog", productCatalog);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/jsp/catalog.jsp");
 		requestDispatcher.forward(request, response);
