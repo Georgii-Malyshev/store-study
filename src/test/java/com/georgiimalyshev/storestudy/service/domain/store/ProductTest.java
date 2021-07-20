@@ -1,11 +1,14 @@
 package com.georgiimalyshev.storestudy.service.domain.store;
 
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+@ExtendWith(MockitoExtension.class)
 public class ProductTest {
 	private static Product product1;
 	private static Product product2;
@@ -13,7 +16,7 @@ public class ProductTest {
 	private static Product product4;
 	private static Product product5;
 
-	@BeforeClass
+	@BeforeAll
 	public static void globalSetUp() {
 		System.out.println("initializing product objects for the test");
 		product1 = new Product("name1", 10);

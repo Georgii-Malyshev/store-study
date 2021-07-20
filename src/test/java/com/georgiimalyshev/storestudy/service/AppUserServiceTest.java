@@ -1,13 +1,14 @@
 package com.georgiimalyshev.storestudy.service;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.georgiimalyshev.storestudy.dao.AppUserDao;
 
+@ExtendWith(MockitoExtension.class)
 public class AppUserServiceTest {
 
 	private String email;
@@ -18,11 +19,6 @@ public class AppUserServiceTest {
 
 	@InjectMocks
 	private AppUserService appUserService;
-
-	@Before
-	public void setUp() {
-		MockitoAnnotations.initMocks(this);
-	}
 
 	@Test
 	public void givenCorrectCredentialsWhenFindAppUserByCredentialsThenReturnOptionalOfAppUserWithThoseCredentials() {
