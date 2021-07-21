@@ -1,7 +1,7 @@
 package com.georgiimalyshev.storestudy.dao;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.isA;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
 
@@ -36,16 +36,20 @@ public class AppUserDaoTest {
 	
 	@BeforeEach
 	public void setUp() {
-		lenient().when(appUserAbstract1.getId()).thenReturn(1);
-		lenient().when(appUserAbstract1.getEmail()).thenReturn("email1@mail.com");
-		lenient().when(appUserAbstract1.getPassword()).thenReturn("password1");
+		when(appUserAbstract1.getId()).thenReturn(1);
+		when(appUserAbstract1.getEmail()).thenReturn("email1@mail.com");
+		when(appUserAbstract1.getPassword()).thenReturn("password1");
 	}
 	
 	@Test
-	public void givenExistingIdWhenFindByIdThenReturnOptional() {
-		lenient().when(entityManagerMock.find(AppUserAbstract.class, 1)).thenReturn(appUserAbstract1);
+	public void givenExistingId_WhenFindById_ThenReturnOptionalOfAppUserWithThatId() {
+		when(entityManagerMock.find(AppUserAbstract.class, 1)).thenReturn(appUserAbstract1);
 		id = 1;
-		Optional<AppUser> optionalOfAppUserAbstract = appUserDao.findById(id);
-		assertThat(optionalOfAppUserAbstract, isA(Optional.class));
+		Optional<AppUser> optionalOfAppUser = appUserDao.findById(id);
+		assertAll(
+			() -> assertEquals(1, optionalOfAppUser.get().getId()),
+			() -> assertEquals("email1@mail.com", optionalOfAppUser.get().getEmail()),
+			() -> assertEquals("password1", optionalOfAppUser.get().getPassword())
+		);
 	}
 }
