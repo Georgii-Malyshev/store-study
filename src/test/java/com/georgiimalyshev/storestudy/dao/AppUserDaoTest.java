@@ -2,7 +2,6 @@ package com.georgiimalyshev.storestudy.dao;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
 
 import java.util.Optional;
@@ -18,7 +17,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.georgiimalyshev.storestudy.service.domain.users.AppUser;
 import com.georgiimalyshev.storestudy.service.domain.users.AppUserAbstract;
-
+// TODO consider using Docker for testing DAO layer against a test SQL database (not an in-memory one)
 @ExtendWith(MockitoExtension.class)
 public class AppUserDaoTest {
 	private int id;
