@@ -5,9 +5,9 @@ public interface AppUser {
 
     public void setId(int id);
     
-    void setEmail(String email);
-
-	String getEmail();
+    public String getEmail();
+    
+    public void setEmail(String email);
 
     public String getPassword();
 
