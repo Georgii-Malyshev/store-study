@@ -2,7 +2,6 @@ package com.georgiimalyshev.storestudy.service;
 
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.georgiimalyshev.storestudy.dao.CustomerDao;
@@ -13,7 +12,7 @@ import com.georgiimalyshev.storestudy.service.domain.users.Customer;
 public class CustomerRegistrationService {
 	private CustomerDao customerDao;
 	
-	public CustomerRegistrationService(@Autowired CustomerDao customerDao) {
+	public CustomerRegistrationService(CustomerDao customerDao) {
 		this.customerDao = customerDao;
 	}
 	

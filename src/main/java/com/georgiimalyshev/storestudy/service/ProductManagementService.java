@@ -2,7 +2,6 @@ package com.georgiimalyshev.storestudy.service;
 
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.georgiimalyshev.storestudy.dao.ProductCatalogDao;
@@ -18,8 +17,8 @@ public final class ProductManagementService {
 	private ProductCategoryDao productCategoryDao;
 	private ProductDao productDao;
 
-	public ProductManagementService(@Autowired ProductCatalogDao productCatalogDao,
-			@Autowired ProductCategoryDao productCategoryDao, @Autowired ProductDao productDao) {
+	public ProductManagementService(ProductCatalogDao productCatalogDao, ProductCategoryDao productCategoryDao,
+			ProductDao productDao) {
 		this.productCatalogDao = productCatalogDao;
 		this.productCategoryDao = productCategoryDao;
 		this.productDao = productDao;
