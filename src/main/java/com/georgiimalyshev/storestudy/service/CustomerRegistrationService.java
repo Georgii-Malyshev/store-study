@@ -19,11 +19,13 @@ public class CustomerRegistrationService {
 	
 	public boolean registerNewCustomer(String email, String password) {
 		boolean registrationSuccess = false;
-		Optional<AppUser> optionalOfAppUser = customerDao.findByEmail(email);
-		if (optionalOfAppUser.isEmpty()) {
-			Customer customer = new Customer(email, password);
-			customerDao.persist(customer);
-			registrationSuccess = true;
+		if (!(password.isBlank())) {
+			Optional<AppUser> optionalOfAppUser = customerDao.findByEmail(email);
+			if (optionalOfAppUser.isEmpty()) {
+				Customer customer = new Customer(email, password);
+				customerDao.persist(customer);
+				registrationSuccess = true;
+			}
 		}
 		return registrationSuccess;
 	}
