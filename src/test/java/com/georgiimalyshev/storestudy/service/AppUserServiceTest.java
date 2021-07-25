@@ -30,6 +30,14 @@ public class AppUserServiceTest {
 
 	@InjectMocks
 	private AppUserService appUserService;
+	
+	private void setUpAppUserDaoMockToReturnEmptyOptional() {
+		when(appUserDao.findByCredentials(email, password)).thenReturn(Optional.empty());
+	}
+	
+	private void setUpAppUserDaoMockToReturnOptionalOfAppUser(Optional<AppUser> optional) {
+		when(appUserDao.findByCredentials(email, password)).thenReturn(optional);
+	}
 
 	// TODO write test cases for other classes implementing AppUser as well
 
@@ -48,20 +56,42 @@ public class AppUserServiceTest {
 		password = "password1";
 
 		Optional<AppUser> optionalOfCustomer1 = Optional.of(customer1);
-		when(appUserDao.findByCredentials(email, password)).thenReturn(optionalOfCustomer1);
+		setUpAppUserDaoMockToReturnOptionalOfAppUser(optionalOfCustomer1);
 		Optional<AppUser> optionalOfAppUser = appUserService.findAppUserByCredentials(email, password);
 
 		assertAll(() -> assertEquals(1, optionalOfAppUser.get().getId()),
 				() -> assertEquals("email1@mail.com", optionalOfAppUser.get().getEmail()),
 				() -> assertEquals("password1", optionalOfAppUser.get().getPassword()));
 	}
-
+	
 	@Test
 	public void givenEmptyCredentials_WhenFindAppUserByCredentials_ThenReturnEmptyOptional() {
 		email = "";
 		password = "";
 
-		when(appUserDao.findByCredentials(email, password)).thenReturn(Optional.empty());
+		setUpAppUserDaoMockToReturnEmptyOptional();
+		Optional<AppUser> optionalOfAppUser = appUserService.findAppUserByCredentials(email, password);
+
+		assertTrue(optionalOfAppUser.isEmpty());
+	}
+	
+	@Test
+	public void givenWrongCredentials_WhenFindAppUserByCredentials_ThenReturnEmptyOptional() {
+		email = "214141";
+		password = "772414";
+
+		setUpAppUserDaoMockToReturnEmptyOptional();
+		Optional<AppUser> optionalOfAppUser = appUserService.findAppUserByCredentials(email, password);
+
+		assertTrue(optionalOfAppUser.isEmpty());
+	}
+	
+	@Test
+	public void givenCorrectEmailAndWrongPassword_WhenFindAppUserByCredentials_ThenReturnEmptyOptional() {
+		email = "email1@mail.com";
+		password = "password";
+
+		setUpAppUserDaoMockToReturnEmptyOptional();
 		Optional<AppUser> optionalOfAppUser = appUserService.findAppUserByCredentials(email, password);
 
 		assertTrue(optionalOfAppUser.isEmpty());
