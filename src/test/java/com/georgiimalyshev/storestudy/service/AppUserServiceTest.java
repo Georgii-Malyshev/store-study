@@ -7,7 +7,6 @@ import static org.mockito.Mockito.when;
 
 import java.util.Optional;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -30,10 +29,6 @@ public class AppUserServiceTest {
 
 	@InjectMocks
 	private AppUserService appUserService;
-	
-	private void setUpAppUserDaoMockToReturnEmptyOptional() {
-		when(appUserDao.findByCredentials(email, password)).thenReturn(Optional.empty());
-	}
 	
 	private void setUpAppUserDaoMockToReturnOptionalOfAppUser(Optional<AppUser> optional) {
 		when(appUserDao.findByCredentials(email, password)).thenReturn(optional);
@@ -69,7 +64,6 @@ public class AppUserServiceTest {
 		email = "";
 		password = "";
 
-		setUpAppUserDaoMockToReturnEmptyOptional();
 		Optional<AppUser> optionalOfAppUser = appUserService.findAppUserByCredentials(email, password);
 
 		assertTrue(optionalOfAppUser.isEmpty());
@@ -80,7 +74,6 @@ public class AppUserServiceTest {
 		email = "214141";
 		password = "772414";
 
-		setUpAppUserDaoMockToReturnEmptyOptional();
 		Optional<AppUser> optionalOfAppUser = appUserService.findAppUserByCredentials(email, password);
 
 		assertTrue(optionalOfAppUser.isEmpty());
@@ -91,7 +84,6 @@ public class AppUserServiceTest {
 		email = "email1@mail.com";
 		password = "password";
 
-		setUpAppUserDaoMockToReturnEmptyOptional();
 		Optional<AppUser> optionalOfAppUser = appUserService.findAppUserByCredentials(email, password);
 
 		assertTrue(optionalOfAppUser.isEmpty());
