@@ -51,7 +51,7 @@ public class AppUserServiceTest {
 	}
 
 	@Test
-	public void givenCorrectCredentials_WhenFindAppUserByCredentials_ThenReturnOptionalOfCorrespondingAppUser() {
+	public void givenCorrectCredentials_whenFindAppUserByCredentials_thenReturnOptionalOfCorrespondingAppUser() {
 		email = "email1@mail.com";
 		password = "password1";
 
@@ -65,7 +65,7 @@ public class AppUserServiceTest {
 	}
 	
 	@Test
-	public void givenEmptyCredentials_WhenFindAppUserByCredentials_ThenReturnEmptyOptional() {
+	public void givenEmptyCredentials_whenFindAppUserByCredentials_thenReturnEmptyOptional() {
 		email = "";
 		password = "";
 
@@ -76,7 +76,7 @@ public class AppUserServiceTest {
 	}
 	
 	@Test
-	public void givenWrongCredentials_WhenFindAppUserByCredentials_ThenReturnEmptyOptional() {
+	public void givenWrongCredentials_whenFindAppUserByCredentials_thenReturnEmptyOptional() {
 		email = "214141";
 		password = "772414";
 
@@ -87,7 +87,7 @@ public class AppUserServiceTest {
 	}
 	
 	@Test
-	public void givenCorrectEmailAndWrongPassword_WhenFindAppUserByCredentials_ThenReturnEmptyOptional() {
+	public void givenCorrectEmailAndWrongPassword_whenFindAppUserByCredentials_thenReturnEmptyOptional() {
 		email = "email1@mail.com";
 		password = "password";
 
