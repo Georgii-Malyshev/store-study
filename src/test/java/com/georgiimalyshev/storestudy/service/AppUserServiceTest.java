@@ -54,6 +54,7 @@ public class AppUserServiceTest {
 		setUpAppUserDaoMockToReturnOptionalOfAppUser(optionalOfCustomer1);
 		Optional<AppUser> optionalOfAppUser = appUserService.findAppUserByCredentials(email, password);
 
+		// TODO use equals() instead
 		assertAll(() -> assertEquals(1, optionalOfAppUser.get().getId()),
 				() -> assertEquals("email1@mail.com", optionalOfAppUser.get().getEmail()),
 				() -> assertEquals("password1", optionalOfAppUser.get().getPassword()));
