@@ -12,7 +12,7 @@ import com.georgiimalyshev.storestudy.service.domain.store.ProductCatalog;
 import com.georgiimalyshev.storestudy.service.domain.store.ProductCategory;
 
 @Service
-public final class ProductManagementService {
+public class ProductManagementService {
 	private ProductCatalogDao productCatalogDao;
 	private ProductCategoryDao productCategoryDao;
 	private ProductDao productDao;

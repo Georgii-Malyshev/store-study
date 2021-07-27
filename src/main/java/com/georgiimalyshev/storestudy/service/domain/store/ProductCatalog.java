@@ -26,6 +26,14 @@ public class ProductCatalog {
 	@OneToMany(mappedBy = "productCatalog", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
 	private Set<ProductCategory> productCategories;
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 	public Set<ProductCategory> getProductCategories() {
 		return productCategories;
 	}
