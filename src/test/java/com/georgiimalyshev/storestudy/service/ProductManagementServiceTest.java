@@ -58,6 +58,10 @@ public class ProductManagementServiceTest {
 	private void setUpProductCategoryDaoMockToReturnOptionalOfProductCategoryDao(Optional<ProductCategory> optional) {
 		when(productCategoryDao.findById(id)).thenReturn(optional);
 	}
+	
+	private void setUpProductCategoryDaoMockToReturnOptionalOfProductCategoryDaoWhenFetchProducts(Optional<ProductCategory> optional) {
+		when(productCategoryDao.findByIdAndFetchProducts(id)).thenReturn(optional);
+	}
 
 	@Test
 	public void givenCorrectId_whenGetProductById_thenReturnCorrespondingProduct() {
@@ -104,10 +108,11 @@ public class ProductManagementServiceTest {
 	}
 	
 	// TODO get rid of duplicate code
+	@Test
 	public void givenCorrectId_whenGetProductCategoryByIdAndFetchProducts_thenReturnCorrespondingProductCategory() {
 		id = 1;
 		Optional<ProductCategory> optionalOfProductCategory1 = Optional.of(productCategory1);
-		setUpProductCategoryDaoMockToReturnOptionalOfProductCategoryDao(optionalOfProductCategory1);
+		setUpProductCategoryDaoMockToReturnOptionalOfProductCategoryDaoWhenFetchProducts(optionalOfProductCategory1);
 		
 		ProductCategory productCategory = productManagementService.getProductCategoryByIdAndFetchProducts(id);
 
