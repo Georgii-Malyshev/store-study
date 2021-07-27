@@ -2,8 +2,10 @@ package com.georgiimalyshev.storestudy.service;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -58,5 +60,14 @@ public class ProductManagementServiceTest {
 		assertAll(() -> assertEquals(1, product.getId()),
 				() -> assertEquals("productName1", product.getName()),
 				() -> assertEquals(10, product.getPrice()));
+	}
+	
+	@Test
+	public void givenNonExistingId_whenGetProductById_thenThrowNoSuchElementException() {
+		id = 99;
+		
+		assertThrows(NoSuchElementException.class, () -> {
+			productManagementService.getProductById(id);
+		});
 	}
 }
