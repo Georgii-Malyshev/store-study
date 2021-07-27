@@ -1,4 +1,4 @@
-package com.georgiimalyshev.storestudy;
+package com.georgiimalyshev.storestudy.config;
 
 import javax.persistence.EntityManagerFactory;
 
@@ -12,7 +12,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
-@ComponentScan({ "com.georgiimalyshev.storestudy" })
+@ComponentScan(basePackages = { "com.georgiimalyshev.storestudy.service","com.georgiimalyshev.storestudy.dao" })
 @EnableTransactionManagement
 public class SpringConfig {
 	@Bean

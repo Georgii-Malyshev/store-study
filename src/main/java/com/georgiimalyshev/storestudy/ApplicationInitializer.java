@@ -8,6 +8,8 @@ import javax.servlet.annotation.WebListener;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import com.georgiimalyshev.storestudy.config.SpringConfig;
+
 @WebListener
 public final class ApplicationInitializer implements ServletContextListener {
 	private static ServletContext servletContext;
