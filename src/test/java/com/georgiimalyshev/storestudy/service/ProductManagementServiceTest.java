@@ -62,9 +62,9 @@ public class ProductManagementServiceTest {
 	@Test
 	public void givenCorrectId_whenGetProductById_thenReturnCorrespondingProduct() {
 		id = 1;
-
 		Optional<Product> optionalOfProduct1 = Optional.of(product1);
 		setUpProductDaoMockToReturnOptionalOfProductDao(optionalOfProduct1);
+		
 		Product product = productManagementService.getProductById(id);
 
 		// TODO use equals() instead
@@ -84,13 +84,44 @@ public class ProductManagementServiceTest {
 	@Test
 	public void givenCorrectId_whenGetProductCategoryById_thenReturnCorrespondingProductCategory() {
 		id = 1;
-
 		Optional<ProductCategory> optionalOfProductCategory1 = Optional.of(productCategory1);
 		setUpProductCategoryDaoMockToReturnOptionalOfProductCategoryDao(optionalOfProductCategory1);
+		
 		ProductCategory productCategory = productManagementService.getProductCategoryById(id);
 
 		// TODO use equals() instead
 		assertAll(() -> assertEquals(1, productCategory.getId()),
 				() -> assertEquals("productCategoryName1", productCategory.getName()));
+	}
+	
+	@Test
+	public void givenNonExistingId_whenGetProductCategoryById_thenThrowNoSuchElementException() {
+		id = 99;
+
+		assertThrows(NoSuchElementException.class, () -> {
+			productManagementService.getProductCategoryById(id);
+		});
+	}
+	
+	// TODO get rid of duplicate code
+	public void givenCorrectId_whenGetProductCategoryByIdAndFetchProducts_thenReturnCorrespondingProductCategory() {
+		id = 1;
+		Optional<ProductCategory> optionalOfProductCategory1 = Optional.of(productCategory1);
+		setUpProductCategoryDaoMockToReturnOptionalOfProductCategoryDao(optionalOfProductCategory1);
+		
+		ProductCategory productCategory = productManagementService.getProductCategoryByIdAndFetchProducts(id);
+
+		// TODO use equals() instead
+		assertAll(() -> assertEquals(1, productCategory.getId()),
+				() -> assertEquals("productCategoryName1", productCategory.getName()));
+	}
+	
+	@Test
+	public void givenNonExistingId_whenGetProductCategoryByIdAndFetchProducts_thenThrowNoSuchElementException() {
+		id = 99;
+
+		assertThrows(NoSuchElementException.class, () -> {
+			productManagementService.getProductCategoryByIdAndFetchProducts(id);
+		});
 	}
 }
