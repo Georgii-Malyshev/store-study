@@ -17,7 +17,7 @@ import org.springframework.context.ApplicationContext;
 import com.georgiimalyshev.storestudy.service.AppUserService;
 import com.georgiimalyshev.storestudy.service.domain.users.AppUser;
 
-@WebServlet("/login")
+@WebServlet("/login-servlet")
 public class LoginServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
