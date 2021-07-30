@@ -19,7 +19,10 @@ import com.georgiimalyshev.storestudy.service.domain.users.Customer;
 @Controller
 @SessionAttributes("user") // TODO implement correct handling of sessions
 public class CustomerLoginController {
-	@Autowired // TODO consider alternatives to field injection
+	public CustomerLoginController(@Autowired AppUserService appUserService) {
+		this.appUserService = appUserService;
+	}
+	
 	private AppUserService appUserService;
 
 	@ModelAttribute
