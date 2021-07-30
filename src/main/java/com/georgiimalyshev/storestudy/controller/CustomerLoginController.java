@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.georgiimalyshev.storestudy.service.AppUserService;
 import com.georgiimalyshev.storestudy.service.domain.users.AppUser;
@@ -22,7 +21,7 @@ public class CustomerLoginController {
 	public CustomerLoginController(@Autowired AppUserService appUserService) {
 		this.appUserService = appUserService;
 	}
-	
+
 	private AppUserService appUserService;
 
 	@ModelAttribute
@@ -38,18 +37,15 @@ public class CustomerLoginController {
 	@PostMapping("/login")
 	public String login(Model model, @RequestParam(name = "email") String email,
 			@RequestParam(name = "password") String password) {
+		String resultString = "login-error";
 		Optional<AppUser> optionalOfAppUser = appUserService.findAppUserByCredentials(email, password);
 		if (optionalOfAppUser.isPresent()) {
 			Customer customer = (Customer) optionalOfAppUser.get(); // TODO conversion will fail for subtypes other
 																	// than Customer
 			model.addAttribute("user", customer);
-		} else {
-			// TODO handle "wrong credentials" scenario correctly
-			// maybe create a method-scoped String variable, set it to either "home" or
-			// "login-error" and redirect to it?
+			resultString = "home";
 		}
-
-		return "redirect:" + "home";
+		return "redirect:" + resultString;
 	}
 
 	@GetMapping("/home")
