@@ -7,6 +7,8 @@ import static org.mockito.Mockito.when;
 
 import java.util.Optional;
 
+import javax.servlet.http.HttpSession;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -24,13 +26,16 @@ public class CustomerLoginControllerTest {
 	private AppUserService appUserService;
 	
 	@Mock
+	private HttpSession httpSession;
+	
+	@Mock
 	private Model model;
 	
 	@InjectMocks
 	private CustomerLoginController customerLoginController;
 	// TODO unit tests for CustomerLoginController
 	@Test
-	public void givenCorrectCredentials_whenLogin_thenAddCorrespondingCustomerAsModelAttributeAndRedirectToHome() {
+	public void givenCorrectCredentials_whenLogin_thenSetCorrespondingCustomerAsSessionAttributeAndRedirectToHome() {
 		String email = "correctemail@mail.com";
 		String password = "correctpassword"; 
 		String resultString = "";
@@ -39,9 +44,9 @@ public class CustomerLoginControllerTest {
 		// TODO should test case when service throws an exception 
 		when(appUserService.findAppUserByCredentials(email, password)).thenReturn(optionalOfAppUser);
 		
-		resultString = customerLoginController.login(model, email, password);
+		resultString = customerLoginController.login(httpSession, email, password);
 		
-		verify(model, times(1)).addAttribute("user", correspondingCustomer);
+		verify(httpSession, times(1)).setAttribute("user", correspondingCustomer);
 		assertEquals("redirect:home", resultString);
 	}
 }
