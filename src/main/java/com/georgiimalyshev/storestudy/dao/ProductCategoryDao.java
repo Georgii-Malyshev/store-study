@@ -38,7 +38,6 @@ public class ProductCategoryDao {
 	}
 
 	public Optional<ProductCategory> findByIdAndFetchProducts(int id) {
-		// TODO implement some checks to make sure that this code ALWAYS returns a single and correct result
 		TypedQuery<ProductCategory> typedQuery = entityManager.createQuery(
 				"SELECT pc FROM ProductCategory pc JOIN FETCH pc.products p WHERE pc.id = :id", ProductCategory.class);
 		typedQuery.setParameter("id", id);

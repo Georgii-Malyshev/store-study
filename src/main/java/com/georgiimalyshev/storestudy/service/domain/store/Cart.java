@@ -27,10 +27,30 @@ public class Cart {
 	@JoinColumn(name = "customer_id")
 	private Customer customer;
 	
-	public Set<CartItem> getCartItems() {
-		return cartItems;
+	public int getId() {
+		return this.id;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
 	}
 
+	public Set<CartItem> getCartItems() {
+		return this.cartItems;
+	}
+	
+	public void setCartItems(Set<CartItem> cartItems) {
+		this.cartItems = cartItems;
+	}
+
+	public Customer getCustomer() {
+		return this.customer;
+	}
+	
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+	
 	public void clear() {
 		// TODO implement method to clear all items from the cart
 	}

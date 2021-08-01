@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+	<title>Cart</title>
+</head>
+
+<body>
+	<div>
+		Products in your shopping cart: <br>
+			<ul>
+				<li th:each="cartItem: ${cart.cartItems}" th:text="name: ${cartItem.product.name}, price: ${cartItem.product.price}$, quantity: ${cartItem.quantity}"></li>
+			</ul>
+	</div>
+</body>
+
+</html>

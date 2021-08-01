@@ -27,7 +27,7 @@ public class CustomerLoginController {
 	@ModelAttribute
 	public Customer user() {
 		return new Customer();
-	}
+	} // TODO consider if this block of code is actualy necessary
 
 	@GetMapping("/login")
 	public String loginPage() {
