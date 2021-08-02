@@ -25,7 +25,7 @@ public class CartDao {
 
 	public Optional<Cart> findByIdAndFetchCartItems(int id) {
 		TypedQuery<Cart> typedQuery = entityManager.createQuery(
-				"SELECT c FROM Cart c JOIN FETCH ci.cartItems ci WHERE c.id = :id", Cart.class);
+				"SELECT c FROM Cart c LEFT JOIN FETCH c.cartItems ci WHERE c.id = :id", Cart.class);
 		typedQuery.setParameter("id", id);
 		Stream<Cart> resultStream = typedQuery.getResultStream();
 		Optional<Cart> optionalOfCart= resultStream.findFirst(); 
