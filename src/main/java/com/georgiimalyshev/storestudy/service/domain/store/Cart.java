@@ -3,8 +3,10 @@ package com.georgiimalyshev.storestudy.service.domain.store;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
@@ -20,7 +22,7 @@ public class Cart {
 	@Id
 	@Column(name = "customer_id")
 	private int id;
-	@OneToMany(mappedBy = "cart")
+	@OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
 	private Set<CartItem> cartItems = new HashSet<CartItem>();
 	@OneToOne
 	@MapsId

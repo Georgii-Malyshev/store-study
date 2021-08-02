@@ -37,21 +37,15 @@ public class CartController {
 	
 	@GetMapping("/cart")
 	public String cartPage(HttpSession httpSession, Model model) {
-		Logger logger = LogManager.getLogger();  // TODO remove
-		logger.info("logger for CartController created");  // TODO remove
 		Customer customer = (Customer) httpSession.getAttribute("user");		
 		if (customer != null) {
-			logger.info("got non-null customer from httpSession");  // TODO remove
 			Cart cart = customer.getCart();
-			logger.info("got customer's cart"); // TODO remove
 			int cartId = cart.getId();
 			cartService.getCartByIdAndFetchCartItems(cartId);
 			model.addAttribute("cart", cart);
-			logger.info("added cart to model");  // TODO remove
 		} else {
-			logger.info("got NULL customer from httpSession");  // TODO remove
+			return "error"; // TODO handle the case correctly
 		}
-		
 		return "cart";
 	}
 	
@@ -66,7 +60,6 @@ public class CartController {
 		cartService.fetchCartItemsAndAddProductToCart(cart, product, quantity);
 		resultString = "cart";
 		// TODO handle possible NoSuchElementException, ClassCastException etc. 
-
 		return "redirect:" + resultString;
 	}
 }

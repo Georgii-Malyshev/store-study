@@ -27,7 +27,7 @@ public class CartService {
 	public void fetchCartItemsAndAddProductToCart(Cart cart, Product product, int quantity) {		
 		int cartId = cart.getId();
 		cart = getCartByIdAndFetchCartItems(cartId);
-		Set<CartItem> cartItems = cart.getCartItems();
+		Set<CartItem> cartItems = cart.getCartItems();		
 		CartItem cartItem = new CartItem(cart, product, quantity);
 		cartItems.add(cartItem);
 		cart.setCartItems(cartItems);
