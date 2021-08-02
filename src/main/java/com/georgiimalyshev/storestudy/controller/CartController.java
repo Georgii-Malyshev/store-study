@@ -46,7 +46,7 @@ public class CartController {
 		} else {
 			return "error"; // TODO handle the case correctly
 		}
-		return "cart";
+		return "cart"; // TODO fix the view not displaying cart's data
 	}
 	
 	@PostMapping("/add-to-cart")
