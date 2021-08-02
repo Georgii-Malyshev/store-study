@@ -32,7 +32,6 @@ public class CartService {
 		cartItems.add(cartItem);
 		cart.setCartItems(cartItems);
 		cartDao.merge(cart);
-
-		// TODO throw an exception if something went wrong and product wasn't added
+		// TODO throw an informative exception if something went wrong and product wasn't added
 	}
 }
