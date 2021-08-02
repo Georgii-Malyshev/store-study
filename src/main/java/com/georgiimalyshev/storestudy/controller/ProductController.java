@@ -33,19 +33,11 @@ public class ProductController {
 	public String addToCart(@RequestParam(name = "id") int productId, @RequestParam(name = "quantity") int quantity,
 			HttpSession httpSession) {
 		String resultString = "error";
-		Logger logger = LogManager.getLogger();
-		logger.info("logger for ProductController created");
 		try {
-			Customer customer = (Customer) httpSession.getAttribute("user"); // TODO cast will fail with exception if
-																				// user is some other subtype of
-																				// AppUserAbstract
-			logger.info("ProductController: got customer from httpSession");
-			// TODO FAILS HERE
+			// TODO cast will fail with exception if user is some other subtype of AppUserAbstract
+			Customer customer = (Customer) httpSession.getAttribute("user");
 			Cart cart = customer.getCart();
-			logger.info("ProductController: got cart from customer, cart.id is: " + cart.getId());
-
 			Product product = productManagementService.getProductById(productId);
-
 			cartService.addProductToCart(cart, product, quantity);
 			resultString = "cart";
 		} catch (NoSuchElementException ex) {
