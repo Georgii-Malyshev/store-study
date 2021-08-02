@@ -18,11 +18,15 @@ import com.georgiimalyshev.storestudy.service.domain.store.Cart;
 public class CartDao {
 	@PersistenceContext
 	private EntityManager entityManager;
-
+	
 	public void persist(Cart cart) {
 		entityManager.persist(cart);
 	}
-
+	
+	public void merge(Cart cart) {
+		entityManager.merge(cart);
+	}
+	
 	public Optional<Cart> findByIdAndFetchCartItems(int id) {
 		TypedQuery<Cart> typedQuery = entityManager.createQuery(
 				"SELECT c FROM Cart c LEFT JOIN FETCH c.cartItems ci WHERE c.id = :id", Cart.class);
