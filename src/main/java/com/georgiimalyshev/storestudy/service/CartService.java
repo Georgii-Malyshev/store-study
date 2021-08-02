@@ -18,17 +18,20 @@ public class CartService {
 		this.cartDao = cartDao;
 	}
 	
-	public void addProductToCart(Cart cart, Product product, int quantity) {		
+	public Cart getCartByIdAndFetchCartItems(int id) {
+		Optional<Cart> optionalOfCart = cartDao.findByIdAndFetchCartItems(id);
+		Cart cart = optionalOfCart.orElseThrow();
+		return cart;
+	}
+	
+	public void fetchCartItemsAndAddProductToCart(Cart cart, Product product, int quantity) {		
 		int cartId = cart.getId();
-		Optional<Cart> optionalOfCart = cartDao.findByIdAndFetchCartItems(cartId);
-		if (optionalOfCart.isPresent()) {
-			cart = optionalOfCart.get();
-			Set<CartItem> cartItems = cart.getCartItems();
-			CartItem cartItem = new CartItem(cart, product, quantity);
-			cartItems.add(cartItem);
-			cart.setCartItems(cartItems);
-			cartDao.persist(cart);
-		}
+		cart = getCartByIdAndFetchCartItems(cartId);
+		Set<CartItem> cartItems = cart.getCartItems();
+		CartItem cartItem = new CartItem(cart, product, quantity);
+		cartItems.add(cartItem);
+		cart.setCartItems(cartItems);
+		cartDao.merge(cart);
 
 		// TODO throw an exception if something went wrong and product wasn't added
 	}
