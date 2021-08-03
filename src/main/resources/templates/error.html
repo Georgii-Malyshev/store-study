@@ -6,10 +6,10 @@
 </head>
 <body>
 	<div>
-		Your user ID is:
-		<p th:text="${user.id}">user.id</p>
-		Your email is:
-		<p th:text="${user.email}">user.email</p>
+		An error ocurred: <span th:text="${errorMessage}">error message</span>
+	</div>
+	<div>
+		<a href=home>Go to home page</a><br>
 		<a href=catalog>Browse catalog</a><br>
 		<a href=shopping-cart>Go to shopping cart</a>
 	</div>

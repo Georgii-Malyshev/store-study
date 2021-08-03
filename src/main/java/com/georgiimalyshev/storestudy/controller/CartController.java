@@ -26,41 +26,51 @@ public class CartController {
 		this.cartService = cartService;
 		this.productManagementService = productManagementService;
 	}
-	
+
 	private CartService cartService;
 	private ProductManagementService productManagementService;
 
-	
 	@ModelAttribute
 	public Cart cart() {
 		return new Cart();
 	} // TODO consider if this block of code is actualy necessary
-	
+
+	/*
+	@ModelAttribute
+	public String errorMessage() {
+		return "empty error message";
+	} // TODO consider if this block of code is actualy necessary
+	*/
+
 	@GetMapping("/shopping-cart")
 	public String cartPage(HttpSession httpSession, Model model) {
-		Customer customer = (Customer) httpSession.getAttribute("user");		
+		Customer customer = (Customer) httpSession.getAttribute("user");
 		if (customer != null) {
 			Cart cart = customer.getCart();
 			int cartId = cart.getId();
 			cart = cartService.getCartByIdAndFetchCartItems(cartId);
 			model.addAttribute("cart", cart);
 		} else {
-			return "error"; // TODO handle the case correctly
+			model.addAttribute("errorMessage",
+					"could not display shopping cart because no customer was found in session "
+							+ "(not logged in or session expired?)");
+			return "error";
 		}
-		return "cart"; // TODO fix the view not displaying cart's data
+		return "cart";
 	}
-	
+
 	@PostMapping("/add-to-cart")
 	public String addToCart(@RequestParam(name = "id") int productId, @RequestParam(name = "quantity") int quantity,
 			HttpSession httpSession) {
 		String resultString = "error";
-		// TODO cast will fail with exception if user is some other subtype of AppUserAbstract
+		// TODO cast will fail with exception if user is some other subtype of
+		// AppUserAbstract
 		Customer customer = (Customer) httpSession.getAttribute("user");
 		Cart cart = customer.getCart();
 		Product product = productManagementService.getProductById(productId);
 		cartService.fetchCartItemsAndAddProductToCart(cart, product, quantity);
 		resultString = "shopping-cart";
-		// TODO handle possible NoSuchElementException, ClassCastException etc. 
+		// TODO handle possible NoSuchElementException, ClassCastException etc.
 		return "redirect:" + resultString;
 	}
 }
