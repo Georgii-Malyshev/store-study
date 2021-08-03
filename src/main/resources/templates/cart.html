@@ -9,10 +9,29 @@
 
 <body>
 	<div>
-		Products in your shopping cart: <br>
-			<ul>
-				<li th:each="cartItem: ${cart.cartItems}" th:text="name: ${cartItem.product.name}, price: ${cartItem.product.price}$, quantity: ${cartItem.quantity}"></li>
-			</ul>
+		Your cart ID is:
+		<p th:text="${cart.id}">cart.id</p>
+	</div>
+	<div>
+		<table>
+			<tr>
+				<th>Products in your shopping cart</th>
+			</tr>
+			<tr>
+				<th>Name</th>
+				<th>Price</th>
+				<th>Quantity</th>
+			</tr>
+			<tr th:each="cartItem : ${cart.cartItems}">
+				<td th:text="${cartItem.product.name}"></td>
+				<td th:text="${cartItem.product.price}"></td>
+				<td th:text="${cartItem.quantity}"></td>
+			</tr>
+		</table>
+	</div>
+	<div>
+		<a href=catalog>Browse catalog</a><br>
+		<a href=shopping-cart>Go to shopping cart</a>
 	</div>
 </body>
 

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.georgiimalyshev.storestudy.service.CartService;
 import com.georgiimalyshev.storestudy.service.ProductManagementService;
 import com.georgiimalyshev.storestudy.service.domain.store.Cart;
+import com.georgiimalyshev.storestudy.service.domain.store.CartItem;
 import com.georgiimalyshev.storestudy.service.domain.store.Product;
 import com.georgiimalyshev.storestudy.service.domain.users.Customer;
 
@@ -35,13 +36,13 @@ public class CartController {
 		return new Cart();
 	} // TODO consider if this block of code is actualy necessary
 	
-	@GetMapping("/cart")
+	@GetMapping("/shopping-cart")
 	public String cartPage(HttpSession httpSession, Model model) {
 		Customer customer = (Customer) httpSession.getAttribute("user");		
 		if (customer != null) {
 			Cart cart = customer.getCart();
 			int cartId = cart.getId();
-			cartService.getCartByIdAndFetchCartItems(cartId);
+			cart = cartService.getCartByIdAndFetchCartItems(cartId);
 			model.addAttribute("cart", cart);
 		} else {
 			return "error"; // TODO handle the case correctly
@@ -58,7 +59,7 @@ public class CartController {
 		Cart cart = customer.getCart();
 		Product product = productManagementService.getProductById(productId);
 		cartService.fetchCartItemsAndAddProductToCart(cart, product, quantity);
-		resultString = "cart";
+		resultString = "shopping-cart";
 		// TODO handle possible NoSuchElementException, ClassCastException etc. 
 		return "redirect:" + resultString;
 	}

@@ -4,6 +4,7 @@ import java.util.Objects;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
@@ -25,7 +26,7 @@ public class Customer extends AppUserAbstract {
 	private String firstName;
 	private String lastName;
 	private String shippingAddress;
-	@OneToOne(mappedBy = "customer", cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
 	@PrimaryKeyJoinColumn
 	private Cart cart;
 
