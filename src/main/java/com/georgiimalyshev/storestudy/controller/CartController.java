@@ -30,18 +30,6 @@ public class CartController {
 	private CartService cartService;
 	private ProductManagementService productManagementService;
 
-	@ModelAttribute
-	public Cart cart() {
-		return new Cart();
-	} // TODO consider if this block of code is actualy necessary
-
-	/*
-	@ModelAttribute
-	public String errorMessage() {
-		return "empty error message";
-	} // TODO consider if this block of code is actualy necessary
-	*/
-
 	@GetMapping("/shopping-cart")
 	public String cartPage(HttpSession httpSession, Model model) {
 		Customer customer = (Customer) httpSession.getAttribute("user");
