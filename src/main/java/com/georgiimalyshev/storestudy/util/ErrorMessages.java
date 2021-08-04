@@ -6,4 +6,7 @@ public class ErrorMessages {
 	public static String notACustomerErrorMessage = "could not access shopping cart: "
 			+ "logged in as some type of user other than customer; "
 			+ "log in using a customer account to be able to access a shopping cart";
+	
+	
+	public static String userNotFoundByCredentials = "could not login; wrong email or password?";
 }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.georgiimalyshev.storestudy.domain.users.AppUser;
 import com.georgiimalyshev.storestudy.domain.users.Customer;
 import com.georgiimalyshev.storestudy.service.AppUserService;
+import com.georgiimalyshev.storestudy.util.ErrorMessages;
 
 @Controller
 public class CustomerLoginController {
@@ -29,18 +30,22 @@ public class CustomerLoginController {
 	}
 
 	@PostMapping("/login")
-	public String login(HttpSession httpSession,@RequestParam(name = "email") String email,
-			@RequestParam(name = "password") String password) {
-		String resultString = "login-error"; // TODO redirect to generic error template and pass specific error message instead
+	public String login(HttpSession httpSession, @RequestParam(name = "email") String email,
+			@RequestParam(name = "password") String password, Model model) {
+		String resultString = "error";
 		Optional<AppUser> optionalOfAppUser = appUserService.findAppUserByCredentials(email, password);
 		if (optionalOfAppUser.isPresent()) {
-			Customer customer = (Customer) optionalOfAppUser.get(); // TODO conversion will fail for subtypes other
-																	// than Customer
-			httpSession.setAttribute("user", customer);
-			
-			resultString = "home";
+			try {
+				Customer customer = (Customer) optionalOfAppUser.get();
+				httpSession.setAttribute("user", customer);
+				resultString = "redirect:home";
+			} catch (ClassCastException ex) {
+				model.addAttribute("errorMessage", ErrorMessages.notACustomerErrorMessage);
+			}
+		} else {
+			model.addAttribute("errorMessage", ErrorMessages.userNotFoundByCredentials);
 		}
-		return "redirect:" + resultString;
+		return resultString;
 	}
 
 	@GetMapping("/home")

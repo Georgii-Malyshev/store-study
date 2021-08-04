@@ -44,7 +44,7 @@ public class CustomerLoginControllerTest {
 		// TODO should test case when service throws an exception 
 		when(appUserService.findAppUserByCredentials(email, password)).thenReturn(optionalOfAppUser);
 		
-		resultString = customerLoginController.login(httpSession, email, password);
+		resultString = customerLoginController.login(httpSession, email, password, model);
 		
 		verify(httpSession, times(1)).setAttribute("user", correspondingCustomer);
 		assertEquals("redirect:home", resultString);
