@@ -23,7 +23,6 @@ public final class ApplicationInitializer implements ServletContextListener {
 		// TODO get rid of hardcoded catalog ID?
 		int catalogId = 1;
 		servletContext.setAttribute("catalogId", catalogId);
-		// TODO consider other approaches for configuring JSESSIONID cookies in a Spring application
 		SessionCookieConfig sessionCookieConfig = servletContext.getSessionCookieConfig();
 		sessionCookieConfig.setMaxAge(60*60*1000);
 	}
