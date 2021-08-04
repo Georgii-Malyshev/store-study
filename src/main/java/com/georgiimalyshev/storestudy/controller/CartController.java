@@ -1,7 +1,5 @@
 package com.georgiimalyshev.storestudy.controller;
 
-import java.util.NoSuchElementException;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,14 +31,18 @@ public class CartController {
 	public String cartPage(HttpSession httpSession, Model model) {
 		String resultString = "error";
 		Customer customer = (Customer) httpSession.getAttribute("user");
-		if (customer != null) {
-			Cart cart = customer.getCart();
-			int cartId = cart.getId();
-			cart = cartService.getCartByIdAndFetchCartItems(cartId);
-			model.addAttribute("cart", cart);
-			resultString = "cart";
-		} else {
-			model.addAttribute("errorMessage", ErrorMessages.notLoggedInErrorMessage);
+		try {
+			if (customer != null) {
+				Cart cart = customer.getCart();
+				int cartId = cart.getId();
+				cart = cartService.getCartByIdAndFetchCartItems(cartId);
+				model.addAttribute("cart", cart);
+				resultString = "cart";
+			} else {
+				model.addAttribute("errorMessage", ErrorMessages.notLoggedInErrorMessage);
+			}
+		} catch (ClassCastException ex) {
+			model.addAttribute("errorMessage", ErrorMessages.notACustomerErrorMessage);
 		}
 		return resultString;
 	}
@@ -51,14 +53,16 @@ public class CartController {
 		String resultString = "error";
 		try {
 			Customer customer = (Customer) httpSession.getAttribute("user");
-			Cart cart = customer.getCart(); // every customer MUST ALWAYS have a corresponding cart
-			Product product = productManagementService.getProductById(productId);
-			cartService.fetchCartItemsAndAddProductToCart(cart, product, quantity);
-			resultString = "redirect:shopping-cart";
+			if (customer != null) {
+				Cart cart = customer.getCart(); // every customer MUST ALWAYS have a corresponding cart
+				Product product = productManagementService.getProductById(productId);
+				cartService.fetchCartItemsAndAddProductToCart(cart, product, quantity);
+				resultString = "redirect:shopping-cart";
+			} else {
+				model.addAttribute("errorMessage", ErrorMessages.notLoggedInErrorMessage);
+			}
 		} catch (ClassCastException ex) {
 			model.addAttribute("errorMessage", ErrorMessages.notACustomerErrorMessage);
-		} catch (NoSuchElementException ex) {
-			model.addAttribute("errorMessage", ErrorMessages.notLoggedInErrorMessage);
 		}
 		return resultString;
 	}
