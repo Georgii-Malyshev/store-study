@@ -30,6 +30,6 @@ public class LogoutController {
 			Logger logger = LogManager.getLogger(LogoutController.class);
 			logger.warn("logout method called without a session");
 		}
-		return "redirect:logout-success";
+		return "logout-success";
 	}
 }

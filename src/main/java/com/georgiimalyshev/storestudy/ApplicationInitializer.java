@@ -3,6 +3,7 @@ package com.georgiimalyshev.storestudy;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+import javax.servlet.SessionCookieConfig;
 import javax.servlet.annotation.WebListener;
 
 import org.springframework.context.ApplicationContext;
@@ -22,5 +23,8 @@ public final class ApplicationInitializer implements ServletContextListener {
 		// TODO get rid of hardcoded catalog ID?
 		int catalogId = 1;
 		servletContext.setAttribute("catalogId", catalogId);
+		// TODO consider other approaches for configuring JSESSIONID cookies in a Spring application
+		SessionCookieConfig sessionCookieConfig = servletContext.getSessionCookieConfig();
+		sessionCookieConfig.setMaxAge(60*60*1000);
 	}
 }
