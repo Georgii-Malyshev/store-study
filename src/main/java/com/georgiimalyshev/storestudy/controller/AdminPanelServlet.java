@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.context.ApplicationContext;
 
+import com.georgiimalyshev.storestudy.domain.users.AppUser;
 import com.georgiimalyshev.storestudy.service.AppUserService;
-import com.georgiimalyshev.storestudy.service.domain.users.AppUser;
 
 @WebServlet("/admin-panel")
 public class AdminPanelServlet extends HttpServlet {

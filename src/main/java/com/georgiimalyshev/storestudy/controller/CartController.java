@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.georgiimalyshev.storestudy.domain.store.Cart;
+import com.georgiimalyshev.storestudy.domain.store.Product;
+import com.georgiimalyshev.storestudy.domain.users.Customer;
 import com.georgiimalyshev.storestudy.service.CartService;
 import com.georgiimalyshev.storestudy.service.ProductManagementService;
-import com.georgiimalyshev.storestudy.service.domain.store.Cart;
-import com.georgiimalyshev.storestudy.service.domain.store.Product;
-import com.georgiimalyshev.storestudy.service.domain.users.Customer;
 
 @Controller
 public class CartController {

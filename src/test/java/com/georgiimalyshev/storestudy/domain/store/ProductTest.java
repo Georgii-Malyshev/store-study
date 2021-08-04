@@ -1,4 +1,4 @@
-package com.georgiimalyshev.storestudy.service.domain.store;
+package com.georgiimalyshev.storestudy.domain.store;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -7,6 +7,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
+
+import com.georgiimalyshev.storestudy.domain.store.Product;
 
 @ExtendWith(MockitoExtension.class)
 public class ProductTest {

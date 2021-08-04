@@ -2,7 +2,7 @@ package com.georgiimalyshev.storestudy.dao;
 
 import org.springframework.stereotype.Repository;
 
-import com.georgiimalyshev.storestudy.service.domain.users.Customer;
+import com.georgiimalyshev.storestudy.domain.users.Customer;
 
 @Repository
 public class CustomerDao extends AppUserDao {

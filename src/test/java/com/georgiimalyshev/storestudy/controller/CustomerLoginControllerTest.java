@@ -16,9 +16,9 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.ui.Model;
 
+import com.georgiimalyshev.storestudy.domain.users.AppUser;
+import com.georgiimalyshev.storestudy.domain.users.Customer;
 import com.georgiimalyshev.storestudy.service.AppUserService;
-import com.georgiimalyshev.storestudy.service.domain.users.AppUser;
-import com.georgiimalyshev.storestudy.service.domain.users.Customer;
 
 @ExtendWith(MockitoExtension.class)
 public class CustomerLoginControllerTest {

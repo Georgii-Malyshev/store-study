@@ -1,6 +1,6 @@
-package com.georgiimalyshev.storestudy.service.domain.store;
+package com.georgiimalyshev.storestudy.domain.store;
 
-import com.georgiimalyshev.storestudy.service.domain.users.AppUser;
+import com.georgiimalyshev.storestudy.domain.users.AppUser;
 
 public class Order {
     private int id;

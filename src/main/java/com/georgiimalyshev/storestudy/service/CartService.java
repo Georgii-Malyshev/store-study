@@ -6,9 +6,9 @@ import java.util.Set;
 import org.springframework.stereotype.Service;
 
 import com.georgiimalyshev.storestudy.dao.CartDao;
-import com.georgiimalyshev.storestudy.service.domain.store.Cart;
-import com.georgiimalyshev.storestudy.service.domain.store.CartItem;
-import com.georgiimalyshev.storestudy.service.domain.store.Product;
+import com.georgiimalyshev.storestudy.domain.store.Cart;
+import com.georgiimalyshev.storestudy.domain.store.CartItem;
+import com.georgiimalyshev.storestudy.domain.store.Product;
 
 @Service
 public class CartService {

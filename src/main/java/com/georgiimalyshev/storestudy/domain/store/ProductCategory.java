@@ -1,4 +1,4 @@
-package com.georgiimalyshev.storestudy.service.domain.store;
+package com.georgiimalyshev.storestudy.domain.store;
 
 import java.util.Objects;
 import java.util.Set;

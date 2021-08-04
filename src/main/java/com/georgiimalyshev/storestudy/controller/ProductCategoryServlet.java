@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.context.ApplicationContext;
 
+import com.georgiimalyshev.storestudy.domain.store.ProductCategory;
 import com.georgiimalyshev.storestudy.service.ProductManagementService;
-import com.georgiimalyshev.storestudy.service.domain.store.ProductCategory;
 
 @WebServlet("/category")
 public class ProductCategoryServlet extends HttpServlet {

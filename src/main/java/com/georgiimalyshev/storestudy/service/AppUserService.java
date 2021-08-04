@@ -6,7 +6,7 @@ import java.util.Set;
 import org.springframework.stereotype.Service;
 
 import com.georgiimalyshev.storestudy.dao.AppUserDao;
-import com.georgiimalyshev.storestudy.service.domain.users.AppUser;
+import com.georgiimalyshev.storestudy.domain.users.AppUser;
 
 @Service
 public class AppUserService {

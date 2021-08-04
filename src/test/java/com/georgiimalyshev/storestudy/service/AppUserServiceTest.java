@@ -15,8 +15,8 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.georgiimalyshev.storestudy.dao.AppUserDao;
-import com.georgiimalyshev.storestudy.service.domain.users.AppUser;
-import com.georgiimalyshev.storestudy.service.domain.users.Customer;
+import com.georgiimalyshev.storestudy.domain.users.AppUser;
+import com.georgiimalyshev.storestudy.domain.users.Customer;
 
 @ExtendWith(MockitoExtension.class)
 public class AppUserServiceTest {

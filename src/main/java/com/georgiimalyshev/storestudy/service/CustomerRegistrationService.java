@@ -5,8 +5,8 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.georgiimalyshev.storestudy.dao.CustomerDao;
-import com.georgiimalyshev.storestudy.service.domain.users.AppUser;
-import com.georgiimalyshev.storestudy.service.domain.users.Customer;
+import com.georgiimalyshev.storestudy.domain.users.AppUser;
+import com.georgiimalyshev.storestudy.domain.users.Customer;
 
 @Service
 public class CustomerRegistrationService {

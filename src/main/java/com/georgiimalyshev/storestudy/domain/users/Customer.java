@@ -1,4 +1,4 @@
-package com.georgiimalyshev.storestudy.service.domain.users;
+package com.georgiimalyshev.storestudy.domain.users;
 
 import java.util.Objects;
 
@@ -9,7 +9,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
-import com.georgiimalyshev.storestudy.service.domain.store.Cart;
+import com.georgiimalyshev.storestudy.domain.store.Cart;
 
 @Entity
 @Table(name = "customer")

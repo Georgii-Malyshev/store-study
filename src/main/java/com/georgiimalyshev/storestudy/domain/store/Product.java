@@ -1,4 +1,4 @@
-package com.georgiimalyshev.storestudy.service.domain.store;
+package com.georgiimalyshev.storestudy.domain.store;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

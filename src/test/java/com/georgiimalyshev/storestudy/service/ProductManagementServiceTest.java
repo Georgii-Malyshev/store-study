@@ -18,10 +18,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import com.georgiimalyshev.storestudy.dao.ProductCatalogDao;
 import com.georgiimalyshev.storestudy.dao.ProductCategoryDao;
 import com.georgiimalyshev.storestudy.dao.ProductDao;
-import com.georgiimalyshev.storestudy.service.domain.store.Product;
-import com.georgiimalyshev.storestudy.service.domain.store.ProductCatalog;
-import com.georgiimalyshev.storestudy.service.domain.store.ProductCategory;
-import com.georgiimalyshev.storestudy.service.domain.users.AppUser;
+import com.georgiimalyshev.storestudy.domain.store.Product;
+import com.georgiimalyshev.storestudy.domain.store.ProductCatalog;
+import com.georgiimalyshev.storestudy.domain.store.ProductCategory;
+import com.georgiimalyshev.storestudy.domain.users.AppUser;
 
 @ExtendWith(MockitoExtension.class)
 public class ProductManagementServiceTest {

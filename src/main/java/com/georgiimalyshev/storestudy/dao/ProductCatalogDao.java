@@ -10,7 +10,7 @@ import javax.persistence.TypedQuery;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.georgiimalyshev.storestudy.service.domain.store.ProductCatalog;
+import com.georgiimalyshev.storestudy.domain.store.ProductCatalog;
 
 @Repository
 @Transactional

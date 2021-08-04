@@ -1,4 +1,4 @@
-package com.georgiimalyshev.storestudy.service.domain.store;
+package com.georgiimalyshev.storestudy.domain.store;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -14,7 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.georgiimalyshev.storestudy.service.domain.users.Customer;
+import com.georgiimalyshev.storestudy.domain.users.Customer;
 
 @Entity
 @Table(name = "cart")

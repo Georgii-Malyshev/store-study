@@ -13,7 +13,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.georgiimalyshev.storestudy.service.domain.store.Cart;
+import com.georgiimalyshev.storestudy.domain.store.Cart;
 
 @Repository
 @Transactional

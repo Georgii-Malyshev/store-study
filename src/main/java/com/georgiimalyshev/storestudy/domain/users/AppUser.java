@@ -1,4 +1,4 @@
-package com.georgiimalyshev.storestudy.service.domain.users;
+package com.georgiimalyshev.storestudy.domain.users;
 
 public interface AppUser {
     public int getId();
