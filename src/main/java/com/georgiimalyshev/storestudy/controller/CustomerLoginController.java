@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -23,11 +22,6 @@ public class CustomerLoginController {
 	}
 
 	private AppUserService appUserService;
-
-	@ModelAttribute
-	public Customer user() {
-		return new Customer();
-	} // TODO consider if this block of code is actualy necessary
 
 	@GetMapping("/login")
 	public String loginPage() {
