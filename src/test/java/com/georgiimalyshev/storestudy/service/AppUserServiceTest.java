@@ -29,7 +29,7 @@ public class AppUserServiceTest {
 
 	@InjectMocks
 	private AppUserService appUserService;
-	
+
 	private void setUpAppUserDaoMockToReturnOptionalOfAppUser(Optional<AppUser> optional) {
 		when(appUserDao.findByCredentials(email, password)).thenReturn(optional);
 	}
@@ -59,7 +59,7 @@ public class AppUserServiceTest {
 				() -> assertEquals("email1@mail.com", optionalOfAppUser.get().getEmail()),
 				() -> assertEquals("password1", optionalOfAppUser.get().getPassword()));
 	}
-	
+
 	@Test
 	public void givenEmptyCredentials_whenFindAppUserByCredentials_thenReturnEmptyOptional() {
 		email = "";
@@ -69,7 +69,7 @@ public class AppUserServiceTest {
 
 		assertTrue(optionalOfAppUser.isEmpty());
 	}
-	
+
 	@Test
 	public void givenWrongCredentials_whenFindAppUserByCredentials_thenReturnEmptyOptional() {
 		email = "214141";
@@ -79,7 +79,7 @@ public class AppUserServiceTest {
 
 		assertTrue(optionalOfAppUser.isEmpty());
 	}
-	
+
 	@Test
 	public void givenCorrectEmailAndWrongPassword_whenFindAppUserByCredentials_thenReturnEmptyOptional() {
 		email = "email1@mail.com";

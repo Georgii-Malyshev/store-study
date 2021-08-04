@@ -12,17 +12,19 @@ import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = {"com.georgiimalyshev.storestudy.controller"} )
+@ComponentScan(basePackages = { "com.georgiimalyshev.storestudy.controller" })
 public class SpringWebMvcConfig implements WebMvcConfigurer {
 	// create SpringResourceTemplateResolver
 	@Bean
 	public SpringResourceTemplateResolver springResourceTemplateResolver() {
 		SpringResourceTemplateResolver springResourceTemplateResolver = new SpringResourceTemplateResolver();
-		springResourceTemplateResolver.setPrefix("classpath:/templates/"); // TODO consider other ways to point to templates
+		springResourceTemplateResolver.setPrefix("classpath:/templates/"); // TODO consider other ways to point to
+																			// templates
 		springResourceTemplateResolver.setSuffix(".html");
 		springResourceTemplateResolver.setTemplateMode("HTML5");
 		return springResourceTemplateResolver;
 	}
+
 	// create SpringTemplateEngine
 	@Bean
 	public SpringTemplateEngine springTemplateEngine() {
@@ -31,6 +33,7 @@ public class SpringWebMvcConfig implements WebMvcConfigurer {
 		springTemplateEngine.setEnableSpringELCompiler(true);
 		return springTemplateEngine;
 	}
+
 	// register ThymeleafViewResolver in Spring WebMVC
 	@Override
 	public void configureViewResolvers(ViewResolverRegistry viewResolverRegistry) {

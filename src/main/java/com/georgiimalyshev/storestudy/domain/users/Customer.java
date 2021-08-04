@@ -16,7 +16,7 @@ import com.georgiimalyshev.storestudy.domain.store.Cart;
 public class Customer extends AppUserAbstract {
 	public Customer() {
 	}
-	
+
 	public Customer(String email, String password) {
 		this.email = email;
 		this.password = password;
@@ -77,7 +77,8 @@ public class Customer extends AppUserAbstract {
 		return (this.id == objectAsCustomer.getId() && this.email.equals(objectAsCustomer.getEmail())
 				&& this.password.equals(objectAsCustomer.getPassword())
 				&& this.mobilePhoneNumber.equals(objectAsCustomer.getMobilePhoneNumber())
-				&& this.firstName.equals(objectAsCustomer.getFirstName()) && this.lastName.equals(objectAsCustomer.getLastName())
+				&& this.firstName.equals(objectAsCustomer.getFirstName())
+				&& this.lastName.equals(objectAsCustomer.getLastName())
 				&& this.shippingAddress.equals(objectAsCustomer.getShippingAddress()));
 	}
 

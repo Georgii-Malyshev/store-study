@@ -33,7 +33,7 @@ public class ProductCatalog {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
 	public Set<ProductCategory> getProductCategories() {
 		return productCategories;
 	}

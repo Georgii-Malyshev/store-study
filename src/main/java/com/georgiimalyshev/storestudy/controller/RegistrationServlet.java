@@ -26,10 +26,11 @@ public class RegistrationServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
-		
+
 		ServletContext servletContext = request.getServletContext();
 		ApplicationContext applicationContext = (ApplicationContext) servletContext.getAttribute("applicationContext");
-		CustomerRegistrationService customerRegistrationService = applicationContext.getBean(CustomerRegistrationService.class);
+		CustomerRegistrationService customerRegistrationService = applicationContext
+				.getBean(CustomerRegistrationService.class);
 		boolean registrationSuccess = false;
 		// TODO validate entered data before passing it to the service layer
 		registrationSuccess = customerRegistrationService.registerNewCustomer(email, password);

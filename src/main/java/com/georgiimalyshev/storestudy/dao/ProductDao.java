@@ -13,7 +13,8 @@ import com.georgiimalyshev.storestudy.domain.store.Product;
 @Repository
 @Transactional
 public class ProductDao {
-	@PersistenceContext private EntityManager entityManager;
+	@PersistenceContext
+	private EntityManager entityManager;
 
 	public void persist(Product product) {
 		entityManager.persist(product);

@@ -28,11 +28,11 @@ public class Cart {
 	@MapsId
 	@JoinColumn(name = "customer_id")
 	private Customer customer;
-	
+
 	public int getId() {
 		return this.id;
 	}
-	
+
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -40,7 +40,7 @@ public class Cart {
 	public Set<CartItem> getCartItems() {
 		return this.cartItems;
 	}
-	
+
 	public void setCartItems(Set<CartItem> cartItems) {
 		this.cartItems = cartItems;
 	}
@@ -48,11 +48,11 @@ public class Cart {
 	public Customer getCustomer() {
 		return this.customer;
 	}
-	
+
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
-	
+
 	public void clear() {
 		// TODO implement method to clear all items from the cart
 	}

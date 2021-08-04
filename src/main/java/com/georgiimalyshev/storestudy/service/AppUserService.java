@@ -11,11 +11,11 @@ import com.georgiimalyshev.storestudy.domain.users.AppUser;
 @Service
 public class AppUserService {
 	private AppUserDao appUserDao;
-	
+
 	public AppUserService(AppUserDao appUserDao) {
 		this.appUserDao = appUserDao;
 	}
-	
+
 	public Optional<AppUser> findAppUserByCredentials(String email, String password) {
 		Optional<AppUser> optionalOfAppUser = appUserDao.findByCredentials(email, password);
 		return optionalOfAppUser;

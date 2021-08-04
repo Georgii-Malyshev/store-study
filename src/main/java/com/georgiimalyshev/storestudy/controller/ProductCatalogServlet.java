@@ -17,12 +17,12 @@ import com.georgiimalyshev.storestudy.service.ProductManagementService;
 
 @WebServlet("/catalog")
 public class ProductCatalogServlet extends HttpServlet {
-	
+
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ServletContext servletContext = request.getServletContext();
 		// catalog ID used here is hardcoded in the app's initializer
-		int catalogId = (int) servletContext.getAttribute("catalogId"); 
+		int catalogId = (int) servletContext.getAttribute("catalogId");
 		ApplicationContext applicationContext = (ApplicationContext) servletContext.getAttribute("applicationContext");
 		ProductManagementService productManagementService = applicationContext.getBean(ProductManagementService.class);
 		ProductCatalog productCatalog = productManagementService.getProductCatalogByIdAndFetchCategories(catalogId);

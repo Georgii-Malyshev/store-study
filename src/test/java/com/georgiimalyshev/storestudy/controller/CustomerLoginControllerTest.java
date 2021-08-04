@@ -24,28 +24,29 @@ import com.georgiimalyshev.storestudy.service.AppUserService;
 public class CustomerLoginControllerTest {
 	@Mock
 	private AppUserService appUserService;
-	
+
 	@Mock
 	private HttpSession httpSession;
-	
+
 	@Mock
 	private Model model;
-	
+
 	@InjectMocks
 	private CustomerLoginController customerLoginController;
+
 	// TODO unit tests for CustomerLoginController
 	@Test
 	public void givenCorrectCredentials_whenLogin_thenSetCorrespondingCustomerAsSessionAttributeAndRedirectToHome() {
 		String email = "correctemail@mail.com";
-		String password = "correctpassword"; 
+		String password = "correctpassword";
 		String resultString = "";
 		Customer correspondingCustomer = new Customer(email, password);
 		Optional<AppUser> optionalOfAppUser = Optional.of(correspondingCustomer);
-		// TODO should test case when service throws an exception 
+		// TODO should test case when service throws an exception
 		when(appUserService.findAppUserByCredentials(email, password)).thenReturn(optionalOfAppUser);
-		
+
 		resultString = customerLoginController.login(httpSession, email, password, model);
-		
+
 		verify(httpSession, times(1)).setAttribute("user", correspondingCustomer);
 		assertEquals("redirect:home", resultString);
 	}

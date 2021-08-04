@@ -11,11 +11,11 @@ import com.georgiimalyshev.storestudy.domain.users.Customer;
 @Service
 public class CustomerRegistrationService {
 	private CustomerDao customerDao;
-	
+
 	public CustomerRegistrationService(CustomerDao customerDao) {
 		this.customerDao = customerDao;
 	}
-	
+
 	public boolean registerNewCustomer(String email, String password) {
 		boolean registrationSuccess = false;
 		if (!(password.isBlank())) {

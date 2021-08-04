@@ -15,12 +15,14 @@ import com.georgiimalyshev.storestudy.domain.store.ProductCatalog;
 @Repository
 @Transactional
 public class ProductCatalogDao {
-	@PersistenceContext private EntityManager entityManager;
+	@PersistenceContext
+	private EntityManager entityManager;
 
 	// TODO get rid of duplicate code in methods that use JPQL queries
-	
+
 	public Optional<ProductCatalog> findByIdAndFetchProductCategories(int id) {
-		// TODO implement some checks to make sure that this code ALWAYS returns a single and correct result
+		// TODO implement some checks to make sure that this code ALWAYS returns a
+		// single and correct result
 		TypedQuery<ProductCatalog> typedQuery = entityManager.createQuery(
 				"SELECT c FROM ProductCatalog c JOIN FETCH c.productCategories pc WHERE c.id = :id",
 				ProductCatalog.class);

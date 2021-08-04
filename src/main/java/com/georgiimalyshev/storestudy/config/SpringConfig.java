@@ -12,14 +12,14 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
-@ComponentScan(basePackages = { "com.georgiimalyshev.storestudy.service","com.georgiimalyshev.storestudy.dao" })
+@ComponentScan(basePackages = { "com.georgiimalyshev.storestudy.service", "com.georgiimalyshev.storestudy.dao" })
 @EnableTransactionManagement
 public class SpringConfig {
 	@Bean
-    public PersistenceExceptionTranslationPostProcessor exceptionTranslator() {
-        return new PersistenceExceptionTranslationPostProcessor();
-    }
-	
+	public PersistenceExceptionTranslationPostProcessor exceptionTranslator() {
+		return new PersistenceExceptionTranslationPostProcessor();
+	}
+
 	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 		LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();

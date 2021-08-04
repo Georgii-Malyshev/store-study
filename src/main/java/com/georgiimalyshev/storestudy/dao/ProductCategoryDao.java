@@ -19,10 +19,11 @@ import com.georgiimalyshev.storestudy.domain.store.ProductCategory;
 @Repository
 @Transactional
 public class ProductCategoryDao {
-	@PersistenceContext private EntityManager entityManager;
+	@PersistenceContext
+	private EntityManager entityManager;
 
 	// TODO get rid of duplicate code in methods that use JPQL queries
-	
+
 	public Set<Product> getAllProducts(ProductCategory productCategory) {
 		TypedQuery<Product> typedQuery = entityManager
 				.createQuery("SELECT p FROM Product p WHERE p.productCategory LIKE :productCategory", Product.class);
@@ -42,7 +43,7 @@ public class ProductCategoryDao {
 				"SELECT pc FROM ProductCategory pc JOIN FETCH pc.products p WHERE pc.id = :id", ProductCategory.class);
 		typedQuery.setParameter("id", id);
 		Stream<ProductCategory> resultStream = typedQuery.getResultStream();
-		Optional<ProductCategory> optionalOfProductCategory = resultStream.findFirst(); 
+		Optional<ProductCategory> optionalOfProductCategory = resultStream.findFirst();
 		return optionalOfProductCategory;
 	}
 }

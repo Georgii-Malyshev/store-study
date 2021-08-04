@@ -14,6 +14,7 @@ import javax.persistence.Table;
 public class Product {
 	public Product() {
 	}
+
 	// TODO should probably use BigDecimal for prices
 	public Product(String name, int price) {
 		this.name = name;
@@ -69,11 +70,13 @@ public class Product {
 		return (this.id == other.getId() && this.name.equals(other.getName()) && this.price == other.getPrice());
 	}
 
-	@Override 
-	// can NOT use generated ID here because that ID doesn't exist before the entity is
+	@Override
+	// can NOT use generated ID here because that ID doesn't exist before the entity
+	// is
 	// persisted and the hash code isn't allowed to change after the object is added
 	// to a Set
-	// TODO try to think of some better implementation, current one is THE WORST possible in terms of performance
+	// TODO try to think of some better implementation, current one is THE WORST
+	// possible in terms of performance
 	public int hashCode() {
 		int prime = 13;
 		return prime;
