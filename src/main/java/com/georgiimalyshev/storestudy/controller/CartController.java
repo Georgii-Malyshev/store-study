@@ -16,6 +16,7 @@ import com.georgiimalyshev.storestudy.domain.store.Product;
 import com.georgiimalyshev.storestudy.domain.users.Customer;
 import com.georgiimalyshev.storestudy.service.CartService;
 import com.georgiimalyshev.storestudy.service.ProductManagementService;
+import com.georgiimalyshev.storestudy.util.ErrorMessages;
 
 @Controller
 public class CartController {
@@ -27,11 +28,6 @@ public class CartController {
 
 	private CartService cartService;
 	private ProductManagementService productManagementService;
-	private String NotLoggedInErrorMessage = "could not access shopping cart: no customer was found in session; "
-			+ "not logged in or session expired?";
-	private String NotACustomerErrorMessage = "could not access shopping cart: "
-			+ "logged in as some type of user other than customer; "
-			+ "log in using a customer account to be able to access a shopping cart";
 
 	@GetMapping("/shopping-cart")
 	public String cartPage(HttpSession httpSession, Model model) {
@@ -44,7 +40,7 @@ public class CartController {
 			model.addAttribute("cart", cart);
 			resultString = "cart";
 		} else {
-			model.addAttribute("errorMessage", NotLoggedInErrorMessage);
+			model.addAttribute("errorMessage", ErrorMessages.notLoggedInErrorMessage);
 		}
 		return resultString;
 	}
@@ -60,9 +56,9 @@ public class CartController {
 			cartService.fetchCartItemsAndAddProductToCart(cart, product, quantity);
 			resultString = "redirect:shopping-cart";
 		} catch (ClassCastException ex) {
-			model.addAttribute("errorMessage", NotACustomerErrorMessage);
+			model.addAttribute("errorMessage", ErrorMessages.notACustomerErrorMessage);
 		} catch (NoSuchElementException ex) {
-			model.addAttribute("errorMessage", NotLoggedInErrorMessage);
+			model.addAttribute("errorMessage", ErrorMessages.notLoggedInErrorMessage);
 		}
 		return resultString;
 	}
