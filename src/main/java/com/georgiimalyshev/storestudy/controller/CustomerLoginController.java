@@ -31,7 +31,7 @@ public class CustomerLoginController {
 	@PostMapping("/login")
 	public String login(HttpSession httpSession,@RequestParam(name = "email") String email,
 			@RequestParam(name = "password") String password) {
-		String resultString = "login-error";
+		String resultString = "login-error"; // TODO redirect to generic error template and pass specific error message instead
 		Optional<AppUser> optionalOfAppUser = appUserService.findAppUserByCredentials(email, password);
 		if (optionalOfAppUser.isPresent()) {
 			Customer customer = (Customer) optionalOfAppUser.get(); // TODO conversion will fail for subtypes other
