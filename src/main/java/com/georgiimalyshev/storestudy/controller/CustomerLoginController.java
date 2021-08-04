@@ -47,11 +47,4 @@ public class CustomerLoginController {
 		}
 		return resultString;
 	}
-
-	@GetMapping("/home")
-	public String homePage(HttpSession httpSession, Model model) {
-		Customer customer = (Customer) httpSession.getAttribute("user");
-		model.addAttribute("user", customer);
-		return "home";
-	}
 }
