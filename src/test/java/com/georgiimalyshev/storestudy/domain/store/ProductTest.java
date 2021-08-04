@@ -8,8 +8,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.georgiimalyshev.storestudy.domain.store.Product;
-
 @ExtendWith(MockitoExtension.class)
 public class ProductTest {
 	private static Product product1;

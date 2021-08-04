@@ -21,7 +21,6 @@ import com.georgiimalyshev.storestudy.dao.ProductDao;
 import com.georgiimalyshev.storestudy.domain.store.Product;
 import com.georgiimalyshev.storestudy.domain.store.ProductCatalog;
 import com.georgiimalyshev.storestudy.domain.store.ProductCategory;
-import com.georgiimalyshev.storestudy.domain.users.AppUser;
 
 @ExtendWith(MockitoExtension.class)
 public class ProductManagementServiceTest {
