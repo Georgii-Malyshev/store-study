@@ -22,6 +22,8 @@ public class CustomerRegistrationService {
 			Optional<AppUser> optionalOfAppUser = customerDao.findByEmail(email);
 			if (optionalOfAppUser.isEmpty()) {
 				Customer customer = new Customer(email, password);
+				// TODO must manually create a customer's cart since JPA's cascading doesn't
+				// work with @MapsId
 				customerDao.persist(customer);
 				registrationSuccess = true;
 			}

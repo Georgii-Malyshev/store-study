@@ -2,7 +2,6 @@ package com.georgiimalyshev.storestudy.domain.users;
 
 import java.util.Objects;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToOne;
@@ -26,7 +25,7 @@ public class Customer extends AppUserAbstract {
 	private String firstName;
 	private String lastName;
 	private String shippingAddress;
-	@OneToOne(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+	@OneToOne(mappedBy = "customer", orphanRemoval = true, fetch = FetchType.LAZY)
 	@PrimaryKeyJoinColumn
 	private Cart cart;
 
