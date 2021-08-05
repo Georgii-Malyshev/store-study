@@ -22,12 +22,19 @@ public class Cart {
 	@Id
 	@Column(name = "customer_id")
 	private int id;
-	@OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Set<CartItem> cartItems = new HashSet<CartItem>();
-	@OneToOne
+	@OneToOne(fetch = FetchType.LAZY) // TODO add optional=false?
 	@MapsId
 	@JoinColumn(name = "customer_id")
 	private Customer customer;
+
+	public Cart() {
+	}
+	
+	public Cart(Customer customer) {
+		this.customer = customer;
+	}
 
 	public int getId() {
 		return this.id;

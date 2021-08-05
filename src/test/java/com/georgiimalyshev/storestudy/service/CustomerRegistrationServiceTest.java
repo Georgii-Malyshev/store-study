@@ -13,6 +13,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import com.georgiimalyshev.storestudy.dao.CartDao;
 import com.georgiimalyshev.storestudy.dao.CustomerDao;
 import com.georgiimalyshev.storestudy.domain.users.AppUser;
 import com.georgiimalyshev.storestudy.domain.users.Customer;
@@ -25,10 +26,13 @@ public class CustomerRegistrationServiceTest {
 
 	@Mock
 	private CustomerDao customerDao;
+	
+	@Mock
+	private CartDao cartDao;
 
 	@InjectMocks
 	private CustomerRegistrationService customerRegistrationService;
-
+	
 	private void setUpCustomerDaoMockToReturnOptionalOfAppUser(Optional<AppUser> optional) {
 		when(customerDao.findByEmail(email)).thenReturn(optional);
 	}
