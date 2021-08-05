@@ -19,7 +19,7 @@ public class LogoutController {
 		if (httpSession != null) {
 			httpSession.removeAttribute("user");
 			httpSession.invalidate();
-			// delete all cookies
+			// expire all cookies on the client
 			for (Cookie cookie : httpServletRequest.getCookies()) {
                 String cookieName = cookie.getName();
                 Cookie cookieToDelete = new Cookie(cookieName, null);
