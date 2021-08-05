@@ -4,6 +4,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -24,8 +25,7 @@ public class ProductCategory {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_category_generator")
 	@SequenceGenerator(name = "product_category_generator", sequenceName = "product_category_id_seq")
-	// nullable=false in these is needed only for schema generation
-	// @Column(updatable = false, nullable = false)
+	@Column(updatable = false, nullable = false)
 	private int id;
 	@ManyToOne
 	@JoinColumn(name = "product_catalog_id")

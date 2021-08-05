@@ -3,6 +3,7 @@ package com.georgiimalyshev.storestudy.domain.store;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -19,8 +20,7 @@ public class ProductCatalog {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_catalog_generator")
 	@SequenceGenerator(name = "product_catalog_generator", sequenceName = "product_catalog_id_seq")
-	// nullable=false in these is needed only for schema generation
-	// @Column(updatable = false, nullable = false)
+	@Column(updatable = false, nullable = false)
 	private int id;
 
 	@OneToMany(mappedBy = "productCatalog", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
