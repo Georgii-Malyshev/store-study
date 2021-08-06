@@ -206,6 +206,23 @@ COPY public.admin (id) FROM stdin;
 
 COPY public.appuser (id, email, password) FROM stdin;
 902	customer1	1
+952	customer2	2
+1002	customer3	3
+1052	customer4	4
+1102	customer21	21
+1152	customer22	22
+1202	customer23	23
+1502	customer30	30
+1552	customer31	31
+1602	customer32	32
+1652	customer33	33
+1702	customer35	35
+1752	customer36	36
+1802	customer37	37
+1852	customer38	38
+1902	customer39	39
+1952	customer40	40
+2002	customer41	41
 \.
 
 
@@ -214,7 +231,6 @@ COPY public.appuser (id, email, password) FROM stdin;
 --
 
 COPY public.cart (customer_id) FROM stdin;
-902
 \.
 
 
@@ -223,24 +239,6 @@ COPY public.cart (customer_id) FROM stdin;
 --
 
 COPY public.cart_item (id, quantity, cart_id, product_id) FROM stdin;
-1	2	902	4
-52	7	902	4
-102	5	902	3
-152	19	902	4
-202	1	902	3
-252	34	902	2
-302	21	902	4
-352	44	902	3
-402	13	902	4
-452	67	902	4
-502	1	902	3
-503	7	902	3
-552	77	902	2
-553	22	902	2
-602	10	902	3
-652	1	902	3
-702	1	902	2
-752	1	902	1
 \.
 
 
@@ -249,7 +247,6 @@ COPY public.cart_item (id, quantity, cart_id, product_id) FROM stdin;
 --
 
 COPY public.customer (firstname, lastname, mobilephonenumber, shippingaddress, id) FROM stdin;
-\N	\N	\N	\N	902
 \.
 
 
@@ -289,14 +286,14 @@ COPY public.product_category (id, name, product_catalog_id) FROM stdin;
 -- Name: appuser_id_seq; Type: SEQUENCE SET; Schema: public; Owner: storedev
 --
 
-SELECT pg_catalog.setval('public.appuser_id_seq', 951, true);
+SELECT pg_catalog.setval('public.appuser_id_seq', 2051, true);
 
 
 --
 -- Name: cart_item_id_seq; Type: SEQUENCE SET; Schema: public; Owner: storedev
 --
 
-SELECT pg_catalog.setval('public.cart_item_id_seq', 801, true);
+SELECT pg_catalog.setval('public.cart_item_id_seq', 851, true);
 
 
 --
