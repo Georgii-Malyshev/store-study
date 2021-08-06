@@ -60,10 +60,14 @@ public class Cart {
 		this.customer = customer;
 	}
 
-	public void clear() {
-		// TODO implement method to clear all items from the cart
+	public void addItem(CartItem item) {
+		this.cartItems.add(item);
 	}
-
+	
+	public void clearItems() {
+		this.cartItems.clear();
+	}
+	
 	public int calculateTotalPrice() {
 		int totalPrice = 0;
 		// TODO implement method to calculate total price

@@ -56,7 +56,7 @@ public class CartController {
 			if (customer != null) {
 				Cart cart = customer.getCart(); // every customer MUST ALWAYS have a corresponding cart
 				Product product = productManagementService.getProductById(productId);
-				cartService.fetchCartItemsAndAddProductToCart(cart, product, quantity);
+				cartService.addProductToCart(cart, product, quantity);
 				resultString = "redirect:shopping-cart";
 			} else {
 				model.addAttribute("errorMessage", ErrorMessages.notLoggedInErrorMessage);
