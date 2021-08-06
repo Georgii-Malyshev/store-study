@@ -22,12 +22,16 @@ public class CustomerRegistrationService {
 		this.customerDao = customerDao;
 		this.cartDao = cartDao;
 	}
+	
+	public Optional<AppUser> findAppUserByEmail(String email) {
+		return customerDao.findByEmail(email);
+	}
 
 	@Transactional
 	public boolean registerNewCustomer(String email, String password) {
 		boolean registrationSuccess = false;
 		if (!(password.isBlank())) {
-			Optional<AppUser> optionalOfAppUser = customerDao.findByEmail(email);
+			Optional<AppUser> optionalOfAppUser = this.findAppUserByEmail(email);
 			if (optionalOfAppUser.isEmpty()) {
 				Customer customer = new Customer(email, password);
 				customerDao.persist(customer);
