@@ -66,4 +66,6 @@ public class CartController {
 		}
 		return resultString;
 	}
+	
+	// TODO add "remove from cart" functionality
 }
