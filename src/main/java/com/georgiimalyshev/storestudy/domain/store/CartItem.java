@@ -16,6 +16,11 @@ public class CartItem {
 	public CartItem() {
 	}
 
+	public CartItem(Product product, int quantity) {
+		this.product = product;
+		this.quantity = quantity;
+	}
+	
 	public CartItem(Cart cart, Product product, int quantity) {
 		this.cart = cart;
 		this.product = product;
@@ -42,6 +47,14 @@ public class CartItem {
 	public void setId(int id) {
 		this.id = id;
 	}
+	
+	public Cart getCart() {
+		return cart;
+	}
+	
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
 
 	public Product getProduct() {
 		return product;
@@ -57,5 +70,23 @@ public class CartItem {
 
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
+	}
+
+	@Override
+	public boolean equals(Object object) {
+		if (this == object)
+			return true;
+		if (object == null)
+			return false;
+		if (getClass() != object.getClass())
+			return false;
+		CartItem other = (CartItem) object;
+		return (this.id != 0) && (this.id == other.getId());
+	}
+
+	@Override
+	public int hashCode() {
+		int prime = 13;
+		return prime;
 	}
 }

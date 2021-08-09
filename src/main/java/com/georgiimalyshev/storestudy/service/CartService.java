@@ -1,5 +1,6 @@
 package com.georgiimalyshev.storestudy.service;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.Set;
 
@@ -44,13 +45,25 @@ public class CartService {
 			}
 		}
 		if (!itemFound) {
-			CartItem cartItem = new CartItem(cart, product, quantity);
+			CartItem cartItem = new CartItem(product, quantity);
 			cart.addItem(cartItem);
 		}
 		
 		cartDao.merge(cart);
 	}
 
+	@Transactional
+	public void removeCartItemById(Cart cart, int itemId) {
+		int id = cart.getId();
+		cart = getCartByIdAndFetchCartItems(id);
+		
+		if (cart.getCartItems().removeIf( item -> item.getId() == itemId )) {
+			cartDao.merge(cart);
+		} else {
+			throw new NoSuchElementException();
+		} 
+	}
+	
 	@Transactional
 	public void clearCart(Cart cart) {
 		int id = cart.getId();

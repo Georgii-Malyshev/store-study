@@ -66,6 +66,22 @@ public class CartController {
 		}
 		return resultString;
 	}
-	
-	// TODO add "remove from cart" functionality
+
+	@PostMapping("/remove-cart-item")
+	public String removeCartItem(@RequestParam(name = "id") int itemId, HttpSession httpSession, Model model) {
+		String resultString = "error";
+		try {
+			Customer customer = (Customer) httpSession.getAttribute("user");
+			if (customer != null) {
+				Cart cart = customer.getCart();
+				cartService.removeCartItemById(cart, itemId);
+				resultString = "redirect:shopping-cart";
+			} else {
+				model.addAttribute("errorMessage", ErrorMessages.notLoggedInErrorMessage);
+			}
+		} catch (ClassCastException ex) {
+			model.addAttribute("errorMessage", ErrorMessages.notACustomerErrorMessage);
+		}
+		return resultString;
+	}
 }

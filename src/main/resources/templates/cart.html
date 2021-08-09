@@ -18,11 +18,13 @@
 				<th>Products in your shopping cart</th>
 			</tr>
 			<tr>
+				<th>Cart item ID</th>
 				<th>Name</th>
 				<th>Price</th>
 				<th>Quantity</th>
 			</tr>
 			<tr th:each="cartItem : ${cart.cartItems}">
+				<td th:text="${cartItem.id}"></td>
 				<td th:text="${cartItem.product.name}"></td>
 				<td th:text="${cartItem.product.price}"></td>
 				<td th:text="${cartItem.quantity}"></td>
@@ -30,8 +32,13 @@
 		</table>
 	</div>
 	<div>
+		<form name="removeCartItemForm" action="remove-cart-item" method="post">
+			<input type="number" name="id">
+			<input type="submit" value="Remove item from cart"> 
+		</form>	
+	</div>
+	<div>
 		<a href=catalog>Browse catalog</a><br>
 	</div>
 </body>
-
 </html>
