@@ -1,6 +1,7 @@
 package com.georgiimalyshev.storestudy.service;
 
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,8 +30,26 @@ public class CartService {
 	public void addProductToCart(Cart cart, Product product, int quantity) {
 		int id = cart.getId();
 		cart = getCartByIdAndFetchCartItems(id);
-		CartItem cartItem = new CartItem(cart, product, quantity);
-		cart.addItem(cartItem);
+		Set<CartItem> cartItems = cart.getCartItems();
+		Product itemProduct;
+		boolean itemFound = false;
+		
+		for (CartItem cartItem : cartItems) {
+			itemProduct = cartItem.getProduct();
+			if (itemProduct.equals(product)) { // TODO make sure that Product.equals() is implemented correctly!
+				// add (quantity of product) to existing item and update cart's cartItems
+				int updatedQuantity = (cartItem.getQuantity()) + quantity; 
+				cartItem.setQuantity(updatedQuantity);
+				itemFound = true;
+				break;
+			}
+		}
+		
+		if (!itemFound) {
+			CartItem cartItem = new CartItem(cart, product, quantity);
+			cart.addItem(cartItem);
+		}
+		
 		cartDao.merge(cart);
 		// TODO throw an informative exception if something went wrong
 	}
