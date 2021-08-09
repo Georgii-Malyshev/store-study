@@ -37,14 +37,12 @@ public class CartService {
 		for (CartItem cartItem : cartItems) {
 			itemProduct = cartItem.getProduct();
 			if (itemProduct.equals(product)) {
-				// add (quantity of product) to existing item and update cart's cartItems
 				int updatedQuantity = (cartItem.getQuantity()) + quantity; 
 				cartItem.setQuantity(updatedQuantity);
 				itemFound = true;
 				break;
 			}
 		}
-		
 		if (!itemFound) {
 			CartItem cartItem = new CartItem(cart, product, quantity);
 			cart.addItem(cartItem);
