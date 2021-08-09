@@ -205,24 +205,6 @@ COPY public.admin (id) FROM stdin;
 --
 
 COPY public.appuser (id, email, password) FROM stdin;
-902	customer1	1
-952	customer2	2
-1002	customer3	3
-1052	customer4	4
-1102	customer21	21
-1152	customer22	22
-1202	customer23	23
-1502	customer30	30
-1552	customer31	31
-1602	customer32	32
-1652	customer33	33
-1702	customer35	35
-1752	customer36	36
-1802	customer37	37
-1852	customer38	38
-1902	customer39	39
-1952	customer40	40
-2002	customer41	41
 \.
 
 
@@ -286,14 +268,14 @@ COPY public.product_category (id, name, product_catalog_id) FROM stdin;
 -- Name: appuser_id_seq; Type: SEQUENCE SET; Schema: public; Owner: storedev
 --
 
-SELECT pg_catalog.setval('public.appuser_id_seq', 2051, true);
+SELECT pg_catalog.setval('public.appuser_id_seq', 2151, true);
 
 
 --
 -- Name: cart_item_id_seq; Type: SEQUENCE SET; Schema: public; Owner: storedev
 --
 
-SELECT pg_catalog.setval('public.cart_item_id_seq', 851, true);
+SELECT pg_catalog.setval('public.cart_item_id_seq', 1201, true);
 
 
 --
