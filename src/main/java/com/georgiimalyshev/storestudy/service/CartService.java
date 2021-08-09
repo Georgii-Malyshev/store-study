@@ -49,7 +49,6 @@ public class CartService {
 		}
 		
 		cartDao.merge(cart);
-		// TODO throw an informative exception if something went wrong
 	}
 
 	@Transactional
