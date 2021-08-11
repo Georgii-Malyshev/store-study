@@ -76,7 +76,9 @@ public class Cart {
 	
 	public int calculateTotalPrice() {
 		int totalPrice = 0;
-		// TODO implement method to calculate total price
+		for (CartItem item : this.cartItems) {
+			totalPrice = totalPrice + (item.getProduct().getPrice() * item.getQuantity());
+		}
 		return totalPrice;
 	}
 }
