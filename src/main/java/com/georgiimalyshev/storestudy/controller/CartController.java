@@ -37,6 +37,7 @@ public class CartController {
 				int cartId = cart.getId();
 				cart = cartService.getCartByIdAndFetchCartItems(cartId);
 				model.addAttribute("cart", cart);
+				model.addAttribute("totalPrice", cart.calculateTotalPrice());
 				resultString = "cart";
 			} else {
 				model.addAttribute("errorMessage", ErrorMessages.notLoggedInErrorMessage);

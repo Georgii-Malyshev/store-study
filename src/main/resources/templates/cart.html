@@ -9,17 +9,12 @@
 
 <body>
 	<div>
-		Your cart ID is:
-		<p th:text="${cart.id}">cart.id</p>
-	</div>
-	<div>
 		<form name="removeCartItemForm" id="remove-form" action="remove-cart-item" method="post">
 			<table>
 				<tr>
 					<th>Products in your shopping cart</th>
 				</tr>
 				<tr>
-					<th>Cart item ID</th>
 					<th>Name</th>
 					<th>Price</th>
 					<th>Quantity</th>
@@ -31,6 +26,9 @@
 					<td th:text="${cartItem.product.price}"></td>
 					<td th:text="${cartItem.quantity}"></td>
 					<td><input type="submit" value="Remove item from cart"></td>
+				</tr>
+				<tr>
+					<td th:text="${totalPrice}">Total price: not calculated; something went wrong?</td>
 				</tr>
 			</table>
 			</form>
