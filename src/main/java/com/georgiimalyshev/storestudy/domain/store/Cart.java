@@ -24,7 +24,7 @@ public class Cart {
 	private int id;
 	@OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
 	private Set<CartItem> cartItems = new HashSet<CartItem>();
-	@OneToOne(fetch = FetchType.LAZY) // TODO add optional=false?
+	@OneToOne(fetch = FetchType.LAZY)
 	@MapsId
 	@JoinColumn(name = "customer_id")
 	private Customer customer;

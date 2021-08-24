@@ -16,7 +16,6 @@ public class Admin extends AppUserAbstract {
 		this.password = password;
 	}
 
-	// TODO must double-check equals() and hashCode() later!
 	@Override
 	public boolean equals(Object object) {
 		if (this == object)

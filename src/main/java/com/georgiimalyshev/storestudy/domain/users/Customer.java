@@ -26,7 +26,7 @@ public class Customer extends AppUserAbstract {
 	private String firstName;
 	private String lastName;
 	private String shippingAddress;
-	@OneToOne(mappedBy = "customer", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY) // TODO add optional=false?
+	@OneToOne(mappedBy = "customer", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
 	@PrimaryKeyJoinColumn
 	private Cart cart;
 
@@ -66,7 +66,6 @@ public class Customer extends AppUserAbstract {
 		return this.cart;
 	}
 
-	// TODO must double-check equals() and hashCode() later!
 	@Override
 	public boolean equals(Object object) {
 		if (this == object)

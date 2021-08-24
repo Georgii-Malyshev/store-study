@@ -57,7 +57,6 @@ public class Product {
 		this.price = price;
 	}
 
-	// TODO must double-check equals() and hashCode() and their contract later on!
 	@Override
 	public boolean equals(Object object) {
 		if (this == object)
@@ -71,12 +70,6 @@ public class Product {
 	}
 
 	@Override
-	// can NOT use generated ID here because that ID doesn't exist before the entity
-	// is
-	// persisted and the hash code isn't allowed to change after the object is added
-	// to a Set
-	// TODO try to think of some better implementation, current one is THE WORST
-	// possible in terms of performance
 	public int hashCode() {
 		int prime = 13;
 		return prime;

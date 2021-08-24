@@ -34,8 +34,6 @@ public class AppUserServiceTest {
 		when(appUserDao.findByCredentials(email, password)).thenReturn(optional);
 	}
 
-	// TODO write test cases for other classes implementing AppUser as well
-
 	@BeforeEach
 	public void customerSetUp() {
 		email = "email1@mail.com";

@@ -34,7 +34,6 @@ public class CustomerLoginControllerTest {
 	@InjectMocks
 	private CustomerLoginController customerLoginController;
 
-	// TODO unit tests for CustomerLoginController
 	@Test
 	public void givenCorrectCredentials_whenLogin_thenSetCorrespondingCustomerAsSessionAttributeAndRedirectToHome() {
 		String email = "correctemail@mail.com";

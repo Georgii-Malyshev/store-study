@@ -18,8 +18,7 @@ public class SpringWebMvcConfig implements WebMvcConfigurer {
 	@Bean
 	public SpringResourceTemplateResolver springResourceTemplateResolver() {
 		SpringResourceTemplateResolver springResourceTemplateResolver = new SpringResourceTemplateResolver();
-		springResourceTemplateResolver.setPrefix("classpath:/templates/"); // TODO consider other ways to point to
-																			// templates
+		springResourceTemplateResolver.setPrefix("classpath:/templates/");
 		springResourceTemplateResolver.setSuffix(".html");
 		springResourceTemplateResolver.setTemplateMode("HTML5");
 		return springResourceTemplateResolver;
